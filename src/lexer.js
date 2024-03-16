@@ -35,40 +35,5 @@ let lexer = moo.compile({
   greaterOrEqual: />=/,
   lessOrEqual: /<=/,
 });
-lexer.reset(`@numberVar;
-@stringVar;
-@boolVar;
-numberVar = 42;
-stringVar = "Hello, world!";
-boolVar = true;
 
-@i;
-@sum = 0;
-@n = 5;
-
-@i -> 1 to @n {
-    @sum = @sum + @i;
-}
-
-@x = 10;
-?? x > 5 {
-    // do something
-} << x < 0 {
-    // do something else
-} >> {
-    // do something by default
-}
-
-func add(@a, @b) {
-    return @a + @b;
-}
-
-@result = add(3, 5);
-`);
-while (true) {
-  const token = lexer.next();
-  if (!token) {
-    break;
-  }
-  console.log(token);
-}
+module.exports = lexer;

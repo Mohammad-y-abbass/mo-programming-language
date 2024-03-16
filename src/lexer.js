@@ -34,6 +34,7 @@ let lexer = moo.compile({
   lessThan: /</,
   greaterOrEqual: />=/,
   lessOrEqual: /<=/,
+  print: /print/
 });
 
 module.exports = lexer;

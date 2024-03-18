@@ -8,6 +8,10 @@ var grammar = {
     Lexer: myLexer,
     ParserRules: [
     {"name": "statement", "symbols": ["var_assign"], "postprocess": id},
+    {"name": "statement", "symbols": ["fun_call"], "postprocess": id},
+    {"name": "expression", "symbols": [(myLexer.has("string") ? {type: "string"} : string)], "postprocess": id},
+    {"name": "expression", "symbols": [(myLexer.has("number") ? {type: "number"} : number)], "postprocess": id},
+    {"name": "expression", "symbols": [(myLexer.has("boolean") ? {type: "boolean"} : boolean)], "postprocess": id},
     {"name": "var_assign", "symbols": [(myLexer.has("var_declaration") ? {type: "var_declaration"} : var_declaration), (myLexer.has("identifier") ? {type: "identifier"} : identifier), "_", {"literal":"="}, "_", "expression"], "postprocess": 
         (data) => {
             return {
@@ -17,9 +21,25 @@ var grammar = {
             }
         }
                 },
-    {"name": "expression", "symbols": [(myLexer.has("string") ? {type: "string"} : string)], "postprocess": id},
-    {"name": "expression", "symbols": [(myLexer.has("number") ? {type: "number"} : number)], "postprocess": id},
-    {"name": "expression", "symbols": [(myLexer.has("boolean") ? {type: "boolean"} : boolean)], "postprocess": id},
+    {"name": "args", "symbols": ["expression"], "postprocess": 
+        (data) => {
+            return [data[0]];
+        }
+                },
+    {"name": "args", "symbols": ["args", "__", "expression"], "postprocess": 
+        (data) => {
+            return [...data[0], data[2]];
+        }
+                },
+    {"name": "fun_call", "symbols": [(myLexer.has("identifier") ? {type: "identifier"} : identifier), "_", {"literal":"("}, "_", "args", "_", {"literal":")"}], "postprocess": 
+        (data) => {
+            return {
+                type: "fun_call",
+                fun_name: data[0],
+                arguments: data[4]
+            }
+        }
+                },
     {"name": "_$ebnf$1", "symbols": []},
     {"name": "_$ebnf$1", "symbols": ["_$ebnf$1", (myLexer.has("WS") ? {type: "WS"} : WS)], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
     {"name": "_", "symbols": ["_$ebnf$1"]},

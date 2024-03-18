@@ -5,6 +5,11 @@
 @lexer myLexer
 
 statement -> var_assign {% id %}
+            | fun_call {% id %}
+
+expression -> %string {% id %} | %number {% id %} | %boolean {% id %}
+
+
 
 var_assign -> %var_declaration %identifier _ "=" _ expression 
 {%
@@ -16,9 +21,34 @@ var_assign -> %var_declaration %identifier _ "=" _ expression
                 }
             }
         %}
-        
 
-expression -> %string {% id %} | %number {% id %} | %boolean {% id %}
+args
+    -> expression
+        {%
+            (data) => {
+                return [data[0]];
+            }
+        %}
+    |  args __ expression
+        {%
+            (data) => {
+                return [...data[0], data[2]];
+            }
+        %}            
+        
+fun_call -> %identifier _ "(" _ args _ ")"
+      {%
+            (data) => {
+                return {
+                    type: "fun_call",
+                    fun_name: data[0],
+                    arguments: data[4]
+                }
+            }
+        %}
+     
+  
+
 
 
 

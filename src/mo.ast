@@ -1,0 +1,34 @@
+[
+  {
+    "type": "fun_call",
+    "fun_name": {
+      "type": "identifier",
+      "value": "hello",
+      "text": "hello",
+      "offset": 0,
+      "lineBreaks": 0,
+      "line": 1,
+      "col": 1
+    },
+    "arguments": [
+      {
+        "type": "string",
+        "value": "\"hello\"",
+        "text": "\"hello\"",
+        "offset": 6,
+        "lineBreaks": 0,
+        "line": 1,
+        "col": 7
+      },
+      {
+        "type": "number",
+        "value": "2",
+        "text": "2",
+        "offset": 14,
+        "lineBreaks": 0,
+        "line": 1,
+        "col": 15
+      }
+    ]
+  }
+]

@@ -11,6 +11,7 @@ var grammar = {
     {"name": "statement", "symbols": ["fun_call"], "postprocess": id},
     {"name": "statement", "symbols": ["function_def"], "postprocess": id},
     {"name": "statement", "symbols": ["conditional"]},
+    {"name": "statement", "symbols": ["loop"]},
     {"name": "expression", "symbols": [(myLexer.has("string") ? {type: "string"} : string)], "postprocess": id},
     {"name": "expression", "symbols": [(myLexer.has("number") ? {type: "number"} : number)], "postprocess": id},
     {"name": "expression", "symbols": [(myLexer.has("boolean") ? {type: "boolean"} : boolean)], "postprocess": id},
@@ -44,12 +45,12 @@ var grammar = {
             return [...data[0], data[2]];
         }
                 },
-    {"name": "fun_call", "symbols": [(myLexer.has("identifier") ? {type: "identifier"} : identifier), "_", {"literal":"("}, "_", "args", "_", {"literal":")"}], "postprocess": 
+    {"name": "fun_call", "symbols": [{"literal":"call"}, "__", (myLexer.has("identifier") ? {type: "identifier"} : identifier), "_", {"literal":"("}, "_", "args", "_", {"literal":")"}], "postprocess": 
         (data) => {
             return {
                 type: "fun_call",
-                fun_name: data[0],
-                arguments: data[4]
+                fun_name: data[2],
+                arguments: data[6]
             }
         }
                 },
@@ -88,6 +89,15 @@ var grammar = {
             }
         }
                 },
+    {"name": "loop", "symbols": [{"literal":"while"}, "__", "condition", "__", (myLexer.has("arrow") ? {type: "arrow"} : arrow), (myLexer.has("NL") ? {type: "NL"} : NL), "code"], "postprocess": 
+        (data) => {
+            return {
+                type: "loop",
+                condition: data[2],
+                code: data[6]
+            }
+        }
+            },
     {"name": "_$ebnf$1", "symbols": []},
     {"name": "_$ebnf$1", "symbols": ["_$ebnf$1", (myLexer.has("WS") ? {type: "WS"} : WS)], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
     {"name": "_", "symbols": ["_$ebnf$1"]},

@@ -3,8 +3,8 @@ const grammar = require('./grammar.js');
 const fs = require('fs');
 
 const parser = new nearley.Parser(nearley.Grammar.fromCompiled(grammar));
-const input = `when x > 1 =>
-@b = 1`;
+const input = `while number > 1 =>
+call name("name")`;
 
 // Parse the input
 parser.feed(input);

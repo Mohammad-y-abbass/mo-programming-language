@@ -8,6 +8,7 @@ statement -> var_assign {% id %}
             | fun_call {% id %}
             | function_def {% id %}
             | conditional
+            | loop
 
 expression -> %string {% id %} | %number {% id %} | %boolean {% id %}
 
@@ -50,13 +51,13 @@ args
             }
         %}            
         
-fun_call -> %identifier _ "(" _ args _ ")"
+fun_call ->"call" __ %identifier _ "(" _ args _ ")"
       {%
             (data) => {
                 return {
                     type: "fun_call",
-                    fun_name: data[0],
-                    arguments: data[4]
+                    fun_name: data[2],
+                    arguments: data[6]
                 }
             }
         %}
@@ -88,10 +89,11 @@ function_def -> "fn" __ %identifier _ "(" _ params _ ")" __ %arrow %NL code
 
 compare_operator -> %equals | %greaterThanOrEqual | %lessThanOrEqual | %greaterThan | %lessThan         
 
+
 condition -> %identifier _ compare_operator _ expression   
 
 
-conditional -> "when" __ condition __ %arrow %NL code 
+conditional -> "when" __  condition __ %arrow %NL code 
      {%
             (data) => {
                 return {
@@ -101,7 +103,18 @@ conditional -> "when" __ condition __ %arrow %NL code
                 }
             }
         %}
-   
+
+loop -> "while" __ condition __ %arrow %NL code
+
+    {%
+            (data) => {
+                return {
+                    type: "loop",
+                    condition: data[2],
+                    code: data[6]
+                }
+            }
+    %}
 
 
  

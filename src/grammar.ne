@@ -7,8 +7,22 @@
 statement -> var_assign {% id %}
             | fun_call {% id %}
             | function_def {% id %}
+            | conditional
 
 expression -> %string {% id %} | %number {% id %} | %boolean {% id %}
+
+code -> statement
+        {%
+            (data) => {
+                return [data[0]];
+            }
+        %}
+    | code %NL statement
+        {%
+            (data) => {
+                return [...data[0], data[2]];
+            }
+        %}  
 
 var_assign -> %var_declaration %identifier _ "=" _ expression 
 {%
@@ -71,19 +85,26 @@ function_def -> "fn" __ %identifier _ "(" _ params _ ")" __ %arrow %NL code
                 }
             }
         %}
-     
-code -> statement
-        {%
+
+compare_operator -> %equals | %greaterThanOrEqual | %lessThanOrEqual | %greaterThan | %lessThan         
+
+condition -> %identifier _ compare_operator _ expression   
+
+
+conditional -> "when" __ condition __ %arrow %NL code 
+     {%
             (data) => {
-                return [data[0]];
+                return {
+                    type: "conditional",
+                    condition: data[2],
+                    code: data[6]
+                }
             }
         %}
-    | code %NL statement
-        {%
-            (data) => {
-                return [...data[0], data[2]];
-            }
-        %}   
+   
+
+
+ 
 
 
 

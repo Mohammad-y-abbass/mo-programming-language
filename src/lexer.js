@@ -17,7 +17,7 @@ let lexer = moo.compile({
   array: /list/,
   boolean: /yes|no/,
   function: /fn/,
-  condition: /when/,
+  cond_keyword: /when/,
   else: /else/,
   loop: /while/,
   semicolon: /;/,

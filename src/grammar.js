@@ -10,9 +10,20 @@ var grammar = {
     {"name": "statement", "symbols": ["var_assign"], "postprocess": id},
     {"name": "statement", "symbols": ["fun_call"], "postprocess": id},
     {"name": "statement", "symbols": ["function_def"], "postprocess": id},
+    {"name": "statement", "symbols": ["conditional"]},
     {"name": "expression", "symbols": [(myLexer.has("string") ? {type: "string"} : string)], "postprocess": id},
     {"name": "expression", "symbols": [(myLexer.has("number") ? {type: "number"} : number)], "postprocess": id},
     {"name": "expression", "symbols": [(myLexer.has("boolean") ? {type: "boolean"} : boolean)], "postprocess": id},
+    {"name": "code", "symbols": ["statement"], "postprocess": 
+        (data) => {
+            return [data[0]];
+        }
+                },
+    {"name": "code", "symbols": ["code", (myLexer.has("NL") ? {type: "NL"} : NL), "statement"], "postprocess": 
+        (data) => {
+            return [...data[0], data[2]];
+        }
+                },
     {"name": "var_assign", "symbols": [(myLexer.has("var_declaration") ? {type: "var_declaration"} : var_declaration), (myLexer.has("identifier") ? {type: "identifier"} : identifier), "_", {"literal":"="}, "_", "expression"], "postprocess": 
         (data) => {
             return {
@@ -62,14 +73,19 @@ var grammar = {
             }
         }
                 },
-    {"name": "code", "symbols": ["statement"], "postprocess": 
+    {"name": "compare_operator", "symbols": [(myLexer.has("equals") ? {type: "equals"} : equals)]},
+    {"name": "compare_operator", "symbols": [(myLexer.has("greaterThanOrEqual") ? {type: "greaterThanOrEqual"} : greaterThanOrEqual)]},
+    {"name": "compare_operator", "symbols": [(myLexer.has("lessThanOrEqual") ? {type: "lessThanOrEqual"} : lessThanOrEqual)]},
+    {"name": "compare_operator", "symbols": [(myLexer.has("greaterThan") ? {type: "greaterThan"} : greaterThan)]},
+    {"name": "compare_operator", "symbols": [(myLexer.has("lessThan") ? {type: "lessThan"} : lessThan)]},
+    {"name": "condition", "symbols": [(myLexer.has("identifier") ? {type: "identifier"} : identifier), "_", "compare_operator", "_", "expression"]},
+    {"name": "conditional", "symbols": [{"literal":"when"}, "__", "condition", "__", (myLexer.has("arrow") ? {type: "arrow"} : arrow), (myLexer.has("NL") ? {type: "NL"} : NL), "code"], "postprocess": 
         (data) => {
-            return [data[0]];
-        }
-                },
-    {"name": "code", "symbols": ["code", (myLexer.has("NL") ? {type: "NL"} : NL), "statement"], "postprocess": 
-        (data) => {
-            return [...data[0], data[2]];
+            return {
+                type: "conditional",
+                condition: data[2],
+                code: data[6]
+            }
         }
                 },
     {"name": "_$ebnf$1", "symbols": []},

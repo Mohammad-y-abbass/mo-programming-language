@@ -1,48 +1,87 @@
 [
-  {
-    "type": "function_def",
-    "function_name": {
-      "type": "identifier",
-      "value": "name",
-      "text": "name",
-      "offset": 3,
-      "lineBreaks": 0,
-      "line": 1,
-      "col": 4
-    },
-    "parameter": [
-      {
-        "type": "string",
-        "value": "\"myname\"",
-        "text": "\"myname\"",
-        "offset": 8,
-        "lineBreaks": 0,
-        "line": 1,
-        "col": 9
-      }
-    ],
-    "code": [
-      {
-        "type": "var_assign",
-        "var_name": {
+  [
+    {
+      "type": "conditional",
+      "condition": [
+        {
           "type": "identifier",
           "value": "x",
           "text": "x",
-          "offset": 22,
+          "offset": 5,
           "lineBreaks": 0,
-          "line": 2,
-          "col": 2
+          "line": 1,
+          "col": 6
         },
-        "value": {
+        [
+          [
+            {
+              "type": "WS",
+              "value": " ",
+              "text": " ",
+              "offset": 6,
+              "lineBreaks": 0,
+              "line": 1,
+              "col": 7
+            }
+          ]
+        ],
+        [
+          {
+            "type": "greaterThan",
+            "value": ">",
+            "text": ">",
+            "offset": 7,
+            "lineBreaks": 0,
+            "line": 1,
+            "col": 8
+          }
+        ],
+        [
+          [
+            {
+              "type": "WS",
+              "value": " ",
+              "text": " ",
+              "offset": 8,
+              "lineBreaks": 0,
+              "line": 1,
+              "col": 9
+            }
+          ]
+        ],
+        {
           "type": "number",
-          "value": "10",
-          "text": "10",
-          "offset": 25,
+          "value": "1",
+          "text": "1",
+          "offset": 9,
           "lineBreaks": 0,
-          "line": 2,
-          "col": 5
+          "line": 1,
+          "col": 10
         }
-      }
-    ]
-  }
+      ],
+      "code": [
+        {
+          "type": "var_assign",
+          "var_name": {
+            "type": "identifier",
+            "value": "b",
+            "text": "b",
+            "offset": 15,
+            "lineBreaks": 0,
+            "line": 2,
+            "col": 2
+          },
+          "value": {
+            "type": "number",
+            "value": "1",
+            "text": "1",
+            "offset": 19,
+            "lineBreaks": 0,
+            "line": 2,
+            "col": 6
+          }
+        }
+      ]
+    }
+  ]
 ]

@@ -1,33 +1,47 @@
 [
   {
-    "type": "fun_call",
-    "fun_name": {
+    "type": "function_def",
+    "function_name": {
       "type": "identifier",
-      "value": "hello",
-      "text": "hello",
-      "offset": 0,
+      "value": "name",
+      "text": "name",
+      "offset": 3,
       "lineBreaks": 0,
       "line": 1,
-      "col": 1
+      "col": 4
     },
-    "arguments": [
+    "parameter": [
       {
         "type": "string",
-        "value": "\"hello\"",
-        "text": "\"hello\"",
-        "offset": 6,
+        "value": "\"myname\"",
+        "text": "\"myname\"",
+        "offset": 8,
         "lineBreaks": 0,
         "line": 1,
-        "col": 7
-      },
+        "col": 9
+      }
+    ],
+    "code": [
       {
-        "type": "number",
-        "value": "2",
-        "text": "2",
-        "offset": 14,
-        "lineBreaks": 0,
-        "line": 1,
-        "col": 15
+        "type": "var_assign",
+        "var_name": {
+          "type": "identifier",
+          "value": "x",
+          "text": "x",
+          "offset": 22,
+          "lineBreaks": 0,
+          "line": 2,
+          "col": 2
+        },
+        "value": {
+          "type": "number",
+          "value": "10",
+          "text": "10",
+          "offset": 25,
+          "lineBreaks": 0,
+          "line": 2,
+          "col": 5
+        }
       }
     ]
   }

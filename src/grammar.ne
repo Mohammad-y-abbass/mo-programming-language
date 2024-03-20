@@ -6,10 +6,9 @@
 
 statement -> var_assign {% id %}
             | fun_call {% id %}
+            | function_def {% id %}
 
 expression -> %string {% id %} | %number {% id %} | %boolean {% id %}
-
-
 
 var_assign -> %var_declaration %identifier _ "=" _ expression 
 {%
@@ -21,6 +20,7 @@ var_assign -> %var_declaration %identifier _ "=" _ expression
                 }
             }
         %}
+            | %var_declaration %identifier
 
 args
     -> expression
@@ -46,8 +46,44 @@ fun_call -> %identifier _ "(" _ args _ ")"
                 }
             }
         %}
+
+params ->  expression
+        {%
+            (data) => {
+                return [data[0]];
+            }
+        %}
+    |  params __ expression
+        {%
+            (data) => {
+                return [...data[0], data[2]];
+            }
+        %}              
+
+function_def -> "fn" __ %identifier _ "(" _ params _ ")" __ %arrow %NL code
+      {%
+            (data) => {
+                return {
+                    type: "function_def",
+                    function_name: data[2],
+                    parameter: data[6],
+                    code: data[12]
+                }
+            }
+        %}
      
-  
+code -> statement
+        {%
+            (data) => {
+                return [data[0]];
+            }
+        %}
+    | code %NL statement
+        {%
+            (data) => {
+                return [...data[0], data[2]];
+            }
+        %}   
 
 
 
@@ -56,4 +92,4 @@ fun_call -> %identifier _ "(" _ args _ ")"
 _ -> %WS:*
 
 # Mandatory whitespace
-__ -> %WS:+
+__ -> %WS:+ 

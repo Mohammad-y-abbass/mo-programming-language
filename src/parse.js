@@ -3,8 +3,7 @@ const grammar = require('./grammar.js');
 const fs = require('fs');
 
 const parser = new nearley.Parser(nearley.Grammar.fromCompiled(grammar));
-const input = `while number > 1 =>
-call name("name")`;
+const input = `@name = "mohammad"`;
 
 // Parse the input
 parser.feed(input);

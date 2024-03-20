@@ -7,8 +7,8 @@
 statement -> var_assign {% id %}
             | fun_call {% id %}
             | function_def {% id %}
-            | conditional
-            | loop
+            | conditional {% id %}
+            | loop {% id %}
 
 expression -> %string {% id %} | %number {% id %} | %boolean {% id %}
 
@@ -87,7 +87,7 @@ function_def -> "fn" __ %identifier _ "(" _ params _ ")" __ %arrow %NL code
             }
         %}
 
-compare_operator -> %equals | %greaterThanOrEqual | %lessThanOrEqual | %greaterThan | %lessThan         
+compare_operator -> %equals {% id %} | %greaterThanOrEqual {% id %} | %lessThanOrEqual {% id %} | %greaterThan {% id %} | %lessThan {% id %}        
 
 
 condition -> %identifier _ compare_operator _ expression   

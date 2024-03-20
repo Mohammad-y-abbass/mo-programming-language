@@ -10,8 +10,8 @@ var grammar = {
     {"name": "statement", "symbols": ["var_assign"], "postprocess": id},
     {"name": "statement", "symbols": ["fun_call"], "postprocess": id},
     {"name": "statement", "symbols": ["function_def"], "postprocess": id},
-    {"name": "statement", "symbols": ["conditional"]},
-    {"name": "statement", "symbols": ["loop"]},
+    {"name": "statement", "symbols": ["conditional"], "postprocess": id},
+    {"name": "statement", "symbols": ["loop"], "postprocess": id},
     {"name": "expression", "symbols": [(myLexer.has("string") ? {type: "string"} : string)], "postprocess": id},
     {"name": "expression", "symbols": [(myLexer.has("number") ? {type: "number"} : number)], "postprocess": id},
     {"name": "expression", "symbols": [(myLexer.has("boolean") ? {type: "boolean"} : boolean)], "postprocess": id},
@@ -74,11 +74,11 @@ var grammar = {
             }
         }
                 },
-    {"name": "compare_operator", "symbols": [(myLexer.has("equals") ? {type: "equals"} : equals)]},
-    {"name": "compare_operator", "symbols": [(myLexer.has("greaterThanOrEqual") ? {type: "greaterThanOrEqual"} : greaterThanOrEqual)]},
-    {"name": "compare_operator", "symbols": [(myLexer.has("lessThanOrEqual") ? {type: "lessThanOrEqual"} : lessThanOrEqual)]},
-    {"name": "compare_operator", "symbols": [(myLexer.has("greaterThan") ? {type: "greaterThan"} : greaterThan)]},
-    {"name": "compare_operator", "symbols": [(myLexer.has("lessThan") ? {type: "lessThan"} : lessThan)]},
+    {"name": "compare_operator", "symbols": [(myLexer.has("equals") ? {type: "equals"} : equals)], "postprocess": id},
+    {"name": "compare_operator", "symbols": [(myLexer.has("greaterThanOrEqual") ? {type: "greaterThanOrEqual"} : greaterThanOrEqual)], "postprocess": id},
+    {"name": "compare_operator", "symbols": [(myLexer.has("lessThanOrEqual") ? {type: "lessThanOrEqual"} : lessThanOrEqual)], "postprocess": id},
+    {"name": "compare_operator", "symbols": [(myLexer.has("greaterThan") ? {type: "greaterThan"} : greaterThan)], "postprocess": id},
+    {"name": "compare_operator", "symbols": [(myLexer.has("lessThan") ? {type: "lessThan"} : lessThan)], "postprocess": id},
     {"name": "condition", "symbols": [(myLexer.has("identifier") ? {type: "identifier"} : identifier), "_", "compare_operator", "_", "expression"]},
     {"name": "conditional", "symbols": [{"literal":"when"}, "__", "condition", "__", (myLexer.has("arrow") ? {type: "arrow"} : arrow), (myLexer.has("NL") ? {type: "NL"} : NL), "code"], "postprocess": 
         (data) => {

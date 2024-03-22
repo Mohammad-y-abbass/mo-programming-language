@@ -1,1 +1,3 @@
-var name = 'mohammad';
+function name(args) {
+var name = args;
+}

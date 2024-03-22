@@ -10,7 +10,7 @@ statement -> var_assign {% id %}
             | conditional {% id %}
             | loop {% id %}
 
-expression -> %string {% id %} | %number {% id %} | %boolean {% id %}
+expression -> %string {% id %} | %number {% id %} | %boolean {% id %} | %identifier {% id %}
 
 code -> statement
         {%

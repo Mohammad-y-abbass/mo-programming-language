@@ -42,10 +42,25 @@ function generateJsForStatementOrExpr(node) {
       })
       .join(', ');
     return `${funName}(${argList})`;
+  } else if (node.type === 'function_def') {
+    const functionName = node.function_name.value;
+    const params = node.parameter.map((param) => param.value).join(', ');
+    const functionCode = generateJsForStatements(node.code);
+    return `function ${functionName}(${params}) {\n${functionCode}\n}`;
+  } else if (node.type === 'conditional') {
+    const condition = generateJsForStatementOrExpr(node.condition);
+    const code = generateJsForStatements(node.code);
+    return `if (${condition}) {\n${code}\n}`;
+  } else if (node.type === 'loop') {
+    const condition = generateJsForStatementOrExpr(node.condition);
+    const code = generateJsForStatements(node.code);
+    return `while (${condition}) {\n${code}\n}`;
   } else if (node.type === 'string') {
-    return node.value;
+    return `${node.value}`;
   } else if (node.type === 'number') {
     return node.value;
+  } else if (node.type === 'identifier') {
+    return `${node.value}`;
   } else {
     throw new Error(`Unhandled AST node type ${node.type}`);
   }

@@ -1,21 +1,25 @@
-{
-  "type": "var_assign",
-  "var_name": {
-    "type": "identifier",
-    "value": "x",
-    "text": "x",
-    "offset": 1,
-    "lineBreaks": 0,
-    "line": 1,
-    "col": 2
-  },
-  "value": {
-    "type": "number",
-    "value": "10",
-    "text": "10",
-    "offset": 5,
-    "lineBreaks": 0,
-    "line": 1,
-    "col": 6
+[
+  {
+    "type": "fun_call",
+    "fun_name": {
+      "type": "identifier",
+      "value": "print",
+      "text": "print",
+      "offset": 5,
+      "lineBreaks": 0,
+      "line": 1,
+      "col": 6
+    },
+    "arguments": [
+      {
+        "type": "string",
+        "value": "\"mohammad\"",
+        "text": "\"mohammad\"",
+        "offset": 11,
+        "lineBreaks": 0,
+        "line": 1,
+        "col": 12
+      }
+    ]
   }
-}
+]

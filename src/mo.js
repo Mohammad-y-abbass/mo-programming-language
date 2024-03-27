@@ -1,3 +1,1 @@
-function name(args) {
-var name = args;
-}
+print("mohammad");

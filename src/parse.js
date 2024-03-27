@@ -16,8 +16,8 @@ fs.readFile('src/example.mo', 'utf8', (err, data) => {
     parser.feed(data);
     if (parser.results.length > 0) {
       console.log('Parsing successful!');
-      console.log('Parsed result:', parser.results[0]);
-      const resultsJson = JSON.stringify(parser.results[0], null, 2);
+      console.log('Parsed result:', parser.results);
+      const resultsJson = JSON.stringify(parser.results, null, 2);
 
       // Write the JSON string to a file
       fs.writeFileSync('./src/mo.ast', resultsJson);

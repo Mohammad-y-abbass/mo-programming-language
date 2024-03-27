@@ -1,1 +1,1 @@
-print("mohammad", x);
+print();

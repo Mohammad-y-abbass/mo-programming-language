@@ -55,6 +55,14 @@ var grammar = {
             }
         }
                 },
+    {"name": "fun_call", "symbols": [{"literal":"call"}, "__", (myLexer.has("identifier") ? {type: "identifier"} : identifier), "_", {"literal":"("}, "_", {"literal":")"}], "postprocess": 
+        (data) => {
+            return {
+                type: "fun_call",
+                fun_name: data[2],
+            }
+        }
+                },
     {"name": "params", "symbols": ["expression"], "postprocess": 
         (data) => {
             return [data[0]];

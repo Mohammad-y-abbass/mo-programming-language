@@ -49,7 +49,8 @@ args
             (data) => {
                 return [...data[0], data[2]];
             }
-        %}            
+        %}
+                      
         
 fun_call ->"call" __ %identifier _ "(" _ args _ ")"
       {%
@@ -61,6 +62,15 @@ fun_call ->"call" __ %identifier _ "(" _ args _ ")"
                 }
             }
         %}
+    | "call" __ %identifier _ "(" _ ")" 
+        {%
+            (data) => {
+                return {
+                    type: "fun_call",
+                    fun_name: data[2],
+                }
+            }
+        %}   
 
 params ->  expression
         {%

@@ -19,6 +19,15 @@
         "lineBreaks": 0,
         "line": 1,
         "col": 12
+      },
+      {
+        "type": "identifier",
+        "value": "x",
+        "text": "x",
+        "offset": 22,
+        "lineBreaks": 0,
+        "line": 1,
+        "col": 23
       }
     ]
   }

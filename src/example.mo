@@ -1,1 +1,1 @@
-call print("mohammad")
+call print("mohammad" x)

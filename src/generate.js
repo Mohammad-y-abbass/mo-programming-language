@@ -28,8 +28,14 @@ function generateJsForStatementOrExpr(node) {
       return `var ${node.var_name.value} = ${node.value.value};`;
     case 'fun_call':
       const funcName = node.fun_name.value;
-      const args = node.arguments.length === 1 ? node.arguments[0].value : '';
+      let args = '';
+      if (node.arguments.length === 1) {
+        args = node.arguments[0].value;
+      } else if (node.arguments.length > 1) {
+        args = node.arguments.map((arg) => arg.value).join(', ');
+      }
       return `${funcName}(${args});`;
+
     default:
       throw new Error(`Unknown node type: ${node.type}`);
   }

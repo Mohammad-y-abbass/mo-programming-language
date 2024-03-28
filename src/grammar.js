@@ -12,18 +12,23 @@ var grammar = {
     {"name": "statement", "symbols": ["function_def"], "postprocess": id},
     {"name": "statement", "symbols": ["conditional"], "postprocess": id},
     {"name": "statement", "symbols": ["loop"], "postprocess": id},
-    {"name": "expression", "symbols": [(myLexer.has("string") ? {type: "string"} : string)], "postprocess": id},
-    {"name": "expression", "symbols": [(myLexer.has("number") ? {type: "number"} : number)], "postprocess": id},
-    {"name": "expression", "symbols": [(myLexer.has("boolean") ? {type: "boolean"} : boolean)], "postprocess": id},
-    {"name": "expression", "symbols": [(myLexer.has("identifier") ? {type: "identifier"} : identifier)], "postprocess": id},
-    {"name": "code", "symbols": ["statement"], "postprocess": 
+    {"name": "statements", "symbols": ["statement", (myLexer.has("NL") ? {type: "NL"} : NL)], "postprocess":  
         (data) => {
             return [data[0]];
         }
                 },
-    {"name": "code", "symbols": ["code", (myLexer.has("NL") ? {type: "NL"} : NL), "statement"], "postprocess": 
+    {"name": "statements", "symbols": ["statements", "statement"], "postprocess": 
         (data) => {
             return [...data[0], data[2]];
+        }
+                },
+    {"name": "expression", "symbols": [(myLexer.has("string") ? {type: "string"} : string)], "postprocess": id},
+    {"name": "expression", "symbols": [(myLexer.has("number") ? {type: "number"} : number)], "postprocess": id},
+    {"name": "expression", "symbols": [(myLexer.has("boolean") ? {type: "boolean"} : boolean)], "postprocess": id},
+    {"name": "expression", "symbols": [(myLexer.has("identifier") ? {type: "identifier"} : identifier)], "postprocess": id},
+    {"name": "code", "symbols": ["statements"], "postprocess": 
+        (data) => {
+            return [data[0]];
         }
                 },
     {"name": "var_assign", "symbols": [(myLexer.has("var_declaration") ? {type: "var_declaration"} : var_declaration), (myLexer.has("identifier") ? {type: "identifier"} : identifier), "_", {"literal":"="}, "_", "expression"], "postprocess": 
@@ -73,7 +78,7 @@ var grammar = {
             return [...data[0], data[2]];
         }
                 },
-    {"name": "function_def", "symbols": [{"literal":"fn"}, "__", (myLexer.has("identifier") ? {type: "identifier"} : identifier), "_", {"literal":"("}, "_", "params", "_", {"literal":")"}, "__", (myLexer.has("arrow") ? {type: "arrow"} : arrow), (myLexer.has("NL") ? {type: "NL"} : NL), "code"], "postprocess": 
+    {"name": "function_def", "symbols": [{"literal":"fn"}, "__", (myLexer.has("identifier") ? {type: "identifier"} : identifier), "_", {"literal":"("}, "_", "params", "_", {"literal":")"}, "__", (myLexer.has("arrow") ? {type: "arrow"} : arrow), (myLexer.has("NL") ? {type: "NL"} : NL), "code", {"literal":"end"}], "postprocess": 
         (data) => {
             return {
                 type: "function_def",

@@ -3,7 +3,7 @@ const grammar = require('./grammar.js');
 const fs = require('fs');
 
 // Read the input file
-fs.readFile('src/example.mo', 'utf8', (err, data) => {
+fs.readFile('src/example.txt', 'utf8', (err, data) => {
   if (err) {
     console.error(err);
     return;
@@ -14,6 +14,7 @@ fs.readFile('src/example.mo', 'utf8', (err, data) => {
   // Parse the input
   try {
     parser.feed(data);
+    console.log(parser.results);
     if (parser.results.length > 0) {
       console.log('Parsing successful!');
       console.log('Parsed result:', parser.results);
@@ -22,9 +23,9 @@ fs.readFile('src/example.mo', 'utf8', (err, data) => {
       // Write the JSON string to a file
       fs.writeFileSync('./src/mo.ast', resultsJson);
     } else {
-      console.log('Parsing failed!');
+      console.log('parser returned no results');
     }
-  } catch (err) {
-    console.error('Parsing error:', err);
+  } catch (parseError) {
+    console.log('Error while parsing ' + parseError);
   }
 });

@@ -1,6 +1,7 @@
 const moo = require('moo');
 
 let lexer = moo.compile({
+  NL: { match: /\r?\n/, lineBreaks: true },
   WS: /[ \t]+/,
   comment: /\/\/.*?$/,
   number: /0|[1-9][0-9]*/,
@@ -9,7 +10,7 @@ let lexer = moo.compile({
   rparen: ')',
   lsqrbracket: '[',
   rsqrbracket: ']',
-  NL: { match: /\n/, lineBreaks: true },
+
   var_declaration: /@/,
   identifier: /[a-zA-Z_]\w*/,
   arrow: /=>/,

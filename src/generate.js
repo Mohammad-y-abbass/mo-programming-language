@@ -38,6 +38,10 @@ function generateJsForStatementOrExpr(node) {
         return `${funcName}(${args});`;
       }
       return `${funcName}();`;
+     case 'function_def' : 
+     return `function ${node.function_name.value} () {
+      ${node.code}
+     } `
     default:
       throw new Error(`Unknown node type: ${node.type}`);
   }

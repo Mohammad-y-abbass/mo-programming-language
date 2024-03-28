@@ -4,26 +4,38 @@
 
 @lexer myLexer
 
+
+
 statement -> var_assign {% id %}
             | fun_call {% id %}
             | function_def {% id %}
             | conditional {% id %}
             | loop {% id %}
 
+
+statements
+    -> statement %NL
+        {% 
+            (data) => {
+                return [data[0]];
+            }
+        %}
+    |  statements statement
+        {%
+            (data) => {
+                return [...data[0], data[2]];
+            }
+        %}
+
+        
 expression -> %string {% id %} | %number {% id %} | %boolean {% id %} | %identifier {% id %}
 
-code -> statement
+code -> statements
         {%
             (data) => {
                 return [data[0]];
             }
         %}
-    | code %NL statement
-        {%
-            (data) => {
-                return [...data[0], data[2]];
-            }
-        %}  
 
 var_assign -> %var_declaration %identifier _ "=" _ expression 
 {%
@@ -85,7 +97,7 @@ params ->  expression
             }
         %}              
 
-function_def -> "fn" __ %identifier _ "(" _ params _ ")" __ %arrow %NL code
+function_def -> "fn" __ %identifier _ "(" _ params _ ")" __ %arrow %NL code "end"
       {%
             (data) => {
                 return {

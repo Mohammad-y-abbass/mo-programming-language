@@ -1,1 +1,3 @@
-print();
+function myfunction () {
+      [object Object]
+     } 

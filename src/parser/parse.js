@@ -3,7 +3,7 @@ const grammar = require('../grammar/grammar.js');
 const fs = require('fs');
 const colors = require('colors');
 // Read the input file
-fs.readFile('src/example.txt', 'utf8', (err, data) => {
+fs.readFile('src/example/example.txt', 'utf8', (err, data) => {
   if (err) {
     console.error(err.red);
     return;
@@ -19,7 +19,7 @@ fs.readFile('src/example.txt', 'utf8', (err, data) => {
       const resultsJson = JSON.stringify(parser.results, null, 2);
 
       // Write the JSON string to a file
-      fs.writeFileSync('./src/mo.ast', resultsJson);
+      fs.writeFileSync('./src/ast.json', resultsJson);
     } else {
       console.log('parser returned no results'.red.bold);
     }

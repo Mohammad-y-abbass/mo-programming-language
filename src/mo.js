@@ -1,3 +1,1 @@
-function myfunction () {
-      [object Object]
-     } 
+var name;

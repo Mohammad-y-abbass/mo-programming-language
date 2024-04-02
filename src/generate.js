@@ -26,6 +26,8 @@ function generateJsForStatementOrExpr(node) {
   switch (node.type) {
     case 'var_assign':
       return `var ${node.var_name.value} = ${node.value.value};`;
+    case 'var_declaration':
+      return `var ${node.var_name.value};`;
     case 'fun_call':
       const funcName = node.fun_name.value;
       let args = '';
@@ -38,10 +40,10 @@ function generateJsForStatementOrExpr(node) {
         return `${funcName}(${args});`;
       }
       return `${funcName}();`;
-     case 'function_def' : 
-     return `function ${node.function_name.value} () {
+    case 'function_def':
+      return `function ${node.function_name.value} () {
       ${node.code}
-     } `
+     } `;
     default:
       throw new Error(`Unknown node type: ${node.type}`);
   }

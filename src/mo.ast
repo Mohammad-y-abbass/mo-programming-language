@@ -1,50 +1,25 @@
 [
-  {
-    "type": "function_def",
-    "function_name": {
-      "type": "identifier",
-      "value": "myfunction",
-      "text": "myfunction",
-      "offset": 3,
-      "lineBreaks": 0,
-      "line": 1,
-      "col": 4
-    },
-    "parameter": [
-      {
+  [
+    {
+      "type": "var_assign",
+      "var_name": {
         "type": "identifier",
-        "value": "name",
-        "text": "name",
-        "offset": 14,
+        "value": "x",
+        "text": "x",
+        "offset": 0,
         "lineBreaks": 0,
         "line": 1,
-        "col": 15
+        "col": 1
+      },
+      "var_value": {
+        "type": "number",
+        "value": "10",
+        "text": "10",
+        "offset": 3,
+        "lineBreaks": 0,
+        "line": 1,
+        "col": 4
       }
-    ],
-    "code": [
-      [
-        {
-          "type": "var_assign",
-          "var_name": {
-            "type": "identifier",
-            "value": "name",
-            "text": "name",
-            "offset": 25,
-            "lineBreaks": 0,
-            "line": 2,
-            "col": 2
-          },
-          "value": {
-            "type": "identifier",
-            "value": "name",
-            "text": "name",
-            "offset": 32,
-            "lineBreaks": 0,
-            "line": 2,
-            "col": 9
-          }
-        }
-      ]
-    ]
-  }
+    }
+  ]
 ]

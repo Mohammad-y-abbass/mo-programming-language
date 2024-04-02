@@ -1,5 +1,5 @@
 const nearley = require('nearley');
-const grammar = require('./grammar.js');
+const grammar = require('../grammar/grammar.js');
 const fs = require('fs');
 const colors = require('colors');
 // Read the input file
@@ -24,6 +24,6 @@ fs.readFile('src/example.txt', 'utf8', (err, data) => {
       console.log('parser returned no results'.red.bold);
     }
   } catch (parseError) {
-    console.log(`Error while parsing ${parseError}`.bgRed);
+    console.log(`Error while parsing ${parseError}`.red);
   }
 });

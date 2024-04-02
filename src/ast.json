@@ -1,24 +1,82 @@
 [
   [
     {
-      "type": "var_assign",
-      "var_name": {
-        "type": "identifier",
-        "value": "x",
-        "text": "x",
-        "offset": 0,
-        "lineBreaks": 0,
-        "line": 1,
-        "col": 1
-      },
-      "var_value": {
-        "type": "number",
-        "value": "10",
-        "text": "10",
-        "offset": 5,
-        "lineBreaks": 0,
-        "line": 1,
-        "col": 6
+      "type": "condition_statement",
+      "condition": [
+        {
+          "type": "identifier",
+          "value": "a",
+          "text": "a",
+          "offset": 2,
+          "lineBreaks": 0,
+          "line": 1,
+          "col": 3
+        },
+        [
+          [
+            {
+              "type": "WS",
+              "value": " ",
+              "text": " ",
+              "offset": 3,
+              "lineBreaks": 0,
+              "line": 1,
+              "col": 4
+            }
+          ]
+        ],
+        {
+          "type": "less",
+          "value": "<",
+          "text": "<",
+          "offset": 4,
+          "lineBreaks": 0,
+          "line": 1,
+          "col": 5
+        },
+        [
+          [
+            {
+              "type": "WS",
+              "value": " ",
+              "text": " ",
+              "offset": 5,
+              "lineBreaks": 0,
+              "line": 1,
+              "col": 6
+            }
+          ]
+        ],
+        {
+          "type": "number",
+          "value": "1",
+          "text": "1",
+          "offset": 6,
+          "lineBreaks": 0,
+          "line": 1,
+          "col": 7
+        }
+      ],
+      "body": {
+        "type": "var_assign",
+        "var_name": {
+          "type": "identifier",
+          "value": "a",
+          "text": "a",
+          "offset": 11,
+          "lineBreaks": 0,
+          "line": 1,
+          "col": 12
+        },
+        "var_value": {
+          "type": "number",
+          "value": "0",
+          "text": "0",
+          "offset": 14,
+          "lineBreaks": 0,
+          "line": 1,
+          "col": 15
+        }
       }
     }
   ]

@@ -35,8 +35,16 @@ var grammar = {
     {"name": "logical_operators", "symbols": [(myLexer.has("greater") ? {type: "greater"} : greater)], "postprocess": id},
     {"name": "logical_operators", "symbols": [(myLexer.has("less") ? {type: "less"} : less)], "postprocess": id},
     {"name": "logical_operators", "symbols": [(myLexer.has("equal") ? {type: "equal"} : equal)], "postprocess": id},
-    {"name": "condition", "symbols": ["expression", "logical_operators", "expression"]},
-    {"name": "conditional", "symbols": [(myLexer.has("conditional") ? {type: "conditional"} : conditional), "condition", (myLexer.has("arrow") ? {type: "arrow"} : arrow), "statement"]}
+    {"name": "condition", "symbols": ["expression", "_", "logical_operators", "_", "expression"]},
+    {"name": "conditional", "symbols": [(myLexer.has("conditional") ? {type: "conditional"} : conditional), "_", "condition", "_", (myLexer.has("arrow") ? {type: "arrow"} : arrow), "_", "statement"], "postprocess": 
+        (d) => {
+            return {
+                type: "condition_statement",
+                condition: d[2],
+                body: d[6]
+            }
+        }
+        }
 ]
   , ParserStart: "main"
 }

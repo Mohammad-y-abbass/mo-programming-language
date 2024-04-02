@@ -35,7 +35,17 @@ logical_operators -> %greater_or_equal {% id %}
                    | %less {% id %}
                    | %equal {% id %}
 
-condition -> expression logical_operators expression
+condition -> expression _ logical_operators _ expression
+           
 
-conditional -> %conditional condition %arrow statement
+conditional -> %conditional _ condition _ %arrow _ statement 
+                 {%
+                (d) => {
+                    return {
+                        type: "condition_statement",
+                        condition: d[2],
+                        body: d[6]
+                    }
+                }
+                %}
 

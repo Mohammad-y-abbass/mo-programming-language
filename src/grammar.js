@@ -10,14 +10,20 @@ var grammar = {
     {"name": "main$ebnf$1", "symbols": ["statement"]},
     {"name": "main$ebnf$1", "symbols": ["main$ebnf$1", "statement"], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
     {"name": "main", "symbols": ["main$ebnf$1"], "postprocess": id},
+    {"name": "_$ebnf$1", "symbols": []},
+    {"name": "_$ebnf$1", "symbols": ["_$ebnf$1", (myLexer.has("WS") ? {type: "WS"} : WS)], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
+    {"name": "_", "symbols": ["_$ebnf$1"]},
+    {"name": "__$ebnf$1", "symbols": [(myLexer.has("WS") ? {type: "WS"} : WS)]},
+    {"name": "__$ebnf$1", "symbols": ["__$ebnf$1", (myLexer.has("WS") ? {type: "WS"} : WS)], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
+    {"name": "__", "symbols": ["__$ebnf$1"]},
     {"name": "statement", "symbols": ["assignment"], "postprocess": id},
     {"name": "statement", "symbols": ["conditional"], "postprocess": id},
-    {"name": "assignment", "symbols": [(myLexer.has("identifier") ? {type: "identifier"} : identifier), (myLexer.has("assignment_symbol") ? {type: "assignment_symbol"} : assignment_symbol), "expression"], "postprocess": 
+    {"name": "assignment", "symbols": [(myLexer.has("identifier") ? {type: "identifier"} : identifier), "_", (myLexer.has("assignment_symbol") ? {type: "assignment_symbol"} : assignment_symbol), "_", "expression"], "postprocess": 
         (d) => {
             return {
                 type: "var_assign",
                 var_name : d[0],
-                var_value : d[2]
+                var_value : d[4]
             }
         }
                     },

@@ -15,10 +15,10 @@
         "type": "number",
         "value": "10",
         "text": "10",
-        "offset": 3,
+        "offset": 5,
         "lineBreaks": 0,
         "line": 1,
-        "col": 4
+        "col": 6
       }
     }
   ]

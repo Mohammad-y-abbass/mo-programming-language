@@ -7,16 +7,20 @@
 # Define the grammar
 main -> statement:+ {% id %}
 
+_ -> %WS:*
+
+__ -> %WS:+
+
 statement -> assignment {% id %}
            | conditional {% id %}
 
-assignment -> %identifier %assignment_symbol expression
+assignment -> %identifier _ %assignment_symbol _ expression
             {%
                 (d) => {
                     return {
                         type: "var_assign",
                         var_name : d[0],
-                        var_value : d[2]
+                        var_value : d[4]
                     }
                 }
             %}

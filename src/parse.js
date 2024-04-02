@@ -14,10 +14,8 @@ fs.readFile('src/example.txt', 'utf8', (err, data) => {
   // Parse the input
   try {
     parser.feed(data);
-    console.log(parser.results);
     if (parser.results.length > 0) {
       console.log('Parsing successful!');
-      console.log('Parsed result:', parser.results);
       const resultsJson = JSON.stringify(parser.results, null, 2);
 
       // Write the JSON string to a file

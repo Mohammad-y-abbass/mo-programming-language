@@ -36,7 +36,7 @@ var grammar = {
     {"name": "logical_operators", "symbols": [(myLexer.has("less") ? {type: "less"} : less)], "postprocess": id},
     {"name": "logical_operators", "symbols": [(myLexer.has("equal") ? {type: "equal"} : equal)], "postprocess": id},
     {"name": "condition", "symbols": ["expression", "_", "logical_operators", "_", "expression"]},
-    {"name": "conditional", "symbols": [(myLexer.has("conditional") ? {type: "conditional"} : conditional), "_", "condition", "_", (myLexer.has("arrow") ? {type: "arrow"} : arrow), "_", "statement"], "postprocess": 
+    {"name": "conditional", "symbols": [(myLexer.has("conditional") ? {type: "conditional"} : conditional), "_", "condition", "_", (myLexer.has("arrow") ? {type: "arrow"} : arrow), "_", "statement", (myLexer.has("NL") ? {type: "NL"} : NL)], "postprocess": 
         (d) => {
             return {
                 type: "condition_statement",

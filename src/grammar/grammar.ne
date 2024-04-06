@@ -38,7 +38,7 @@ logical_operators -> %greater_or_equal {% id %}
 condition -> expression _ logical_operators _ expression
            
 
-conditional -> %conditional _ condition _ %arrow _ statement 
+conditional -> %conditional _ condition _ %arrow _ statement %NL
                  {%
                 (d) => {
                     return {

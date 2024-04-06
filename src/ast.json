@@ -78,6 +78,27 @@
           "col": 15
         }
       }
+    },
+    {
+      "type": "var_assign",
+      "var_name": {
+        "type": "identifier",
+        "value": "a",
+        "text": "a",
+        "offset": 17,
+        "lineBreaks": 0,
+        "line": 2,
+        "col": 1
+      },
+      "var_value": {
+        "type": "number",
+        "value": "12",
+        "text": "12",
+        "offset": 20,
+        "lineBreaks": 0,
+        "line": 2,
+        "col": 4
+      }
     }
   ]
 ]

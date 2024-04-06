@@ -1,55 +1,46 @@
 [
   [
     {
-      "type": "loop_statement",
-      "condition": {
-        "exp1": {
+      "type": "fn",
+      "fn_name": {
+        "type": "identifier",
+        "value": "hello",
+        "text": "hello",
+        "offset": 2,
+        "lineBreaks": 0,
+        "line": 1,
+        "col": 3
+      },
+      "params": [
+        {
           "type": "identifier",
           "value": "a",
           "text": "a",
-          "offset": 1,
+          "offset": 10,
           "lineBreaks": 0,
           "line": 1,
-          "col": 2
-        },
-        "operator": {
-          "type": "less",
-          "value": "<",
-          "text": "<",
-          "offset": 2,
-          "lineBreaks": 0,
-          "line": 1,
-          "col": 3
-        },
-        "exp2": {
-          "type": "number",
-          "value": "10",
-          "text": "10",
-          "offset": 3,
-          "lineBreaks": 0,
-          "line": 1,
-          "col": 4
+          "col": 11
         }
-      },
+      ],
       "body": {
         "type": "var_assign",
         "var_name": {
           "type": "identifier",
           "value": "a",
           "text": "a",
-          "offset": 9,
+          "offset": 17,
           "lineBreaks": 0,
           "line": 1,
-          "col": 10
+          "col": 18
         },
         "var_value": {
           "type": "number",
           "value": "10",
           "text": "10",
-          "offset": 12,
+          "offset": 22,
           "lineBreaks": 0,
           "line": 1,
-          "col": 13
+          "col": 23
         }
       }
     }

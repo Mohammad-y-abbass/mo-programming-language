@@ -19,6 +19,7 @@ var grammar = {
     {"name": "statement", "symbols": ["assignment"], "postprocess": id},
     {"name": "statement", "symbols": ["conditional"], "postprocess": id},
     {"name": "statement", "symbols": ["loop"], "postprocess": id},
+    {"name": "statement", "symbols": ["fn"], "postprocess": id},
     {"name": "assignment", "symbols": [(myLexer.has("identifier") ? {type: "identifier"} : identifier), "_", (myLexer.has("assignment_symbol") ? {type: "assignment_symbol"} : assignment_symbol), "_", "expression"], "postprocess": 
         (d) => {
             return {
@@ -45,6 +46,12 @@ var grammar = {
                 }
             }   
                         },
+    {"name": "param", "symbols": [(myLexer.has("string") ? {type: "string"} : string)], "postprocess": id},
+    {"name": "param", "symbols": [(myLexer.has("number") ? {type: "number"} : number)], "postprocess": id},
+    {"name": "param", "symbols": [(myLexer.has("identifier") ? {type: "identifier"} : identifier)], "postprocess": id},
+    {"name": "params$ebnf$1", "symbols": ["param"]},
+    {"name": "params$ebnf$1", "symbols": ["params$ebnf$1", "param"], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
+    {"name": "params", "symbols": ["params$ebnf$1"], "postprocess": id},
     {"name": "conditional", "symbols": [(myLexer.has("conditional") ? {type: "conditional"} : conditional), "_", "condition", "_", (myLexer.has("arrow") ? {type: "arrow"} : arrow), "_", "statement", (myLexer.has("NL") ? {type: "NL"} : NL)], "postprocess": 
         (d) => {
             return {
@@ -60,6 +67,16 @@ var grammar = {
                 type: "loop_statement",
                 condition: d[2],
                 body: d[6]
+            }
+        }
+                    },
+    {"name": "fn", "symbols": [{"literal":"f"}, "__", (myLexer.has("identifier") ? {type: "identifier"} : identifier), "_", (myLexer.has("leftParan") ? {type: "leftParan"} : leftParan), "_", "params", "_", (myLexer.has("rightParan") ? {type: "rightParan"} : rightParan), "_", (myLexer.has("arrow") ? {type: "arrow"} : arrow), "__", "statement", (myLexer.has("NL") ? {type: "NL"} : NL)], "postprocess": 
+            (d) => {
+                return {
+                type: "fn",
+                fn_name: d[2],
+                params: d[6],
+                body: d[12]
             }
         }
                     }

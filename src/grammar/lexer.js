@@ -16,6 +16,9 @@ let lexer = moo.compile({
   greater: />/,
   less: /</,
   equal: /=/,
+  fn: /f/,
+  leftParan: '(',
+  rightParan: ')',
 });
 
 module.exports = lexer;

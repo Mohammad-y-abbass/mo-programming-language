@@ -14,6 +14,7 @@ __ -> %WS:+ {% id %}
 statement -> assignment {% id %}
            | conditional {% id %}
            | loop {% id %}
+           | fn {% id %}
 
 assignment -> %identifier _ %assignment_symbol _ expression
             {%
@@ -46,7 +47,12 @@ condition -> expression _ logical_operators _ expression
                             }
                         }   
                 %}
+
+param -> %string {% id %}
+        | %number {% id %}
+        | %identifier {% id %}
            
+params -> param {% id %}
 
 conditional -> %conditional _ condition _ %arrow _ statement %NL
                  {%
@@ -69,3 +75,16 @@ loop -> %loop _ condition _ %arrow _ statement %NL
                     }
                 }
             %}
+
+fn -> "f" __ %identifier _ %leftParan _ params _ %rightParan _ %arrow __ statement %NL
+            {%
+                    (d) => {
+                        return {
+                        type: "fn",
+                        fn_name: d[2],
+                        params: d[6],
+                        body: d[12]
+                    }
+                }
+            %}
+

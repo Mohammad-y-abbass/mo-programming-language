@@ -7,9 +7,11 @@ function id(x) { return x[0]; }
 var grammar = {
     Lexer: myLexer,
     ParserRules: [
-    {"name": "main$ebnf$1", "symbols": ["statement"]},
-    {"name": "main$ebnf$1", "symbols": ["main$ebnf$1", "statement"], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
-    {"name": "main", "symbols": ["main$ebnf$1"], "postprocess": id},
+    {"name": "main$ebnf$1$subexpression$1", "symbols": ["statement", (myLexer.has("NL") ? {type: "NL"} : NL)]},
+    {"name": "main$ebnf$1", "symbols": ["main$ebnf$1$subexpression$1"]},
+    {"name": "main$ebnf$1$subexpression$2", "symbols": ["statement", (myLexer.has("NL") ? {type: "NL"} : NL)]},
+    {"name": "main$ebnf$1", "symbols": ["main$ebnf$1", "main$ebnf$1$subexpression$2"], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
+    {"name": "main", "symbols": ["main$ebnf$1"]},
     {"name": "_$ebnf$1", "symbols": []},
     {"name": "_$ebnf$1", "symbols": ["_$ebnf$1", (myLexer.has("WS") ? {type: "WS"} : WS)], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
     {"name": "_", "symbols": ["_$ebnf$1"], "postprocess": id},

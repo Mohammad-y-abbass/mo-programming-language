@@ -1,4 +1,4 @@
-export const coolArt = `                         
+const asciiArt = `                         
                                                                                                                                         
                                                                                                                                         
  |||||||                                                            |||||||      MMMMMMMM               MMMMMMMM          OOOOOOOOO     
@@ -25,3 +25,4 @@ export const coolArt = `
                                                                                                                                         
                                                                                                                                                                                                                                                                                                                 
 `;
+

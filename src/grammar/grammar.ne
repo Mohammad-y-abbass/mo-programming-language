@@ -5,7 +5,7 @@
 @lexer myLexer
 
 # Define the grammar
-main ->statement:+ {% id %}
+main ->(statement %NL):+
 
 _ -> %WS:* {% id %}
 

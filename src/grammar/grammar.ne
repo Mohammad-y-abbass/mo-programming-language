@@ -7,9 +7,9 @@
 # Define the grammar
 main -> statement:+ {% id %}
 
-_ -> %WS:*
+_ -> %WS:* {% id %}
 
-__ -> %WS:+
+__ -> %WS:+ {% id %}
 
 statement -> assignment {% id %}
            | conditional {% id %}
@@ -35,7 +35,16 @@ logical_operators -> %greater_or_equal {% id %}
                    | %less {% id %}
                    | %equal {% id %}
 
-condition -> expression _ logical_operators _ expression
+condition -> expression _ logical_operators _ expression 
+                {%
+                    (d) => {
+                        return {
+                             exp1: d[0],
+                             operator: d[2],
+                             exp2: d[4]
+                            }
+                        }   
+                %}
            
 
 conditional -> %conditional _ condition _ %arrow _ statement %NL

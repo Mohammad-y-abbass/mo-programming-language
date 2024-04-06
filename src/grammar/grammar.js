@@ -49,9 +49,7 @@ var grammar = {
     {"name": "param", "symbols": [(myLexer.has("string") ? {type: "string"} : string)], "postprocess": id},
     {"name": "param", "symbols": [(myLexer.has("number") ? {type: "number"} : number)], "postprocess": id},
     {"name": "param", "symbols": [(myLexer.has("identifier") ? {type: "identifier"} : identifier)], "postprocess": id},
-    {"name": "params$ebnf$1", "symbols": ["param"]},
-    {"name": "params$ebnf$1", "symbols": ["params$ebnf$1", "param"], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
-    {"name": "params", "symbols": ["params$ebnf$1"], "postprocess": id},
+    {"name": "params", "symbols": ["param"], "postprocess": id},
     {"name": "conditional", "symbols": [(myLexer.has("conditional") ? {type: "conditional"} : conditional), "_", "condition", "_", (myLexer.has("arrow") ? {type: "arrow"} : arrow), "_", "statement", (myLexer.has("NL") ? {type: "NL"} : NL)], "postprocess": 
         (d) => {
             return {

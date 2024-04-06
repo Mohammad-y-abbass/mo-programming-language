@@ -1,47 +1,24 @@
 [
   [
     {
-      "type": "fn",
-      "fn_name": {
+      "type": "var_assign",
+      "var_name": {
         "type": "identifier",
-        "value": "hello",
-        "text": "hello",
-        "offset": 2,
+        "value": "x",
+        "text": "x",
+        "offset": 0,
         "lineBreaks": 0,
         "line": 1,
-        "col": 3
+        "col": 1
       },
-      "params": [
-        {
-          "type": "identifier",
-          "value": "a",
-          "text": "a",
-          "offset": 10,
-          "lineBreaks": 0,
-          "line": 1,
-          "col": 11
-        }
-      ],
-      "body": {
-        "type": "var_assign",
-        "var_name": {
-          "type": "identifier",
-          "value": "a",
-          "text": "a",
-          "offset": 17,
-          "lineBreaks": 0,
-          "line": 1,
-          "col": 18
-        },
-        "var_value": {
-          "type": "number",
-          "value": "10",
-          "text": "10",
-          "offset": 22,
-          "lineBreaks": 0,
-          "line": 1,
-          "col": 23
-        }
+      "var_value": {
+        "type": "number",
+        "value": "10",
+        "text": "10",
+        "offset": 3,
+        "lineBreaks": 0,
+        "line": 1,
+        "col": 4
       }
     }
   ]

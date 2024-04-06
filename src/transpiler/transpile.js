@@ -11,7 +11,7 @@ async function main() {
     const statements = JSON.parse(astJson);
     const jsCode = generateJsForStatements(statements);
     const outputFilename = filename.replace('.ast', '.js');
-    await fs.writeFile(outputFilename, jsCode);
+    await fs.writeFile('src/transpiler/transpiled.js', jsCode);
     console.log(`Wrote ${outputFilename}.`);
   } catch (err) {
     console.error('Error:', err.message);
@@ -19,31 +19,13 @@ async function main() {
 }
 
 function generateJsForStatements(statements) {
-  return statements.map(generateJsForStatementOrExpr).join('\n');
+  return statements[0].map(generateJsForStatementOrExpr).join('\n');
 }
 
 function generateJsForStatementOrExpr(node) {
   switch (node.type) {
     case 'var_assign':
-      return `var ${node.var_name.value} = ${node.value.value};`;
-    case 'var_declaration':
-      return `var ${node.var_name.value};`;
-    case 'fun_call':
-      const funcName = node.fun_name.value;
-      let args = '';
-      if (node.arguments) {
-        if (node.arguments.length === 1) {
-          args = node.arguments[0].value;
-        } else if (node.arguments.length > 1) {
-          args = node.arguments.map((arg) => arg.value).join(', ');
-        }
-        return `${funcName}(${args});`;
-      }
-      return `${funcName}();`;
-    case 'function_def':
-      return `function ${node.function_name.value} () {
-      ${node.code}
-     } `;
+      return `var ${node.var_name.value} = ${node.var_value.value};`;
     default:
       throw new Error(`Unknown node type: ${node.type}`);
   }

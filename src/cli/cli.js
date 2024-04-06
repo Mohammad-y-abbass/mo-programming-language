@@ -16,5 +16,3 @@ console.log(
 
 console.log('Generating parser'.magenta);
 console.log(execSync(`node ${parserFile}`).toString());
-
-console.log('TRANSPILATION SUCCESSFUL |^_^|'.rainbow.bold);

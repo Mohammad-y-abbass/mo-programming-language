@@ -2,6 +2,7 @@ const moo = require('moo');
 
 let lexer = moo.compile({
   NL: { match: /\r?\n/, lineBreaks: true },
+  loop: /_/,
   WS: /[ \t]+/,
   comment: /\/\/.*?$/,
   number: /0|[1-9][0-9]*/,

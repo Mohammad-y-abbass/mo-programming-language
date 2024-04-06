@@ -1,34 +1,34 @@
 [
   [
     {
-      "type": "condition_statement",
+      "type": "loop_statement",
       "condition": {
         "exp1": {
           "type": "identifier",
           "value": "a",
           "text": "a",
-          "offset": 2,
+          "offset": 1,
           "lineBreaks": 0,
           "line": 1,
-          "col": 3
+          "col": 2
         },
         "operator": {
           "type": "less",
           "value": "<",
           "text": "<",
-          "offset": 4,
+          "offset": 2,
           "lineBreaks": 0,
           "line": 1,
-          "col": 5
+          "col": 3
         },
         "exp2": {
           "type": "number",
-          "value": "1",
-          "text": "1",
-          "offset": 6,
+          "value": "10",
+          "text": "10",
+          "offset": 3,
           "lineBreaks": 0,
           "line": 1,
-          "col": 7
+          "col": 4
         }
       },
       "body": {
@@ -37,41 +37,20 @@
           "type": "identifier",
           "value": "a",
           "text": "a",
-          "offset": 11,
+          "offset": 9,
           "lineBreaks": 0,
           "line": 1,
-          "col": 12
+          "col": 10
         },
         "var_value": {
           "type": "number",
-          "value": "0",
-          "text": "0",
-          "offset": 14,
+          "value": "10",
+          "text": "10",
+          "offset": 12,
           "lineBreaks": 0,
           "line": 1,
-          "col": 15
+          "col": 13
         }
-      }
-    },
-    {
-      "type": "var_assign",
-      "var_name": {
-        "type": "identifier",
-        "value": "a",
-        "text": "a",
-        "offset": 17,
-        "lineBreaks": 0,
-        "line": 2,
-        "col": 1
-      },
-      "var_value": {
-        "type": "number",
-        "value": "12",
-        "text": "12",
-        "offset": 20,
-        "lineBreaks": 0,
-        "line": 2,
-        "col": 4
       }
     }
   ]

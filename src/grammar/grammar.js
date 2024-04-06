@@ -18,6 +18,7 @@ var grammar = {
     {"name": "__", "symbols": ["__$ebnf$1"], "postprocess": id},
     {"name": "statement", "symbols": ["assignment"], "postprocess": id},
     {"name": "statement", "symbols": ["conditional"], "postprocess": id},
+    {"name": "statement", "symbols": ["loop"], "postprocess": id},
     {"name": "assignment", "symbols": [(myLexer.has("identifier") ? {type: "identifier"} : identifier), "_", (myLexer.has("assignment_symbol") ? {type: "assignment_symbol"} : assignment_symbol), "_", "expression"], "postprocess": 
         (d) => {
             return {
@@ -52,7 +53,16 @@ var grammar = {
                 body: d[6]
             }
         }
+        },
+    {"name": "loop", "symbols": [(myLexer.has("loop") ? {type: "loop"} : loop), "_", "condition", "_", (myLexer.has("arrow") ? {type: "arrow"} : arrow), "_", "statement", (myLexer.has("NL") ? {type: "NL"} : NL)], "postprocess": 
+        (d) => {
+            return {
+                type: "loop_statement",
+                condition: d[2],
+                body: d[6]
+            }
         }
+                    }
 ]
   , ParserStart: "main"
 }

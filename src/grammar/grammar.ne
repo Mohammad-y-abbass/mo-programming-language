@@ -13,6 +13,7 @@ __ -> %WS:+ {% id %}
 
 statement -> assignment {% id %}
            | conditional {% id %}
+           | loop {% id %}
 
 assignment -> %identifier _ %assignment_symbol _ expression
             {%
@@ -58,3 +59,13 @@ conditional -> %conditional _ condition _ %arrow _ statement %NL
                 }
                 %}
 
+loop -> %loop _ condition _ %arrow _ statement %NL
+            {%
+                (d) => {
+                    return {
+                        type: "loop_statement",
+                        condition: d[2],
+                        body: d[6]
+                    }
+                }
+            %}

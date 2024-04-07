@@ -32,11 +32,13 @@ async function main() {
 }
 
 function generateJsForStatements(statements) {
-  return statements[0].map(generateJsForStatementOrExpr).join('\n');
+  return statements[0].main_program.map(generateJsForStatementOrExpr).join('\n');
 }
 
 function generateJsForStatementOrExpr(node) {
   switch (node.type) {
+    case 'NL':
+      return;
     case 'var_assign':
       return `var ${node.var_name.value} = ${node.var_value.value};`;
     default:

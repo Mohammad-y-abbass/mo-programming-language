@@ -1,70 +1,57 @@
 [
-  [
-    [
-      [
-        {
-          "type": "var_assign",
-          "var_name": {
-            "type": "identifier",
-            "value": "x",
-            "text": "x",
-            "offset": 0,
-            "lineBreaks": 0,
-            "line": 1,
-            "col": 1
-          },
-          "var_value": {
-            "type": "number",
-            "value": "10",
-            "text": "10",
-            "offset": 3,
-            "lineBreaks": 0,
-            "line": 1,
-            "col": 4
-          }
-        },
-        {
-          "type": "NL",
-          "value": "\r\n",
-          "text": "\r\n",
-          "offset": 5,
-          "lineBreaks": 1,
+  {
+    "main_program": [
+      {
+        "type": "var_assign",
+        "var_name": {
+          "type": "identifier",
+          "value": "name",
+          "text": "name",
+          "offset": 0,
+          "lineBreaks": 0,
           "line": 1,
-          "col": 6
-        }
-      ],
-      [
-        {
-          "type": "var_assign",
-          "var_name": {
-            "type": "identifier",
-            "value": "a",
-            "text": "a",
-            "offset": 7,
-            "lineBreaks": 0,
-            "line": 2,
-            "col": 1
-          },
-          "var_value": {
-            "type": "number",
-            "value": "11",
-            "text": "11",
-            "offset": 10,
-            "lineBreaks": 0,
-            "line": 2,
-            "col": 4
-          }
+          "col": 1
         },
-        {
-          "type": "NL",
-          "value": "\r\n",
-          "text": "\r\n",
-          "offset": 12,
-          "lineBreaks": 1,
+        "var_value": {
+          "type": "string",
+          "value": "\"mohammad\"",
+          "text": "\"mohammad\"",
+          "offset": 6,
+          "lineBreaks": 0,
+          "line": 1,
+          "col": 7
+        }
+      },
+      {
+        "type": "var_assign",
+        "var_name": {
+          "type": "identifier",
+          "value": "age",
+          "text": "age",
+          "offset": 18,
+          "lineBreaks": 0,
+          "line": 2,
+          "col": 1
+        },
+        "var_value": {
+          "type": "number",
+          "value": "23",
+          "text": "23",
+          "offset": 23,
+          "lineBreaks": 0,
           "line": 2,
           "col": 6
         }
-      ]
+      },
+      {
+        "type": "NL",
+        "value": "\r\n",
+        "text": "\r\n",
+        "offset": 25,
+        "lineBreaks": 1,
+        "line": 2,
+        "col": 8
+      }
     ]
-  ]
+  }
 ]

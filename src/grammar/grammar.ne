@@ -5,7 +5,19 @@
 @lexer myLexer
 
 # Define the grammar
-main ->(statement %NL):+
+
+main -> statements 
+                    {%
+                        (d) => {
+                            return {
+                                main_program: d[0]
+                            }
+                        }                   
+                     %}
+
+statements -> statement %NL {% (d) => { return d[0]; } %}
+            | statements statement %NL {%(d) => { return [...d] } %}
+
 
 _ -> %WS:* {% id %}
 

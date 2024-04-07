@@ -1,1 +1,2 @@
-var x = 10;
+var name = "mohammad";
+var age = 23;

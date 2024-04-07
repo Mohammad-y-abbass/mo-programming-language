@@ -1,2 +1,2 @@
-x:=10
-a:=11
+name:="mohammad"
+age:=23

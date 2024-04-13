@@ -72,7 +72,6 @@ conditional -> %conditional _ condition _ %arrow _ statement %NL
                     return {
                         type: "condition_statement",
                         condition: d[2],
-                        body: d[6]
                     }
                 }
                 %}

@@ -44,7 +44,7 @@ console.log(
   execSync(`nearleyc ${grammarFile} -o ${generatedGrammar}`).toString()
 );
 
-console.log('Generating parser...'.magenta);
+console.log('Parsing...'.magenta);
 console.log(execSync(`node ${parserFile}`).toString());
 
 console.log('transpiling...'.magenta);

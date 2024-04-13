@@ -1,57 +1,66 @@
-[
-  {
-    "main_program": [
-      {
-        "type": "var_assign",
-        "var_name": {
-          "type": "identifier",
-          "value": "name",
-          "text": "name",
-          "offset": 0,
-          "lineBreaks": 0,
-          "line": 1,
-          "col": 1
-        },
-        "var_value": {
-          "type": "string",
-          "value": "\"mohammad\"",
-          "text": "\"mohammad\"",
-          "offset": 6,
-          "lineBreaks": 0,
-          "line": 1,
-          "col": 7
-        }
+{
+  "main_program": [
+    {
+      "type": "var_assign",
+      "var_name": {
+        "type": "identifier",
+        "value": "age",
+        "text": "age",
+        "offset": 0,
+        "lineBreaks": 0,
+        "line": 1,
+        "col": 1
       },
-      {
-        "type": "var_assign",
-        "var_name": {
+      "var_value": {
+        "type": "number",
+        "value": "23",
+        "text": "23",
+        "offset": 5,
+        "lineBreaks": 0,
+        "line": 1,
+        "col": 6
+      }
+    },
+    {
+      "type": "condition_statement",
+      "condition": {
+        "exp1": {
           "type": "identifier",
           "value": "age",
           "text": "age",
-          "offset": 18,
+          "offset": 11,
           "lineBreaks": 0,
           "line": 2,
-          "col": 1
+          "col": 3
         },
-        "var_value": {
-          "type": "number",
-          "value": "23",
-          "text": "23",
-          "offset": 23,
+        "operator": {
+          "type": "greater",
+          "value": ">",
+          "text": ">",
+          "offset": 15,
           "lineBreaks": 0,
           "line": 2,
-          "col": 6
+          "col": 7
+        },
+        "exp2": {
+          "type": "number",
+          "value": "18",
+          "text": "18",
+          "offset": 17,
+          "lineBreaks": 0,
+          "line": 2,
+          "col": 9
         }
-      },
-      {
-        "type": "NL",
-        "value": "\r\n",
-        "text": "\r\n",
-        "offset": 25,
-        "lineBreaks": 1,
-        "line": 2,
-        "col": 8
       }
-    ]
-  }
-]
+    },
+    {
+      "type": "NL",
+      "value": "\r\n",
+      "text": "\r\n",
+      "offset": 37,
+      "lineBreaks": 1,
+      "line": 3,
+      "col": 1
+    }
+  ]
+}

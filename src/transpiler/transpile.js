@@ -1,5 +1,5 @@
 const fs = require('fs').promises;
-const colors = require('colors'); // Assuming you have the 'colors' package installed
+const colors = require('colors');
 
 async function main() {
   try {
@@ -11,14 +11,13 @@ async function main() {
     const astJson = await fs.readFile(filename, 'utf8');
     const statements = JSON.parse(astJson);
 
-    if (!Array.isArray(statements)) {
+    if (!Array.isArray(statements.main_program)) {
       throw new Error(
         'Invalid AST format: Expected an array of statements.'.red
       );
     }
 
     const jsCode = generateJsForStatements(statements);
-    const outputFilename = filename.replace('.ast', '.js');
 
     await fs.writeFile('src/transpiler/transpiled.js', jsCode);
 
@@ -27,12 +26,15 @@ async function main() {
         .green
     );
   } catch (err) {
-    console.error('Error:'.red, err.message);
+    console.error('Error:'.red, err.message.red);
+    console.error(`Error stack trace: ${err.stack}`.red);
   }
 }
 
 function generateJsForStatements(statements) {
-  return statements[0].main_program.map(generateJsForStatementOrExpr).join('\n');
+  return statements.main_program
+    .map(generateJsForStatementOrExpr)
+    .join('\n');
 }
 
 function generateJsForStatementOrExpr(node) {

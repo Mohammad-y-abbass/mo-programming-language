@@ -61,7 +61,6 @@ var grammar = {
             return {
                 type: "condition_statement",
                 condition: d[2],
-                body: d[6]
             }
         }
         },

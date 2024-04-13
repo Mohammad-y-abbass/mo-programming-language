@@ -56,11 +56,12 @@ var grammar = {
     {"name": "param", "symbols": [(myLexer.has("number") ? {type: "number"} : number)], "postprocess": id},
     {"name": "param", "symbols": [(myLexer.has("identifier") ? {type: "identifier"} : identifier)], "postprocess": id},
     {"name": "params", "symbols": ["param"], "postprocess": id},
-    {"name": "conditional", "symbols": [(myLexer.has("conditional") ? {type: "conditional"} : conditional), "_", "condition", "_", (myLexer.has("arrow") ? {type: "arrow"} : arrow), "_", "statement", (myLexer.has("NL") ? {type: "NL"} : NL)], "postprocess": 
+    {"name": "conditional", "symbols": [(myLexer.has("conditional") ? {type: "conditional"} : conditional), "_", "condition", "_", (myLexer.has("arrow") ? {type: "arrow"} : arrow), "_", "statement"], "postprocess": 
         (d) => {
             return {
                 type: "condition_statement",
                 condition: d[2],
+                body: d[6]
             }
         }
         },

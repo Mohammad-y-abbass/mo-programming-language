@@ -28,28 +28,49 @@
           "type": "identifier",
           "value": "age",
           "text": "age",
-          "offset": 11,
+          "offset": 10,
           "lineBreaks": 0,
           "line": 2,
-          "col": 3
+          "col": 2
         },
         "operator": {
           "type": "greater",
           "value": ">",
           "text": ">",
-          "offset": 15,
+          "offset": 13,
           "lineBreaks": 0,
           "line": 2,
-          "col": 7
+          "col": 5
         },
         "exp2": {
           "type": "number",
           "value": "18",
           "text": "18",
-          "offset": 17,
+          "offset": 14,
           "lineBreaks": 0,
           "line": 2,
-          "col": 9
+          "col": 6
+        }
+      },
+      "body": {
+        "type": "var_assign",
+        "var_name": {
+          "type": "identifier",
+          "value": "gen",
+          "text": "gen",
+          "offset": 18,
+          "lineBreaks": 0,
+          "line": 2,
+          "col": 10
+        },
+        "var_value": {
+          "type": "string",
+          "value": "\"adult\"",
+          "text": "\"adult\"",
+          "offset": 23,
+          "lineBreaks": 0,
+          "line": 2,
+          "col": 15
         }
       }
     },
@@ -57,10 +78,10 @@
       "type": "NL",
       "value": "\r\n",
       "text": "\r\n",
-      "offset": 37,
+      "offset": 30,
       "lineBreaks": 1,
-      "line": 3,
-      "col": 1
+      "line": 2,
+      "col": 22
     }
   ]
 }

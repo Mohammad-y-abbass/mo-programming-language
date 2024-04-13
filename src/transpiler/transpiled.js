@@ -1,2 +1,4 @@
-var name = "mohammad";
-var lastName = "abbass";
+var age = 23;
+if (age > 18) {
+    var gen = "adult";
+}

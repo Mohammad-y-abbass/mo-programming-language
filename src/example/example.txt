@@ -1,3 +1,2 @@
 age:=23
-? age > 18 => gen:="adult"
-
+?age>18=>gen:="adult"

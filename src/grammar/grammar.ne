@@ -66,12 +66,13 @@ param -> %string {% id %}
            
 params -> param {% id %}
 
-conditional -> %conditional _ condition _ %arrow _ statement %NL
+conditional -> %conditional _ condition _ %arrow _ statement
                  {%
                 (d) => {
                     return {
                         type: "condition_statement",
                         condition: d[2],
+                        body: d[6]
                     }
                 }
                 %}

@@ -50,10 +50,11 @@ logical_operators -> %greater_or_equal {% id %}
                    | %less {% id %}
                    | %equal {% id %}
 
-arithmetic_operators -> %add {% id %}
+arithmetic_operator -> %add {% id %}
                       | $subtract {% id %}
                       | %multiply {% id %}
                       | %divide {% id %}
+                      | %modulus {% id %}
 
 
 condition -> expression _ logical_operators _ expression 
@@ -124,6 +125,18 @@ fn_call -> "c" __ %identifier _ %openTag _ params:* _ %closeTag %NL:*
                         type: "fn_call",
                         fn_name: node[2],
                         params: node[6]
+                    }
+                }
+            %}
+
+add_opertaion -> expression arithmetic_operator expression 
+            {%
+                 (node) => {
+                    return {
+                        type: "add_opertaion"
+                        exp1: node[0],
+                        operator: node[1],
+                        exp2: node[2]
                     }
                 }
             %}

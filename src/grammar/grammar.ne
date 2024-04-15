@@ -50,6 +50,12 @@ logical_operators -> %greater_or_equal {% id %}
                    | %less {% id %}
                    | %equal {% id %}
 
+arithmetic_operators -> %add {% id %}
+                      | $subtract {% id %}
+                      | %multiply {% id %}
+                      | %divide {% id %}
+
+
 condition -> expression _ logical_operators _ expression 
                 {%
                     (node) => {

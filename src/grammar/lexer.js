@@ -9,6 +9,11 @@ let lexer = moo.compile({
   comment: /\/\/.*?$/,
   number: /0|[1-9][0-9]*/,
   string: /"(?:\\["\\]|[^\n"\\])*"/,
+  add: /+/,
+  subtract: /-/,
+  multiply: /\*/,
+  divide: /\//,
+  modulus: /%/,
   arrow: /=>/,
   openTag: /<</,
   closeTag: />>/,
@@ -25,6 +30,5 @@ let lexer = moo.compile({
   rightParan: ')',
   end: ':end',
 });
-
 
 module.exports = lexer;

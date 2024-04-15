@@ -1,3 +1,7 @@
+/**
+ * Imports the nearley library, which is a parser generator for JavaScript.
+ * This library is used to parse input data according to a specified grammar.
+ */
 const nearley = require('nearley');
 const grammar = require('../grammar/grammar.js');
 const fs = require('fs');
@@ -9,10 +13,15 @@ try {
       return;
     }
 
-    const parser = new nearley.Parser(nearley.Grammar.fromCompiled(grammar));
+    const parser = new nearley.Parser(nearley.Grammar.fromCompiled(grammar), {
+      trace: true,
+      traceCallback: (state) => {
+        console.log(state);
+      },
+    });
 
     parser.feed(data);
-    console.log(data);
+    console.log(parser.trace);
     console.log(parser.results);
     if (parser.results.length > 0) {
       console.log('Parsing successful!'.green.bold);
@@ -22,6 +31,8 @@ try {
       fs.writeFileSync('./src/ast.json', resultsJson);
     } else {
       console.log('Parser state:', parser.state);
+      console.log('fed data: ', data);
+
       throw new Error('Parsing failed: no results');
     }
   });

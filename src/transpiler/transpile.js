@@ -1,3 +1,12 @@
+/**
+ * Transpiles an AST (Abstract Syntax Tree) representation of a program to JavaScript code.
+ *
+ * This function reads an AST JSON file, parses the statements, and generates the corresponding JavaScript code.
+ * The generated JavaScript code is then written to the 'src/transpiler/transpiled.js' file.
+ *
+ * @param {string} filename - The path to the AST JSON file.
+ * @returns {Promise<void>} - A Promise that resolves when the transpilation is complete.
+ */
 const fs = require('fs').promises;
 const colors = require('colors');
 
@@ -11,13 +20,13 @@ async function main() {
     const astJson = await fs.readFile(filename, 'utf8');
     const statements = JSON.parse(astJson);
 
-    if (!Array.isArray(statements.main_program)) {
+    if (!Array.isArray(statements.main_program.statements)) {
       throw new Error(
         'Invalid AST format: Expected an array of statements.'.red
       );
     }
 
-    const jsCode = generate_js_for_statements(statements);
+    const jsCode = generate_js_from_ast(statements);
 
     await fs.writeFile('src/transpiler/transpiled.js', jsCode);
 
@@ -31,23 +40,55 @@ async function main() {
   }
 }
 
-function generate_js_for_statements(statements) {
-  return statements.main_program
-    .filter((node) => !!node) // Filter out undefined nodes
-    .map(generate_js_for_node)
-    .join('\n');
+const check_if_node_array = (node) => Array.isArray(node);
+
+function generate_js_from_ast(ast) {
+  return ast.main_program.statements.map(generate_js_for_node).join('\n');
+}
+
+function generate_js_for_body(body) {
+  console.log(body);
+  return body.statements.map(generate_js_for_node).join('\n');
 }
 
 function generate_js_for_var_assign(var_assign_node) {
   return `var ${var_assign_node.var_name.value} = ${var_assign_node.var_value.value};`;
 }
 
+function generate_js_for_loop_statement(loop_node) {
+  return `while (${loop_node.condition.exp1.value} ${
+    loop_node.condition.operator.value
+  } ${loop_node.condition.exp2.value}) {
+    ${generate_js_for_body(loop_node.body)}
+}`;
+}
+
 function generate_js_for_condition_statement(condition_node) {
   return `if (${condition_node.condition.exp1.value} ${
     condition_node.condition.operator.value
   } ${condition_node.condition.exp2.value}) {
-    ${generate_js_for_node(condition_node.body)}
+    ${generate_js_for_body(condition_node.body)}
 }`;
+}
+
+function generate_js_for_print_statement(print_node) {
+  return `console.log(${print_node.printed_value.value});`;
+}
+
+function generate_js_for_function_statement(func_node) {
+  if (check_if_node_array(func_node.body.statements)) {
+    return `function ${func_node.fn_name.value} (${func_node.params.value}) {
+    ${generate_js_for_body(func_node.body)}
+}`;
+  } else {
+    return `function ${func_node.fn_name.value} (${func_node.params.value}) {
+     ${generate_js_for_node(func_node.body)};
+}`;
+  }
+}
+
+function generate_js_for_fn_call(fn_call_node) {
+  return `${fn_call_node.fn_name.value}(${fn_call_node.params.value})`;
 }
 
 function generate_js_for_node(node) {
@@ -57,7 +98,15 @@ function generate_js_for_node(node) {
   } else if (node.type === 'condition_statement') {
     return generate_js_for_condition_statement(node);
   } else if (node.type === 'NL') {
-    return ''; // Return an empty string for newline nodes
+    return '';
+  } else if (node.type === 'loop_statement') {
+    return generate_js_for_loop_statement(node);
+  } else if (node.type === 'print_statement') {
+    return generate_js_for_print_statement(node);
+  } else if (node.type === 'fn') {
+    return generate_js_for_function_statement(node);
+  } else if (node.type === 'fn_call') {
+    return generate_js_for_fn_call(node);
   } else {
     throw new Error(`Unknown node type: ${node.type}`.red);
   }

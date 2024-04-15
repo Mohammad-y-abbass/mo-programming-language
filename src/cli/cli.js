@@ -50,4 +50,7 @@ console.log(execSync(`node ${parserFile}`).toString());
 console.log('transpiling...'.magenta);
 console.log(execSync(`node ${transpilerFile} ${astFile}`).toString());
 
+console.log('Running transpiled code...'.magenta);
+console.log(execSync(`node ${transpiledJs}`).toString());
+
 //console.log(asciiArt.rainbow);

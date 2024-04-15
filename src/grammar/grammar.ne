@@ -4,37 +4,38 @@
 
 @lexer myLexer
 
-# Define the grammar
-
 main -> statements 
                     {%
-                        (d) => {
+                        (node) => {
                             return {
-                                main_program: d[0]
+                                main_program: node[0]
                             }
                         }                   
                      %}
 
-statements -> statement %NL {% (d) => { return d[0]; } %}
-            | statements statement %NL {%(d) => { return [...d] } %}
+statements -> statement:* {% (node) =>{ return {statements: node[0]}}
+
+ %}
 
 
 _ -> %WS:* {% id %}
 
 __ -> %WS:+ {% id %}
 
-statement -> assignment {% id %}
+statement -> assignment %NL {% id %}
            | conditional {% id %}
            | loop {% id %}
            | fn {% id %}
+           | print_statement {% id %}
+           | fn_call {% id %}
 
 assignment -> %identifier _ %assignment_symbol _ expression
             {%
-                (d) => {
+                (node) => {
                     return {
                         type: "var_assign",
-                        var_name : d[0],
-                        var_value : d[4]
+                        var_name : node[0],
+                        var_value : node[4]
                     }
                 }
             %}
@@ -51,11 +52,11 @@ logical_operators -> %greater_or_equal {% id %}
 
 condition -> expression _ logical_operators _ expression 
                 {%
-                    (d) => {
+                    (node) => {
                         return {
-                             exp1: d[0],
-                             operator: d[2],
-                             exp2: d[4]
+                             exp1: node[0],
+                             operator: node[2],
+                             exp2: node[4]
                             }
                         }   
                 %}
@@ -66,37 +67,57 @@ param -> %string {% id %}
            
 params -> param {% id %}
 
-conditional -> %conditional _ condition _ %arrow _ statement
+conditional -> %conditional _ condition _ %arrow _ statements %end %NL:*
                  {%
-                (d) => {
+                (node) => {
                     return {
                         type: "condition_statement",
-                        condition: d[2],
-                        body: d[6]
+                        condition: node[2],
+                        body: node[6]
                     }
                 }
                 %}
 
-loop -> %loop _ condition _ %arrow _ statement %NL
+loop -> %loop  _ condition _ %arrow _ statements %end %NL:*
             {%
-                (d) => {
+                (node) => {
                     return {
                         type: "loop_statement",
-                        condition: d[2],
-                        body: d[6]
+                        condition: node[2],
+                        body: node[6]
                     }
                 }
             %}
 
-fn -> "f" __ %identifier _ %leftParan _ params _ %rightParan _ %arrow __ statement %NL
+fn -> "f" __ %identifier _ %openTag _ params:* _ %closeTag _ %arrow __ statements %end  %NL:*
             {%
-                    (d) => {
+                    (node) => {
                         return {
                         type: "fn",
-                        fn_name: d[2],
-                        params: d[6],
-                        body: d[12]
+                        fn_name: node[2],
+                        params: node[6],
+                        body: node[12]
                     }
                 }
             %}
 
+print_statement -> %write %openTag expression %closeTag %NL:* 
+            {%
+                (node) => {
+                    return {
+                        type: "print_statement",
+                        printed_value: node[2]
+                    }
+                }
+            %}
+
+fn_call -> "c" __ %identifier _ %openTag _ params:* _ %closeTag %NL:*
+            {%
+                (node) => {
+                    return {
+                        type: "fn_call",
+                        fn_name: node[2],
+                        params: node[6]
+                    }
+                }
+            %}

@@ -1,2 +1,5 @@
-age:=23
-?age>18=>gen:="adult"
+f hello<<>> => w<<"hello">>
+:end
+x:=5
+?x==5 => c hello<<>>
+:end

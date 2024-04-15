@@ -1,4 +1,7 @@
-var age = 23;
-if (age > 18) {
-    var gen = "adult";
+function hello() {
+  console.log('hello');
+}
+var x = 5;
+if (x == 5) {
+  hello(undefined);
 }

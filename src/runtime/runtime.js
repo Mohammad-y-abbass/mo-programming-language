@@ -1,5 +1,3 @@
-var x = "hello";
-add(undefined)
 function add(x, y) {
   return x + y;
 }

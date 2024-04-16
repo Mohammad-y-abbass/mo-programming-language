@@ -22,7 +22,7 @@ _ -> %WS:* {% id %}
 
 __ -> %WS:+ {% id %}
 
-statement -> assignment %NL {% id %}
+statement -> assignment %NL:* {% id %}
            | conditional {% id %}
            | loop {% id %}
            | fn {% id %}
@@ -50,12 +50,6 @@ logical_operators -> %greater_or_equal {% id %}
                    | %less {% id %}
                    | %equal {% id %}
 
-arithmetic_operator -> %add {% id %}
-                      | $subtract {% id %}
-                      | %multiply {% id %}
-                      | %divide {% id %}
-                      | %modulus {% id %}
-
 
 condition -> expression _ logical_operators _ expression 
                 {%
@@ -73,6 +67,15 @@ param -> %string {% id %}
         | %identifier {% id %}
            
 params -> param {% id %}
+        | params __ param 
+            {%
+                (node) => {
+                    return {
+                        type: "params",
+                        value: [node[0], node[2]]
+                    }
+                }
+            %}
 
 conditional -> %conditional _ condition _ %arrow _ statements %end %NL:*
                  {%
@@ -129,14 +132,3 @@ fn_call -> "c" __ %identifier _ %openTag _ params:* _ %closeTag %NL:*
                 }
             %}
 
-add_opertaion -> expression arithmetic_operator expression 
-            {%
-                 (node) => {
-                    return {
-                        type: "add_opertaion"
-                        exp1: node[0],
-                        operator: node[1],
-                        exp2: node[2]
-                    }
-                }
-            %}

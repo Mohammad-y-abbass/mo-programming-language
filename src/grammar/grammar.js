@@ -25,7 +25,9 @@ var grammar = {
     {"name": "__$ebnf$1", "symbols": [(myLexer.has("WS") ? {type: "WS"} : WS)]},
     {"name": "__$ebnf$1", "symbols": ["__$ebnf$1", (myLexer.has("WS") ? {type: "WS"} : WS)], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
     {"name": "__", "symbols": ["__$ebnf$1"], "postprocess": id},
-    {"name": "statement", "symbols": ["assignment", (myLexer.has("NL") ? {type: "NL"} : NL)], "postprocess": id},
+    {"name": "statement$ebnf$1", "symbols": []},
+    {"name": "statement$ebnf$1", "symbols": ["statement$ebnf$1", (myLexer.has("NL") ? {type: "NL"} : NL)], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
+    {"name": "statement", "symbols": ["assignment", "statement$ebnf$1"], "postprocess": id},
     {"name": "statement", "symbols": ["conditional"], "postprocess": id},
     {"name": "statement", "symbols": ["loop"], "postprocess": id},
     {"name": "statement", "symbols": ["fn"], "postprocess": id},
@@ -61,6 +63,14 @@ var grammar = {
     {"name": "param", "symbols": [(myLexer.has("number") ? {type: "number"} : number)], "postprocess": id},
     {"name": "param", "symbols": [(myLexer.has("identifier") ? {type: "identifier"} : identifier)], "postprocess": id},
     {"name": "params", "symbols": ["param"], "postprocess": id},
+    {"name": "params", "symbols": ["params", "__", "param"], "postprocess": 
+        (node) => {
+            return {
+                type: "params",
+                value: [node[0], node[2]]
+            }
+        }
+                    },
     {"name": "conditional$ebnf$1", "symbols": []},
     {"name": "conditional$ebnf$1", "symbols": ["conditional$ebnf$1", (myLexer.has("NL") ? {type: "NL"} : NL)], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
     {"name": "conditional", "symbols": [(myLexer.has("conditional") ? {type: "conditional"} : conditional), "_", "condition", "_", (myLexer.has("arrow") ? {type: "arrow"} : arrow), "_", "statements", (myLexer.has("end") ? {type: "end"} : end), "conditional$ebnf$1"], "postprocess": 

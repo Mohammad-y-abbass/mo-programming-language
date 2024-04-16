@@ -1,5 +1,2 @@
-f hello<<>> => w<<"hello">>
-:end
-x:=5
-?x==5 => c hello<<>>
-:end
+x:="hello"
+c add<<1 1>>

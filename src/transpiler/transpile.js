@@ -18,6 +18,8 @@ async function main() {
     }
 
     const astJson = await fs.readFile(filename, 'utf8');
+    const runtime = await fs.readFile('src/runtime/runtime.js', 'utf8');
+
     const statements = JSON.parse(astJson);
 
     if (!Array.isArray(statements.main_program.statements)) {
@@ -26,7 +28,7 @@ async function main() {
       );
     }
 
-    const jsCode = generate_js_from_ast(statements);
+    const jsCode = generate_js_from_ast(statements) + '\n' + runtime;
 
     await fs.writeFile('src/transpiler/transpiled.js', jsCode);
 

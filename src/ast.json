@@ -2,103 +2,62 @@
   "main_program": {
     "statements": [
       {
-        "type": "fn",
-        "fn_name": {
-          "type": "identifier",
-          "value": "hello",
-          "text": "hello",
-          "offset": 2,
-          "lineBreaks": 0,
-          "line": 1,
-          "col": 3
-        },
-        "params": [],
-        "body": {
-          "statements": [
-            {
-              "type": "print_statement",
-              "printed_value": {
-                "type": "string",
-                "value": "\"hello\"",
-                "text": "\"hello\"",
-                "offset": 18,
-                "lineBreaks": 0,
-                "line": 1,
-                "col": 19
-              }
-            }
-          ]
-        }
-      },
-      {
         "type": "var_assign",
         "var_name": {
           "type": "identifier",
           "value": "x",
           "text": "x",
-          "offset": 35,
+          "offset": 0,
           "lineBreaks": 0,
-          "line": 3,
+          "line": 1,
           "col": 1
         },
         "var_value": {
-          "type": "number",
-          "value": "5",
-          "text": "5",
-          "offset": 38,
+          "type": "string",
+          "value": "\"hello\"",
+          "text": "\"hello\"",
+          "offset": 3,
           "lineBreaks": 0,
-          "line": 3,
+          "line": 1,
           "col": 4
         }
       },
       {
-        "type": "condition_statement",
-        "condition": {
-          "exp1": {
-            "type": "identifier",
-            "value": "x",
-            "text": "x",
-            "offset": 42,
-            "lineBreaks": 0,
-            "line": 4,
-            "col": 2
-          },
-          "operator": {
-            "type": "equal",
-            "value": "==",
-            "text": "==",
-            "offset": 43,
-            "lineBreaks": 0,
-            "line": 4,
-            "col": 3
-          },
-          "exp2": {
-            "type": "number",
-            "value": "5",
-            "text": "5",
-            "offset": 45,
-            "lineBreaks": 0,
-            "line": 4,
-            "col": 5
-          }
+        "type": "fn_call",
+        "fn_name": {
+          "type": "identifier",
+          "value": "add",
+          "text": "add",
+          "offset": 14,
+          "lineBreaks": 0,
+          "line": 2,
+          "col": 3
         },
-        "body": {
-          "statements": [
-            {
-              "type": "fn_call",
-              "fn_name": {
-                "type": "identifier",
-                "value": "hello",
-                "text": "hello",
-                "offset": 52,
+        "params": [
+          {
+            "type": "params",
+            "value": [
+              {
+                "type": "number",
+                "value": "1",
+                "text": "1",
+                "offset": 19,
                 "lineBreaks": 0,
-                "line": 4,
-                "col": 12
+                "line": 2,
+                "col": 8
               },
-              "params": []
-            }
-          ]
-        }
+              {
+                "type": "number",
+                "value": "1",
+                "text": "1",
+                "offset": 21,
+                "lineBreaks": 0,
+                "line": 2,
+                "col": 10
+              }
+            ]
+          }
+        ]
       }
     ]
   }

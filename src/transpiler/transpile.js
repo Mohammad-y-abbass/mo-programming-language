@@ -79,7 +79,9 @@ function generate_js_for_print_statement(print_node) {
 
 function generate_js_for_function_statement(func_node) {
   if (check_if_node_array(func_node.body.statements)) {
-    return `function ${func_node.fn_name.value} (${func_node.params.value}) {
+    return `function ${func_node.fn_name.value} (${generate_js_for_params(
+      func_node.params
+    )}) {
     ${generate_js_for_body(func_node.body)}
 }`;
   } else {
@@ -90,7 +92,25 @@ function generate_js_for_function_statement(func_node) {
 }
 
 function generate_js_for_fn_call(fn_call_node) {
-  return `${fn_call_node.fn_name.value}(${fn_call_node.params.value})`;
+  return `${fn_call_node.fn_name.value}(${generate_js_for_params(
+    fn_call_node.params
+  )})`;
+}
+
+function generate_js_for_multiple_params(params) {
+  return params.map((param) => param.value).join(',');
+}
+
+function generate_js_for_params(params_node) {
+  if (params_node.length == 0) {
+    return '';
+  } else {
+    if (check_if_node_array(params_node[0].value)) {
+      return `${generate_js_for_multiple_params(params_node[0].value)}`;
+    } else {
+      return `${params_node[0].value}`;
+    }
+  }
 }
 
 function generate_js_for_node(node) {

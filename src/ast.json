@@ -2,7 +2,7 @@
   "main_program": {
     "statements": [
       {
-        "type": "add_element_to_end_of_array",
+        "type": "remove_element_from_end_of_array",
         "array_name": {
           "type": "identifier",
           "value": "arr",
@@ -12,7 +12,7 @@
           "line": 1,
           "col": 1
         },
-        "added_value": {
+        "removed_value": {
           "type": "number",
           "value": "10",
           "text": "10",

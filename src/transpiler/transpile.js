@@ -147,6 +147,12 @@ function generate_js_for_adding_element_to_end_of_array(
   return `${array_element_add_node.array_name.value}.push(${array_element_add_node.added_value.value})`;
 }
 
+function generate_js_for_removing_element_from_end_of_array(
+  array_element_remove_node
+) {
+  return `${array_element_remove_node.array_name.value}.pop()`;
+}
+
 function generate_js_for_node(node) {
   if (node.type === 'var_assign') {
     return generate_js_for_var_assign(node);
@@ -170,6 +176,8 @@ function generate_js_for_node(node) {
     return generate_js_for_updating_array_element(node);
   } else if (node.type === 'add_element_to_end_of_array') {
     return generate_js_for_adding_element_to_end_of_array(node);
+  } else if (node.type === 'remove_element_from_end_of_array') {
+    return generate_js_for_removing_element_from_end_of_array(node);
   } else {
     throw new Error(`Unknown node type: ${node.type}`.red);
   }

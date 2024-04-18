@@ -37,6 +37,7 @@ var grammar = {
     {"name": "statement", "symbols": ["access_array_element"], "postprocess": id},
     {"name": "statement", "symbols": ["update_array_element"], "postprocess": id},
     {"name": "statement", "symbols": ["add_element_to_end_of_array"], "postprocess": id},
+    {"name": "statement", "symbols": ["remove_element_from_end_of_array"], "postprocess": id},
     {"name": "assignment", "symbols": [(myLexer.has("identifier") ? {type: "identifier"} : identifier), "_", (myLexer.has("assignment_symbol") ? {type: "assignment_symbol"} : assignment_symbol), "_", "expression"], "postprocess": 
         (node) => {
             return {
@@ -189,6 +190,17 @@ var grammar = {
                 type: "add_element_to_end_of_array",
                 array_name: node[0],
                 added_value: node[4]
+            }
+        }
+                    },
+    {"name": "remove_element_from_end_of_array$ebnf$1", "symbols": []},
+    {"name": "remove_element_from_end_of_array$ebnf$1", "symbols": ["remove_element_from_end_of_array$ebnf$1", (myLexer.has("NL") ? {type: "NL"} : NL)], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
+    {"name": "remove_element_from_end_of_array", "symbols": [(myLexer.has("identifier") ? {type: "identifier"} : identifier), "_", {"literal":"=>"}, "_", "expression", "remove_element_from_end_of_array$ebnf$1"], "postprocess": 
+        (node) => {
+            return {
+                type: "remove_element_from_end_of_array",
+                array_name: node[0],
+                removed_value: node[4]
             }
         }
                     }

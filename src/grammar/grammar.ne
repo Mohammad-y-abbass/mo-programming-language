@@ -32,6 +32,7 @@ statement -> assignment %NL:* {% id %}
            | access_array_element {% id %}
            | update_array_element {% id %}
            | add_element_to_end_of_array {% id %}
+           | remove_element_from_end_of_array {% id %}
 
 assignment -> %identifier _ %assignment_symbol _ expression
             {%
@@ -194,6 +195,17 @@ add_element_to_end_of_array -> %identifier _ "<=" _ expression %NL:*
                         type: "add_element_to_end_of_array",
                         array_name: node[0],
                         added_value: node[4]
+                    }
+                }
+            %}
+
+remove_element_from_end_of_array -> %identifier _ "=>" _ expression %NL:*
+            {%
+                (node) => {
+                    return {
+                        type: "remove_element_from_end_of_array",
+                        array_name: node[0],
+                        removed_value: node[4]
                     }
                 }
             %}

@@ -1,4 +1,4 @@
-arr.push(10)
+arr.pop()
 function add(x, y) {
   return x + y;
 }

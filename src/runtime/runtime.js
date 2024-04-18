@@ -34,3 +34,6 @@ function floor(x) {
   return Math.floor(x);
 }
 
+function ceil(x) {
+  return Math.ceil(x);
+}

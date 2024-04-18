@@ -1,5 +1,4 @@
-var x = "hello";
-add(1,1)
+var x = add(1,1) 
 function add(x, y) {
   return x + y;
 }
@@ -36,3 +35,6 @@ function floor(x) {
   return Math.floor(x);
 }
 
+function ceil(x) {
+  return Math.ceil(x);
+}

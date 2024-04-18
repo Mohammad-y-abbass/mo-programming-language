@@ -43,6 +43,7 @@ assignment -> %identifier _ %assignment_symbol _ expression
 expression -> %number {% id %}
             | %identifier {% id %}
             | %string {% id %}
+            | fn_call
 
 logical_operators -> %greater_or_equal {% id %}
                    | %less_or_equal {% id %}

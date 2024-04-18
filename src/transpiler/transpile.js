@@ -54,6 +54,11 @@ function generate_js_for_body(body) {
 }
 
 function generate_js_for_var_assign(var_assign_node) {
+  if (check_if_node_array(var_assign_node.var_value)) {
+    return `var ${var_assign_node.var_name.value} = ${generate_js_for_fn_call(
+      var_assign_node.var_value[0]
+    )} `;
+  }
   return `var ${var_assign_node.var_name.value} = ${var_assign_node.var_value.value};`;
 }
 

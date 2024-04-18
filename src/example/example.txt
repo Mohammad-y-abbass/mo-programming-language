@@ -1,2 +1,1 @@
-x:="hello"
-c add<<1 1>>
+x:=c add<<1 1>>

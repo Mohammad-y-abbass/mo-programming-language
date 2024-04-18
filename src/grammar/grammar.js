@@ -34,6 +34,7 @@ var grammar = {
     {"name": "statement", "symbols": ["print_statement"], "postprocess": id},
     {"name": "statement", "symbols": ["fn_call"], "postprocess": id},
     {"name": "statement", "symbols": ["array_def"], "postprocess": id},
+    {"name": "statement", "symbols": ["access_array_element"], "postprocess": id},
     {"name": "assignment", "symbols": [(myLexer.has("identifier") ? {type: "identifier"} : identifier), "_", (myLexer.has("assignment_symbol") ? {type: "assignment_symbol"} : assignment_symbol), "_", "expression"], "postprocess": 
         (node) => {
             return {
@@ -44,6 +45,7 @@ var grammar = {
         }
                     },
     {"name": "expression", "symbols": [(myLexer.has("number") ? {type: "number"} : number)], "postprocess": id},
+    {"name": "expression", "symbols": ["access_array_element"], "postprocess": id},
     {"name": "expression", "symbols": [(myLexer.has("identifier") ? {type: "identifier"} : identifier)], "postprocess": id},
     {"name": "expression", "symbols": [(myLexer.has("string") ? {type: "string"} : string)], "postprocess": id},
     {"name": "expression", "symbols": ["fn_call"]},
@@ -112,7 +114,7 @@ var grammar = {
                     },
     {"name": "print_statement$ebnf$1", "symbols": []},
     {"name": "print_statement$ebnf$1", "symbols": ["print_statement$ebnf$1", (myLexer.has("NL") ? {type: "NL"} : NL)], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
-    {"name": "print_statement", "symbols": [(myLexer.has("write") ? {type: "write"} : write), (myLexer.has("openTag") ? {type: "openTag"} : openTag), "expression", (myLexer.has("closeTag") ? {type: "closeTag"} : closeTag), "print_statement$ebnf$1"], "postprocess": 
+    {"name": "print_statement", "symbols": [(myLexer.has("write") ? {type: "write"} : write), {"literal":"<"}, "expression", {"literal":">"}, "print_statement$ebnf$1"], "postprocess": 
         (node) => {
             return {
                 type: "print_statement",
@@ -142,11 +144,25 @@ var grammar = {
          return node[0].concat([node[2]])
         }
                     },
-    {"name": "array_def", "symbols": [(myLexer.has("openTag") ? {type: "openTag"} : openTag), "_", "elements", "_", (myLexer.has("closeTag") ? {type: "closeTag"} : closeTag)], "postprocess": 
+    {"name": "array_def$ebnf$1", "symbols": []},
+    {"name": "array_def$ebnf$1", "symbols": ["array_def$ebnf$1", (myLexer.has("NL") ? {type: "NL"} : NL)], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
+    {"name": "array_def", "symbols": [(myLexer.has("openTag") ? {type: "openTag"} : openTag), "_", "elements", "_", (myLexer.has("closeTag") ? {type: "closeTag"} : closeTag), "array_def$ebnf$1"], "postprocess": 
         (node) => {
             return {
                 type: "array_def",
                 elements: node[2]
+            }
+        }
+                    },
+    {"name": "index", "symbols": [(myLexer.has("number") ? {type: "number"} : number)], "postprocess": id},
+    {"name": "access_array_element$ebnf$1", "symbols": []},
+    {"name": "access_array_element$ebnf$1", "symbols": ["access_array_element$ebnf$1", (myLexer.has("NL") ? {type: "NL"} : NL)], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
+    {"name": "access_array_element", "symbols": [(myLexer.has("openTag") ? {type: "openTag"} : openTag), "_", "index", "_", (myLexer.has("closeTag") ? {type: "closeTag"} : closeTag), "_", (myLexer.has("identifier") ? {type: "identifier"} : identifier), "access_array_element$ebnf$1"], "postprocess": 
+        (node) => {
+            return {
+                type: "access_array_element",
+                array_name: node[6],
+                index: node[2]
             }
         }
                     }

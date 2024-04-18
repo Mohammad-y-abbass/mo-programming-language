@@ -29,6 +29,7 @@ statement -> assignment %NL:* {% id %}
            | print_statement {% id %}
            | fn_call {% id %}
            | array_def {% id %}
+           | access_array_element {% id %}
 
 assignment -> %identifier _ %assignment_symbol _ expression
             {%
@@ -42,6 +43,7 @@ assignment -> %identifier _ %assignment_symbol _ expression
             %}
 
 expression -> %number {% id %}
+            | access_array_element {% id %}
             | %identifier {% id %}
             | %string {% id %}
             | fn_call
@@ -114,7 +116,7 @@ fn -> "f" __ %identifier _ %openTag _ params:* _ %closeTag _ %arrow __ statement
                 }
             %}
 
-print_statement -> %write %openTag expression %closeTag %NL:* 
+print_statement -> %write "<" expression ">" %NL:* 
             {%
                 (node) => {
                     return {
@@ -147,12 +149,25 @@ elements -> element
                }
             %}
  
-array_def -> %openTag _ elements _ %closeTag 
+array_def -> %openTag _ elements _ %closeTag %NL:*
             {%
                 (node) => {
                     return {
                         type: "array_def",
                         elements: node[2]
+                    }
+                }
+            %}
+
+index -> %number {% id %}            
+
+access_array_element -> %openTag _ index _ %closeTag _ %identifier %NL:*
+            {%
+                (node) => {
+                    return {
+                        type: "access_array_element",
+                        array_name: node[6],
+                        index: node[2]
                     }
                 }
             %}

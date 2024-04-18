@@ -1,4 +1,6 @@
-var a = [1,1] 
+var a = [1,2,6] 
+var x = a[0] 
+console.log(x);
 function add(x, y) {
   return x + y;
 }

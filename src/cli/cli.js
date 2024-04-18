@@ -38,21 +38,24 @@ const asciiArt = `
                                                                                                                                                                                                                                                                                                                 
 `;
 
-// Log messages with colors
-console.log('Generating grammar...'.magenta);
-console.log(
-  execSync(`nearleyc ${grammarFile} -o ${generatedGrammar}`).toString()
-);
+try {
+  // Log messages with colors
+  console.log('Generating grammar...'.magenta);
+  console.log(
+    execSync(`nearleyc ${grammarFile} -o ${generatedGrammar}`).toString()
+  );
 
-console.log('Parsing...'.magenta);
-console.log(execSync(`node ${parserFile}`).toString());
+  console.log('Parsing...'.magenta);
+  console.log(execSync(`node ${parserFile}`).toString());
 
-console.log('transpiling...'.magenta);
-console.log(execSync(`node ${transpilerFile} ${astFile}`).toString());
+  console.log('transpiling...'.magenta);
+  console.log(execSync(`node ${transpilerFile} ${astFile}`).toString());
 
-console.log('Running transpiled code...'.magenta);
+  console.log('Running transpiled code...'.magenta);
 
-console.log(asciiArt.rainbow);
+  console.log(asciiArt.rainbow);
 
-
-console.log(execSync(`node ${transpiledJs}`).toString());
+  console.log(execSync(`node ${transpiledJs}`).toString());
+} catch (error) {
+  console.error('An error occurred:', (error.message).red);
+}

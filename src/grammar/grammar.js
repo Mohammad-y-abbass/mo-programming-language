@@ -33,6 +33,7 @@ var grammar = {
     {"name": "statement", "symbols": ["fn"], "postprocess": id},
     {"name": "statement", "symbols": ["print_statement"], "postprocess": id},
     {"name": "statement", "symbols": ["fn_call"], "postprocess": id},
+    {"name": "statement", "symbols": ["array_def"], "postprocess": id},
     {"name": "assignment", "symbols": [(myLexer.has("identifier") ? {type: "identifier"} : identifier), "_", (myLexer.has("assignment_symbol") ? {type: "assignment_symbol"} : assignment_symbol), "_", "expression"], "postprocess": 
         (node) => {
             return {
@@ -46,6 +47,7 @@ var grammar = {
     {"name": "expression", "symbols": [(myLexer.has("identifier") ? {type: "identifier"} : identifier)], "postprocess": id},
     {"name": "expression", "symbols": [(myLexer.has("string") ? {type: "string"} : string)], "postprocess": id},
     {"name": "expression", "symbols": ["fn_call"]},
+    {"name": "expression", "symbols": ["array_def"], "postprocess": id},
     {"name": "logical_operators", "symbols": [(myLexer.has("greater_or_equal") ? {type: "greater_or_equal"} : greater_or_equal)], "postprocess": id},
     {"name": "logical_operators", "symbols": [(myLexer.has("less_or_equal") ? {type: "less_or_equal"} : less_or_equal)], "postprocess": id},
     {"name": "logical_operators", "symbols": [(myLexer.has("greater") ? {type: "greater"} : greater)], "postprocess": id},
@@ -122,12 +124,29 @@ var grammar = {
     {"name": "fn_call$ebnf$1", "symbols": ["fn_call$ebnf$1", "params"], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
     {"name": "fn_call$ebnf$2", "symbols": []},
     {"name": "fn_call$ebnf$2", "symbols": ["fn_call$ebnf$2", (myLexer.has("NL") ? {type: "NL"} : NL)], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
-    {"name": "fn_call", "symbols": [{"literal":"c"}, "__", (myLexer.has("identifier") ? {type: "identifier"} : identifier), "_", (myLexer.has("openTag") ? {type: "openTag"} : openTag), "_", "fn_call$ebnf$1", "_", (myLexer.has("closeTag") ? {type: "closeTag"} : closeTag), "fn_call$ebnf$2"], "postprocess": 
+    {"name": "fn_call", "symbols": [{"literal":"c"}, "__", (myLexer.has("identifier") ? {type: "identifier"} : identifier), "_", {"literal":"<"}, "_", "fn_call$ebnf$1", "_", {"literal":">"}, "fn_call$ebnf$2"], "postprocess": 
         (node) => {
             return {
                 type: "fn_call",
                 fn_name: node[2],
                 params: node[6]
+            }
+        }
+                    },
+    {"name": "element", "symbols": [(myLexer.has("string") ? {type: "string"} : string)], "postprocess": id},
+    {"name": "element", "symbols": [(myLexer.has("number") ? {type: "number"} : number)], "postprocess": id},
+    {"name": "element", "symbols": [(myLexer.has("identifier") ? {type: "identifier"} : identifier)], "postprocess": id},
+    {"name": "elements", "symbols": ["element"]},
+    {"name": "elements", "symbols": ["elements", "__", "element"], "postprocess": 
+        (node) => {
+         return node[0].concat([node[2]])
+        }
+                    },
+    {"name": "array_def", "symbols": [(myLexer.has("openTag") ? {type: "openTag"} : openTag), "_", "elements", "_", (myLexer.has("closeTag") ? {type: "closeTag"} : closeTag)], "postprocess": 
+        (node) => {
+            return {
+                type: "array_def",
+                elements: node[2]
             }
         }
                     }

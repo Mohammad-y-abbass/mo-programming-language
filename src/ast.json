@@ -5,52 +5,36 @@
         "type": "var_assign",
         "var_name": {
           "type": "identifier",
-          "value": "x",
-          "text": "x",
+          "value": "a",
+          "text": "a",
           "offset": 0,
           "lineBreaks": 0,
           "line": 1,
           "col": 1
         },
-        "var_value": [
-          {
-            "type": "fn_call",
-            "fn_name": {
-              "type": "identifier",
-              "value": "add",
-              "text": "add",
+        "var_value": {
+          "type": "array_def",
+          "elements": [
+            {
+              "type": "number",
+              "value": "1",
+              "text": "1",
               "offset": 5,
               "lineBreaks": 0,
               "line": 1,
               "col": 6
             },
-            "params": [
-              {
-                "type": "params",
-                "value": [
-                  {
-                    "type": "number",
-                    "value": "1",
-                    "text": "1",
-                    "offset": 10,
-                    "lineBreaks": 0,
-                    "line": 1,
-                    "col": 11
-                  },
-                  {
-                    "type": "number",
-                    "value": "1",
-                    "text": "1",
-                    "offset": 12,
-                    "lineBreaks": 0,
-                    "line": 1,
-                    "col": 13
-                  }
-                ]
-              }
-            ]
-          }
-        ]
+            {
+              "type": "number",
+              "value": "1",
+              "text": "1",
+              "offset": 7,
+              "lineBreaks": 0,
+              "line": 1,
+              "col": 8
+            }
+          ]
+        }
       }
     ]
   }

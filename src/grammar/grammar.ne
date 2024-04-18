@@ -28,6 +28,7 @@ statement -> assignment %NL:* {% id %}
            | fn {% id %}
            | print_statement {% id %}
            | fn_call {% id %}
+           | array_def {% id %}
 
 assignment -> %identifier _ %assignment_symbol _ expression
             {%
@@ -44,6 +45,7 @@ expression -> %number {% id %}
             | %identifier {% id %}
             | %string {% id %}
             | fn_call
+            | array_def {% id %}
 
 logical_operators -> %greater_or_equal {% id %}
                    | %less_or_equal {% id %}
@@ -122,7 +124,7 @@ print_statement -> %write %openTag expression %closeTag %NL:*
                 }
             %}
 
-fn_call -> "c" __ %identifier _ %openTag _ params:* _ %closeTag %NL:*
+fn_call -> "c" __ %identifier _ "<" _ params:* _ ">" %NL:*
             {%
                 (node) => {
                     return {
@@ -132,4 +134,25 @@ fn_call -> "c" __ %identifier _ %openTag _ params:* _ %closeTag %NL:*
                     }
                 }
             %}
+element -> %string {% id %}
+         | %number {% id %}
+         | %identifier {% id %}
 
+elements -> element 
+          | elements __ element 
+
+            {%
+               (node) => {
+                return node[0].concat([node[2]])
+               }
+            %}
+ 
+array_def -> %openTag _ elements _ %closeTag 
+            {%
+                (node) => {
+                    return {
+                        type: "array_def",
+                        elements: node[2]
+                    }
+                }
+            %}

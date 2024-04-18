@@ -58,6 +58,10 @@ function generate_js_for_var_assign(var_assign_node) {
     return `var ${var_assign_node.var_name.value} = ${generate_js_for_fn_call(
       var_assign_node.var_value[0]
     )} `;
+  } else if (var_assign_node.var_value.type === 'array_def') {
+    return `var ${var_assign_node.var_name.value} = ${generate_js_for_array_def(
+      var_assign_node.var_value
+    )} `;
   }
   return `var ${var_assign_node.var_name.value} = ${var_assign_node.var_value.value};`;
 }
@@ -118,6 +122,14 @@ function generate_js_for_params(params_node) {
   }
 }
 
+function generate_js_for_array_elements(array_elements) {
+  return array_elements.map((element) => element.value).join(',');
+}
+
+function generate_js_for_array_def(array_def_node) {
+  return `[${generate_js_for_array_elements(array_def_node.elements)}]`;
+}
+
 function generate_js_for_node(node) {
   console.log(node.type);
   if (node.type === 'var_assign') {
@@ -134,6 +146,8 @@ function generate_js_for_node(node) {
     return generate_js_for_function_statement(node);
   } else if (node.type === 'fn_call') {
     return generate_js_for_fn_call(node);
+  } else if (node.type === 'array_def') {
+    return generate_js_for_array_def(node);
   } else {
     throw new Error(`Unknown node type: ${node.type}`.red);
   }

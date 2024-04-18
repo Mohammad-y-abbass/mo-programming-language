@@ -1,4 +1,4 @@
-var x = add(1,1) 
+var a = [1,1] 
 function add(x, y) {
   return x + y;
 }

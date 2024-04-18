@@ -1,6 +1,4 @@
-var a = [1,2,6] 
-var x = a[0] 
-console.log(x);
+arr.push(10)
 function add(x, y) {
   return x + y;
 }

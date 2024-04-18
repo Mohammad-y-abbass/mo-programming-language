@@ -30,6 +30,8 @@ statement -> assignment %NL:* {% id %}
            | fn_call {% id %}
            | array_def {% id %}
            | access_array_element {% id %}
+           | update_array_element {% id %}
+           | add_element_to_end_of_array {% id %}
 
 assignment -> %identifier _ %assignment_symbol _ expression
             {%
@@ -54,6 +56,7 @@ logical_operators -> %greater_or_equal {% id %}
                    | %greater {% id %}
                    | %less {% id %}
                    | %equal {% id %}
+                   | %not_equal {% id %}
 
 
 condition -> expression _ logical_operators _ expression 
@@ -168,6 +171,29 @@ access_array_element -> %openTag _ index _ %closeTag _ %identifier %NL:*
                         type: "access_array_element",
                         array_name: node[6],
                         index: node[2]
+                    }
+                }
+            %}
+
+update_array_element -> %identifier _ %openTag _ index _ %closeTag _ %less_or_equal _ expression %NL:*
+            {% 
+                (node) => {
+                    return {
+                        type: "update_array_element",
+                        array_name: node[0],
+                        index: node[4],
+                        new_value: node[10]
+                    }
+                }
+            %}  
+
+add_element_to_end_of_array -> %identifier _ "<=" _ expression %NL:*
+            {%
+                (node) => {
+                    return {
+                        type: "add_element_to_end_of_array",
+                        array_name: node[0],
+                        added_value: node[4]
                     }
                 }
             %}

@@ -137,6 +137,16 @@ function generate_js_for_array_element_access(array_element_access_node) {
   return `${array_element_access_node.array_name.value}[${array_element_access_node.index.value}]`;
 }
 
+function generate_js_for_updating_array_element(array_element_update_node) {
+  return `${array_element_update_node.array_name.value}[${array_element_update_node.index.value}] = ${array_element_update_node.new_value.value}`;
+}
+
+function generate_js_for_adding_element_to_end_of_array(
+  array_element_add_node
+) {
+  return `${array_element_add_node.array_name.value}.push(${array_element_add_node.added_value.value})`;
+}
+
 function generate_js_for_node(node) {
   if (node.type === 'var_assign') {
     return generate_js_for_var_assign(node);
@@ -156,6 +166,10 @@ function generate_js_for_node(node) {
     return generate_js_for_array_def(node);
   } else if (node.type === 'access_array_element') {
     return generate_js_for_array_element_access(node);
+  } else if (node.type === 'update_array_element') {
+    return generate_js_for_updating_array_element(node);
+  } else if (node.type === 'add_element_to_end_of_array') {
+    return generate_js_for_adding_element_to_end_of_array(node);
   } else {
     throw new Error(`Unknown node type: ${node.type}`.red);
   }

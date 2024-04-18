@@ -2,92 +2,24 @@
   "main_program": {
     "statements": [
       {
-        "type": "var_assign",
-        "var_name": {
+        "type": "add_element_to_end_of_array",
+        "array_name": {
           "type": "identifier",
-          "value": "a",
-          "text": "a",
+          "value": "arr",
+          "text": "arr",
           "offset": 0,
           "lineBreaks": 0,
           "line": 1,
           "col": 1
         },
-        "var_value": {
-          "type": "array_def",
-          "elements": [
-            {
-              "type": "number",
-              "value": "1",
-              "text": "1",
-              "offset": 6,
-              "lineBreaks": 0,
-              "line": 1,
-              "col": 7
-            },
-            {
-              "type": "number",
-              "value": "2",
-              "text": "2",
-              "offset": 8,
-              "lineBreaks": 0,
-              "line": 1,
-              "col": 9
-            },
-            {
-              "type": "number",
-              "value": "6",
-              "text": "6",
-              "offset": 10,
-              "lineBreaks": 0,
-              "line": 1,
-              "col": 11
-            }
-          ]
-        }
-      },
-      {
-        "type": "var_assign",
-        "var_name": {
-          "type": "identifier",
-          "value": "x",
-          "text": "x",
-          "offset": 15,
+        "added_value": {
+          "type": "number",
+          "value": "10",
+          "text": "10",
+          "offset": 7,
           "lineBreaks": 0,
-          "line": 2,
-          "col": 1
-        },
-        "var_value": {
-          "type": "access_array_element",
-          "array_name": {
-            "type": "identifier",
-            "value": "a",
-            "text": "a",
-            "offset": 23,
-            "lineBreaks": 0,
-            "line": 2,
-            "col": 9
-          },
-          "index": {
-            "type": "number",
-            "value": "0",
-            "text": "0",
-            "offset": 20,
-            "lineBreaks": 0,
-            "line": 2,
-            "col": 6
-          }
-        }
-      },
-      {
-        "type": "print_statement",
-        "printed_value": {
-          "type": "identifier",
-          "value": "x",
-          "text": "x",
-          "offset": 28,
-          "lineBreaks": 0,
-          "line": 3,
-          "col": 3
+          "line": 1,
+          "col": 8
         }
       }
     ]

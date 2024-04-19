@@ -61,6 +61,10 @@ var grammar = {
     {"name": "expression", "symbols": [(myLexer.has("string") ? {type: "string"} : string)], "postprocess": id},
     {"name": "expression", "symbols": ["fn_call"]},
     {"name": "expression", "symbols": ["var_length"], "postprocess": id},
+    {"name": "expression", "symbols": ["current_index"], "postprocess": id},
+    {"name": "expression", "symbols": ["boolean"], "postprocess": id},
+    {"name": "boolean", "symbols": [{"literal":"true"}], "postprocess": id},
+    {"name": "boolean", "symbols": [{"literal":"false"}], "postprocess": id},
     {"name": "logical_operators", "symbols": [(myLexer.has("greater_or_equal") ? {type: "greater_or_equal"} : greater_or_equal)], "postprocess": id},
     {"name": "logical_operators", "symbols": [(myLexer.has("less_or_equal") ? {type: "less_or_equal"} : less_or_equal)], "postprocess": id},
     {"name": "logical_operators", "symbols": [(myLexer.has("greater") ? {type: "greater"} : greater)], "postprocess": id},
@@ -90,7 +94,9 @@ var grammar = {
                     },
     {"name": "conditional$ebnf$1", "symbols": []},
     {"name": "conditional$ebnf$1", "symbols": ["conditional$ebnf$1", (myLexer.has("NL") ? {type: "NL"} : NL)], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
-    {"name": "conditional", "symbols": [(myLexer.has("conditional") ? {type: "conditional"} : conditional), "_", "condition", "_", (myLexer.has("arrow") ? {type: "arrow"} : arrow), "_", "statements", (myLexer.has("end") ? {type: "end"} : end), "conditional$ebnf$1"], "postprocess": 
+    {"name": "conditional$ebnf$2", "symbols": []},
+    {"name": "conditional$ebnf$2", "symbols": ["conditional$ebnf$2", (myLexer.has("NL") ? {type: "NL"} : NL)], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
+    {"name": "conditional", "symbols": [(myLexer.has("conditional") ? {type: "conditional"} : conditional), "_", "condition", "_", (myLexer.has("arrow") ? {type: "arrow"} : arrow), "conditional$ebnf$1", "statements", (myLexer.has("end") ? {type: "end"} : end), "conditional$ebnf$2"], "postprocess": 
         (node) => {
             return {
                 type: "condition_statement",
@@ -101,7 +107,9 @@ var grammar = {
         },
     {"name": "loop$ebnf$1", "symbols": []},
     {"name": "loop$ebnf$1", "symbols": ["loop$ebnf$1", (myLexer.has("NL") ? {type: "NL"} : NL)], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
-    {"name": "loop", "symbols": [(myLexer.has("loop") ? {type: "loop"} : loop), "_", "condition", "_", (myLexer.has("arrow") ? {type: "arrow"} : arrow), "_", "statements", (myLexer.has("end") ? {type: "end"} : end), "loop$ebnf$1"], "postprocess": 
+    {"name": "loop$ebnf$2", "symbols": []},
+    {"name": "loop$ebnf$2", "symbols": ["loop$ebnf$2", (myLexer.has("NL") ? {type: "NL"} : NL)], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
+    {"name": "loop", "symbols": [(myLexer.has("loop") ? {type: "loop"} : loop), "_", "condition", "_", (myLexer.has("arrow") ? {type: "arrow"} : arrow), "loop$ebnf$1", "statements", (myLexer.has("end") ? {type: "end"} : end), "loop$ebnf$2"], "postprocess": 
         (node) => {
             return {
                 type: "loop_statement",
@@ -114,7 +122,9 @@ var grammar = {
     {"name": "fn$ebnf$1", "symbols": ["fn$ebnf$1", "params"], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
     {"name": "fn$ebnf$2", "symbols": []},
     {"name": "fn$ebnf$2", "symbols": ["fn$ebnf$2", (myLexer.has("NL") ? {type: "NL"} : NL)], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
-    {"name": "fn", "symbols": [{"literal":"f"}, "__", (myLexer.has("identifier") ? {type: "identifier"} : identifier), "_", (myLexer.has("openTag") ? {type: "openTag"} : openTag), "_", "fn$ebnf$1", "_", (myLexer.has("closeTag") ? {type: "closeTag"} : closeTag), "_", (myLexer.has("arrow") ? {type: "arrow"} : arrow), "__", "statements", (myLexer.has("end") ? {type: "end"} : end), "fn$ebnf$2"], "postprocess": 
+    {"name": "fn$ebnf$3", "symbols": []},
+    {"name": "fn$ebnf$3", "symbols": ["fn$ebnf$3", (myLexer.has("NL") ? {type: "NL"} : NL)], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
+    {"name": "fn", "symbols": [{"literal":"f"}, "__", (myLexer.has("identifier") ? {type: "identifier"} : identifier), "_", {"literal":"<"}, "_", "fn$ebnf$1", "_", {"literal":">"}, "_", (myLexer.has("arrow") ? {type: "arrow"} : arrow), "fn$ebnf$2", "statements", (myLexer.has("end") ? {type: "end"} : end), "fn$ebnf$3"], "postprocess": 
             (node) => {
                 return {
                 type: "fn",
@@ -275,13 +285,15 @@ var grammar = {
                     },
     {"name": "for_loop$ebnf$1", "symbols": []},
     {"name": "for_loop$ebnf$1", "symbols": ["for_loop$ebnf$1", (myLexer.has("NL") ? {type: "NL"} : NL)], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
-    {"name": "for_loop", "symbols": [(myLexer.has("forLoop") ? {type: "forLoop"} : forLoop), "expression", "_", {"literal":"to"}, "_", "expression", "_", (myLexer.has("arrow") ? {type: "arrow"} : arrow), "for_loop$ebnf$1", "statements", (myLexer.has("NL") ? {type: "NL"} : NL), {"literal":":end"}], "postprocess": 
+    {"name": "for_loop$ebnf$2", "symbols": []},
+    {"name": "for_loop$ebnf$2", "symbols": ["for_loop$ebnf$2", (myLexer.has("NL") ? {type: "NL"} : NL)], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
+    {"name": "for_loop", "symbols": [(myLexer.has("forLoop") ? {type: "forLoop"} : forLoop), "_", "assignment", "_", {"literal":"to"}, "_", "expression", "_", (myLexer.has("arrow") ? {type: "arrow"} : arrow), "for_loop$ebnf$1", "statements", (myLexer.has("NL") ? {type: "NL"} : NL), {"literal":":end"}, "for_loop$ebnf$2"], "postprocess": 
         (node) => {
             return {
                 type: "for_loop",
-                from: node[1],
-                to: node[5],
-                body: node[9]
+                from: node[2],
+                to: node[6],
+                body: node[10]
             }
         }
                     }

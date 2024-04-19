@@ -184,7 +184,7 @@ function generate_js_displaying_array_elements(array_display_node) {
 }
 
 function generate_js_for_loop(loop_node) {
-  return `for (let i = ${loop_node.from.value}; i <= ${loop_node.to.value}; i++) {
+  return `for (let i = ${loop_node.from.var_value.value}; i <= ${loop_node.to.value}; i++) {
     ${generate_js_for_body(loop_node.body)}
 }`;
 }

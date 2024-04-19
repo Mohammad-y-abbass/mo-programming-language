@@ -60,6 +60,11 @@ expression -> %number {% id %}
             | %string {% id %}
             | fn_call
             | var_length {% id %}
+            | current_index {% id %}
+            | boolean {% id %}
+
+boolean -> "true" {% id %}
+         | "false" {% id %}
 
 logical_operators -> %greater_or_equal {% id %}
                    | %less_or_equal {% id %}
@@ -67,6 +72,8 @@ logical_operators -> %greater_or_equal {% id %}
                    | %less {% id %}
                    | %equal {% id %}
                    | %not_equal {% id %}
+                   | %and {% id %}
+                   | %or {% id %}
 
 
 condition -> expression _ logical_operators _ expression 
@@ -95,7 +102,7 @@ params -> param {% id %}
                 }
             %}
 
-conditional -> %conditional _ condition _ %arrow _ statements %end %NL:*
+conditional -> %conditional _ condition _ %arrow %NL:* statements %end %NL:*
                  {%
                 (node) => {
                     return {
@@ -106,7 +113,7 @@ conditional -> %conditional _ condition _ %arrow _ statements %end %NL:*
                 }
                 %}
 
-loop -> %loop  _ condition _ %arrow _ statements %end %NL:*
+loop -> %loop  _ condition _ %arrow %NL:* statements %end %NL:*
             {%
                 (node) => {
                     return {
@@ -117,7 +124,7 @@ loop -> %loop  _ condition _ %arrow _ statements %end %NL:*
                 }
             %}
 
-fn -> "f" __ %identifier _ %openTag _ params:* _ %closeTag _ %arrow __ statements %end  %NL:*
+fn -> "f" __ %identifier _ "<" _ params:* _ ">" _ %arrow %NL:* statements %end  %NL:*
             {%
                     (node) => {
                         return {
@@ -280,14 +287,15 @@ display_array_elements -> "_" %identifier %NL:*
                 }
             %}
 
-for_loop -> %forLoop expression _ "to" _ expression _ %arrow %NL:* statements %NL ":end"
+for_loop -> %forLoop _ assignment _ "to" _ expression _ %arrow %NL:* statements %NL ":end" %NL:*
             {%
                 (node) => {
                     return {
                         type: "for_loop",
-                        from: node[1],
-                        to: node[5],
-                        body: node[9]
+                        from: node[2],
+                        to: node[6],
+                        body: node[10]
                     }
                 }
             %}
+

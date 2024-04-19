@@ -1,24 +1,15 @@
-arr:=<<1 2 5 6>>
-w<arr>
-x:=<<1>>arr
+f factorial<n> =>
+a:=1
+?n==1 =>
+a:=1
+:end
+?n>1 =>
+_: i:=2 to n =>
+a:=c multiply<a i>
+:end
+:end
+w<a>
+:end
+c factorial<5>
+x:=true
 w<x>
-arr<<1>> => 34
-w<arr>
-arr <= 20
-w<arr>
-arr =>
-w<arr>
-54 => arr
-w<arr>
-<= arr
-w<arr>
-length:=l<arr>
-w<length>
-a:=10
-_a > length => w<a>
-a--
-:end
-_arr
-_:1 to 5 =>
-w<"hello">
-:end

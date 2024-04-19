@@ -1,28 +1,18 @@
-var arr = [1,2,5,6]
-console.log(arr);
-var x = arr[1] 
+function factorial (n) {
+    var a = 1;
+if (n == 1) {
+    var a = 1;
+}
+if (n > 1) {
+    for (let i = 2; i <= n; i++) {
+    var a = multiply(a,i) 
+}
+}
+console.log(a);
+}
+factorial(5)
+var x = true;
 console.log(x);
-arr[1] = 34
-console.log(arr);
-arr.push(20)
-console.log(arr);
-arr.pop()
-console.log(arr);
-arr.unshift(54)
-console.log(arr);
-arr.shift()
-console.log(arr);
-var length = arr.length 
-console.log(length);
-var a = 10;
-while (a > length) {
-    console.log(a);
-a--
-}
-displayArrElements(arr)
-for (let i = 1; i <= 5; i++) {
-    console.log("hello");
-}
 function add(x, y) {
   return x + y;
 }

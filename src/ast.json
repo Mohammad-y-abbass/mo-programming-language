@@ -2,432 +2,300 @@
   "main_program": {
     "statements": [
       {
-        "type": "array_def",
-        "var_name": {
+        "type": "fn",
+        "fn_name": {
           "type": "identifier",
-          "value": "arr",
-          "text": "arr",
-          "offset": 0,
+          "value": "factorial",
+          "text": "factorial",
+          "offset": 2,
           "lineBreaks": 0,
           "line": 1,
-          "col": 1
+          "col": 3
         },
-        "elements": [
+        "params": [
           {
-            "type": "number",
-            "value": "1",
-            "text": "1",
-            "offset": 7,
+            "type": "identifier",
+            "value": "n",
+            "text": "n",
+            "offset": 12,
             "lineBreaks": 0,
             "line": 1,
-            "col": 8
-          },
-          {
-            "type": "number",
-            "value": "2",
-            "text": "2",
-            "offset": 9,
-            "lineBreaks": 0,
-            "line": 1,
-            "col": 10
-          },
-          {
-            "type": "number",
-            "value": "5",
-            "text": "5",
-            "offset": 11,
-            "lineBreaks": 0,
-            "line": 1,
-            "col": 12
-          },
-          {
-            "type": "number",
-            "value": "6",
-            "text": "6",
-            "offset": 13,
-            "lineBreaks": 0,
-            "line": 1,
-            "col": 14
+            "col": 13
           }
-        ]
-      },
-      {
-        "type": "print_statement",
-        "printed_value": {
-          "type": "identifier",
-          "value": "arr",
-          "text": "arr",
-          "offset": 20,
-          "lineBreaks": 0,
-          "line": 2,
-          "col": 3
-        }
-      },
-      {
-        "type": "var_assign",
-        "var_name": {
-          "type": "identifier",
-          "value": "x",
-          "text": "x",
-          "offset": 26,
-          "lineBreaks": 0,
-          "line": 3,
-          "col": 1
-        },
-        "var_value": {
-          "type": "access_array_element",
-          "array_name": {
-            "type": "identifier",
-            "value": "arr",
-            "text": "arr",
-            "offset": 34,
-            "lineBreaks": 0,
-            "line": 3,
-            "col": 9
-          },
-          "index": {
-            "type": "number",
-            "value": "1",
-            "text": "1",
-            "offset": 31,
-            "lineBreaks": 0,
-            "line": 3,
-            "col": 6
-          }
-        }
-      },
-      {
-        "type": "print_statement",
-        "printed_value": {
-          "type": "identifier",
-          "value": "x",
-          "text": "x",
-          "offset": 41,
-          "lineBreaks": 0,
-          "line": 4,
-          "col": 3
-        }
-      },
-      {
-        "type": "update_array_element",
-        "array_name": {
-          "type": "identifier",
-          "value": "arr",
-          "text": "arr",
-          "offset": 45,
-          "lineBreaks": 0,
-          "line": 5,
-          "col": 1
-        },
-        "index": {
-          "type": "number",
-          "value": "1",
-          "text": "1",
-          "offset": 50,
-          "lineBreaks": 0,
-          "line": 5,
-          "col": 6
-        },
-        "new_value": {
-          "type": "number",
-          "value": "34",
-          "text": "34",
-          "offset": 57,
-          "lineBreaks": 0,
-          "line": 5,
-          "col": 13
-        }
-      },
-      {
-        "type": "print_statement",
-        "printed_value": {
-          "type": "identifier",
-          "value": "arr",
-          "text": "arr",
-          "offset": 63,
-          "lineBreaks": 0,
-          "line": 6,
-          "col": 3
-        }
-      },
-      {
-        "type": "add_element_to_end_of_array",
-        "array_name": {
-          "type": "identifier",
-          "value": "arr",
-          "text": "arr",
-          "offset": 69,
-          "lineBreaks": 0,
-          "line": 7,
-          "col": 1
-        },
-        "added_value": {
-          "type": "number",
-          "value": "20",
-          "text": "20",
-          "offset": 76,
-          "lineBreaks": 0,
-          "line": 7,
-          "col": 8
-        }
-      },
-      {
-        "type": "print_statement",
-        "printed_value": {
-          "type": "identifier",
-          "value": "arr",
-          "text": "arr",
-          "offset": 82,
-          "lineBreaks": 0,
-          "line": 8,
-          "col": 3
-        }
-      },
-      {
-        "type": "remove_element_from_end_of_array",
-        "array_name": {
-          "type": "identifier",
-          "value": "arr",
-          "text": "arr",
-          "offset": 88,
-          "lineBreaks": 0,
-          "line": 9,
-          "col": 1
-        }
-      },
-      {
-        "type": "print_statement",
-        "printed_value": {
-          "type": "identifier",
-          "value": "arr",
-          "text": "arr",
-          "offset": 98,
-          "lineBreaks": 0,
-          "line": 10,
-          "col": 3
-        }
-      },
-      {
-        "type": "add_element_to_start_of_array",
-        "array_name": {
-          "type": "identifier",
-          "value": "arr",
-          "text": "arr",
-          "offset": 110,
-          "lineBreaks": 0,
-          "line": 11,
-          "col": 7
-        },
-        "added_value": {
-          "type": "number",
-          "value": "54",
-          "text": "54",
-          "offset": 104,
-          "lineBreaks": 0,
-          "line": 11,
-          "col": 1
-        }
-      },
-      {
-        "type": "print_statement",
-        "printed_value": {
-          "type": "identifier",
-          "value": "arr",
-          "text": "arr",
-          "offset": 117,
-          "lineBreaks": 0,
-          "line": 12,
-          "col": 3
-        }
-      },
-      {
-        "type": "remove_element_from_start_of_array",
-        "array_name": {
-          "type": "identifier",
-          "value": "arr",
-          "text": "arr",
-          "offset": 126,
-          "lineBreaks": 0,
-          "line": 13,
-          "col": 4
-        }
-      },
-      {
-        "type": "print_statement",
-        "printed_value": {
-          "type": "identifier",
-          "value": "arr",
-          "text": "arr",
-          "offset": 133,
-          "lineBreaks": 0,
-          "line": 14,
-          "col": 3
-        }
-      },
-      {
-        "type": "var_assign",
-        "var_name": {
-          "type": "identifier",
-          "value": "length",
-          "text": "length",
-          "offset": 139,
-          "lineBreaks": 0,
-          "line": 15,
-          "col": 1
-        },
-        "var_value": {
-          "type": "var_length",
-          "var_name": {
-            "type": "identifier",
-            "value": "arr",
-            "text": "arr",
-            "offset": 149,
-            "lineBreaks": 0,
-            "line": 15,
-            "col": 11
-          }
-        }
-      },
-      {
-        "type": "print_statement",
-        "printed_value": {
-          "type": "identifier",
-          "value": "length",
-          "text": "length",
-          "offset": 157,
-          "lineBreaks": 0,
-          "line": 16,
-          "col": 3
-        }
-      },
-      {
-        "type": "var_assign",
-        "var_name": {
-          "type": "identifier",
-          "value": "a",
-          "text": "a",
-          "offset": 166,
-          "lineBreaks": 0,
-          "line": 17,
-          "col": 1
-        },
-        "var_value": {
-          "type": "number",
-          "value": "10",
-          "text": "10",
-          "offset": 169,
-          "lineBreaks": 0,
-          "line": 17,
-          "col": 4
-        }
-      },
-      {
-        "type": "loop_statement",
-        "condition": {
-          "exp1": {
-            "type": "identifier",
-            "value": "a",
-            "text": "a",
-            "offset": 174,
-            "lineBreaks": 0,
-            "line": 18,
-            "col": 2
-          },
-          "operator": {
-            "type": "greater",
-            "value": ">",
-            "text": ">",
-            "offset": 176,
-            "lineBreaks": 0,
-            "line": 18,
-            "col": 4
-          },
-          "exp2": {
-            "type": "identifier",
-            "value": "length",
-            "text": "length",
-            "offset": 178,
-            "lineBreaks": 0,
-            "line": 18,
-            "col": 6
-          }
-        },
+        ],
         "body": {
           "statements": [
             {
-              "type": "print_statement",
-              "printed_value": {
+              "type": "var_assign",
+              "var_name": {
                 "type": "identifier",
                 "value": "a",
                 "text": "a",
-                "offset": 190,
+                "offset": 19,
                 "lineBreaks": 0,
-                "line": 18,
-                "col": 18
+                "line": 2,
+                "col": 1
+              },
+              "var_value": {
+                "type": "number",
+                "value": "1",
+                "text": "1",
+                "offset": 22,
+                "lineBreaks": 0,
+                "line": 2,
+                "col": 4
               }
             },
             {
-              "type": "decrement",
-              "decremented_value": {
-                "type": "identifier",
-                "value": "a",
-                "text": "a",
-                "offset": 194,
-                "lineBreaks": 0,
-                "line": 19,
-                "col": 1
+              "type": "condition_statement",
+              "condition": {
+                "exp1": {
+                  "type": "identifier",
+                  "value": "n",
+                  "text": "n",
+                  "offset": 26,
+                  "lineBreaks": 0,
+                  "line": 3,
+                  "col": 2
+                },
+                "operator": {
+                  "type": "equal",
+                  "value": "==",
+                  "text": "==",
+                  "offset": 27,
+                  "lineBreaks": 0,
+                  "line": 3,
+                  "col": 3
+                },
+                "exp2": {
+                  "type": "number",
+                  "value": "1",
+                  "text": "1",
+                  "offset": 29,
+                  "lineBreaks": 0,
+                  "line": 3,
+                  "col": 5
+                }
+              },
+              "body": {
+                "statements": [
+                  {
+                    "type": "var_assign",
+                    "var_name": {
+                      "type": "identifier",
+                      "value": "a",
+                      "text": "a",
+                      "offset": 35,
+                      "lineBreaks": 0,
+                      "line": 4,
+                      "col": 1
+                    },
+                    "var_value": {
+                      "type": "number",
+                      "value": "1",
+                      "text": "1",
+                      "offset": 38,
+                      "lineBreaks": 0,
+                      "line": 4,
+                      "col": 4
+                    }
+                  }
+                ]
               }
-            }
-          ]
-        }
-      },
-      {
-        "type": "display_array_elements",
-        "array_name": {
-          "type": "identifier",
-          "value": "arr",
-          "text": "arr",
-          "offset": 206,
-          "lineBreaks": 0,
-          "line": 21,
-          "col": 2
-        }
-      },
-      {
-        "type": "for_loop",
-        "from": {
-          "type": "number",
-          "value": "1",
-          "text": "1",
-          "offset": 213,
-          "lineBreaks": 0,
-          "line": 22,
-          "col": 3
-        },
-        "to": {
-          "type": "number",
-          "value": "5",
-          "text": "5",
-          "offset": 218,
-          "lineBreaks": 0,
-          "line": 22,
-          "col": 8
-        },
-        "body": {
-          "statements": [
+            },
+            {
+              "type": "condition_statement",
+              "condition": {
+                "exp1": {
+                  "type": "identifier",
+                  "value": "n",
+                  "text": "n",
+                  "offset": 48,
+                  "lineBreaks": 0,
+                  "line": 6,
+                  "col": 2
+                },
+                "operator": {
+                  "type": "greater",
+                  "value": ">",
+                  "text": ">",
+                  "offset": 49,
+                  "lineBreaks": 0,
+                  "line": 6,
+                  "col": 3
+                },
+                "exp2": {
+                  "type": "number",
+                  "value": "1",
+                  "text": "1",
+                  "offset": 50,
+                  "lineBreaks": 0,
+                  "line": 6,
+                  "col": 4
+                }
+              },
+              "body": {
+                "statements": [
+                  {
+                    "type": "for_loop",
+                    "from": {
+                      "type": "var_assign",
+                      "var_name": {
+                        "type": "identifier",
+                        "value": "i",
+                        "text": "i",
+                        "offset": 59,
+                        "lineBreaks": 0,
+                        "line": 7,
+                        "col": 4
+                      },
+                      "var_value": {
+                        "type": "number",
+                        "value": "2",
+                        "text": "2",
+                        "offset": 62,
+                        "lineBreaks": 0,
+                        "line": 7,
+                        "col": 7
+                      }
+                    },
+                    "to": {
+                      "type": "identifier",
+                      "value": "n",
+                      "text": "n",
+                      "offset": 67,
+                      "lineBreaks": 0,
+                      "line": 7,
+                      "col": 12
+                    },
+                    "body": {
+                      "statements": [
+                        {
+                          "type": "var_assign",
+                          "var_name": {
+                            "type": "identifier",
+                            "value": "a",
+                            "text": "a",
+                            "offset": 73,
+                            "lineBreaks": 0,
+                            "line": 8,
+                            "col": 1
+                          },
+                          "var_value": [
+                            {
+                              "type": "fn_call",
+                              "fn_name": {
+                                "type": "identifier",
+                                "value": "multiply",
+                                "text": "multiply",
+                                "offset": 78,
+                                "lineBreaks": 0,
+                                "line": 8,
+                                "col": 6
+                              },
+                              "params": [
+                                {
+                                  "type": "params",
+                                  "value": [
+                                    {
+                                      "type": "identifier",
+                                      "value": "a",
+                                      "text": "a",
+                                      "offset": 87,
+                                      "lineBreaks": 0,
+                                      "line": 8,
+                                      "col": 15
+                                    },
+                                    {
+                                      "type": "identifier",
+                                      "value": "i",
+                                      "text": "i",
+                                      "offset": 89,
+                                      "lineBreaks": 0,
+                                      "line": 8,
+                                      "col": 17
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
             {
               "type": "print_statement",
               "printed_value": {
-                "type": "string",
-                "value": "\"hello\"",
-                "text": "\"hello\"",
-                "offset": 226,
+                "type": "identifier",
+                "value": "a",
+                "text": "a",
+                "offset": 107,
                 "lineBreaks": 0,
-                "line": 23,
+                "line": 11,
                 "col": 3
               }
             }
           ]
+        }
+      },
+      {
+        "type": "fn_call",
+        "fn_name": {
+          "type": "identifier",
+          "value": "factorial",
+          "text": "factorial",
+          "offset": 119,
+          "lineBreaks": 0,
+          "line": 13,
+          "col": 3
+        },
+        "params": [
+          {
+            "type": "number",
+            "value": "5",
+            "text": "5",
+            "offset": 129,
+            "lineBreaks": 0,
+            "line": 13,
+            "col": 13
+          }
+        ]
+      },
+      {
+        "type": "var_assign",
+        "var_name": {
+          "type": "identifier",
+          "value": "x",
+          "text": "x",
+          "offset": 133,
+          "lineBreaks": 0,
+          "line": 14,
+          "col": 1
+        },
+        "var_value": {
+          "type": "identifier",
+          "value": "true",
+          "text": "true",
+          "offset": 136,
+          "lineBreaks": 0,
+          "line": 14,
+          "col": 4
+        }
+      },
+      {
+        "type": "print_statement",
+        "printed_value": {
+          "type": "identifier",
+          "value": "x",
+          "text": "x",
+          "offset": 144,
+          "lineBreaks": 0,
+          "line": 15,
+          "col": 3
         }
       }
     ]

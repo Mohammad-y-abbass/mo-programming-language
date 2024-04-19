@@ -61,6 +61,10 @@ function generate_js_for_var_assign(var_assign_node) {
     return `var ${
       var_assign_node.var_name.value
     } = ${generate_js_for_array_element_access(var_assign_node.var_value)} `;
+  } else if (var_assign_node.var_value.type === 'var_length') {
+    return `var ${
+      var_assign_node.var_name.value
+    } = ${generate_js_for_var_length(var_assign_node.var_value)} `;
   }
   return `var ${var_assign_node.var_name.value} = ${var_assign_node.var_value.value};`;
 }
@@ -158,9 +162,13 @@ function generate_js_for_removing_element_from_start_of_array(
 }
 
 function generate_js_for_array_def(array_def_node) {
-  return `var ${array_def_node.var_name.value} = [${generate_js_for_array_elements(
-    array_def_node.elements
-  )}]`;
+  return `var ${
+    array_def_node.var_name.value
+  } = [${generate_js_for_array_elements(array_def_node.elements)}]`;
+}
+
+function generate_js_for_var_length(var_length_node) {
+  return `${var_length_node.var_name.value}.length`;
 }
 
 function generate_js_for_node(node) {
@@ -192,6 +200,8 @@ function generate_js_for_node(node) {
     return generate_js_for_adding_element_to_start_of_array(node);
   } else if (node.type === 'remove_element_from_start_of_array') {
     return generate_js_for_removing_element_from_start_of_array(node);
+  } else if (node.type === 'var_length') {
+    return generate_js_for_var_length(node);
   } else {
     throw new Error(`Unknown node type: ${node.type}`.red);
   }

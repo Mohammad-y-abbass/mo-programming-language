@@ -36,6 +36,7 @@ statement -> assignment %NL:* {% id %}
            | add_element_to_start_of_array {% id %}
            | remove_element_from_start_of_array {% id %}    
            | array_def {% id %}
+           | var_length {% id %}
 
 
 assignment -> %identifier _ %assignment_symbol _ expression
@@ -54,6 +55,7 @@ expression -> %number {% id %}
             | %identifier {% id %}
             | %string {% id %}
             | fn_call
+            | var_length {% id %}
 
 logical_operators -> %greater_or_equal {% id %}
                    | %less_or_equal {% id %}
@@ -230,6 +232,16 @@ remove_element_from_start_of_array -> "<=" _ %identifier %NL:*
                     return {
                         type: "remove_element_from_start_of_array",
                         array_name: node[2],
+                    }
+                }
+            %}
+
+var_length -> "l" _ "<" _ %identifier _ ">" %NL:*
+            {%
+                (node) => {
+                    return {
+                        type: "var_length",
+                        var_name: node[4]
                     }
                 }
             %}

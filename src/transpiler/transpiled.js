@@ -12,6 +12,8 @@ arr.unshift(54)
 console.log(arr);
 arr.shift()
 console.log(arr);
+var length = arr.length 
+console.log(length);
 function add(x, y) {
   return x + y;
 }

@@ -41,6 +41,7 @@ var grammar = {
     {"name": "statement", "symbols": ["add_element_to_start_of_array"], "postprocess": id},
     {"name": "statement", "symbols": ["remove_element_from_start_of_array"], "postprocess": id},
     {"name": "statement", "symbols": ["array_def"], "postprocess": id},
+    {"name": "statement", "symbols": ["var_length"], "postprocess": id},
     {"name": "assignment", "symbols": [(myLexer.has("identifier") ? {type: "identifier"} : identifier), "_", (myLexer.has("assignment_symbol") ? {type: "assignment_symbol"} : assignment_symbol), "_", "expression"], "postprocess": 
         (node) => {
             return {
@@ -55,6 +56,7 @@ var grammar = {
     {"name": "expression", "symbols": [(myLexer.has("identifier") ? {type: "identifier"} : identifier)], "postprocess": id},
     {"name": "expression", "symbols": [(myLexer.has("string") ? {type: "string"} : string)], "postprocess": id},
     {"name": "expression", "symbols": ["fn_call"]},
+    {"name": "expression", "symbols": ["var_length"], "postprocess": id},
     {"name": "logical_operators", "symbols": [(myLexer.has("greater_or_equal") ? {type: "greater_or_equal"} : greater_or_equal)], "postprocess": id},
     {"name": "logical_operators", "symbols": [(myLexer.has("less_or_equal") ? {type: "less_or_equal"} : less_or_equal)], "postprocess": id},
     {"name": "logical_operators", "symbols": [(myLexer.has("greater") ? {type: "greater"} : greater)], "postprocess": id},
@@ -224,6 +226,16 @@ var grammar = {
             return {
                 type: "remove_element_from_start_of_array",
                 array_name: node[2],
+            }
+        }
+                    },
+    {"name": "var_length$ebnf$1", "symbols": []},
+    {"name": "var_length$ebnf$1", "symbols": ["var_length$ebnf$1", (myLexer.has("NL") ? {type: "NL"} : NL)], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
+    {"name": "var_length", "symbols": [{"literal":"l"}, "_", {"literal":"<"}, "_", (myLexer.has("identifier") ? {type: "identifier"} : identifier), "_", {"literal":">"}, "var_length$ebnf$1"], "postprocess": 
+        (node) => {
+            return {
+                type: "var_length",
+                var_name: node[4]
             }
         }
                     }

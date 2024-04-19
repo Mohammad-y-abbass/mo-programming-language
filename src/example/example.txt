@@ -12,3 +12,5 @@ w<arr>
 w<arr>
 <= arr
 w<arr>
+length:=l<arr>
+w<length>

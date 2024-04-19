@@ -263,6 +263,42 @@
           "line": 14,
           "col": 3
         }
+      },
+      {
+        "type": "var_assign",
+        "var_name": {
+          "type": "identifier",
+          "value": "length",
+          "text": "length",
+          "offset": 139,
+          "lineBreaks": 0,
+          "line": 15,
+          "col": 1
+        },
+        "var_value": {
+          "type": "var_length",
+          "var_name": {
+            "type": "identifier",
+            "value": "arr",
+            "text": "arr",
+            "offset": 149,
+            "lineBreaks": 0,
+            "line": 15,
+            "col": 11
+          }
+        }
+      },
+      {
+        "type": "print_statement",
+        "printed_value": {
+          "type": "identifier",
+          "value": "length",
+          "text": "length",
+          "offset": 157,
+          "lineBreaks": 0,
+          "line": 16,
+          "col": 3
+        }
       }
     ]
   }

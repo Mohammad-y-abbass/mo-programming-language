@@ -37,6 +37,8 @@ statement -> assignment %NL:* {% id %}
            | remove_element_from_start_of_array {% id %}    
            | array_def {% id %}
            | var_length {% id %}
+           | increment_by_one {% id %}
+           | decrement_by_one {% id %}
 
 
 assignment -> %identifier _ %assignment_symbol _ expression
@@ -242,6 +244,26 @@ var_length -> "l" _ "<" _ %identifier _ ">" %NL:*
                     return {
                         type: "var_length",
                         var_name: node[4]
+                    }
+                }
+            %}
+
+increment_by_one -> expression %inc %NL:* 
+            {%
+                (node) => {
+                    return {
+                        type: "increment",
+                        incremented_value: node[0]
+                    }
+                }
+            %}
+
+decrement_by_one -> expression %dec %NL:* 
+            {%
+                (node) => {
+                    return {
+                        type: "decrement",
+                        decremented_value: node[0]
                     }
                 }
             %}

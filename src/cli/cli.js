@@ -11,51 +11,45 @@ const transpilerFile = 'src/transpiler/transpile.js';
 const transpiledJs = 'src/transpiler/transpiled.js';
 const astFile = 'src/ast.json';
 const asciiArt = `                         
-                                                                                                                                        
-                                                                                                                                        
- |||||||                                                            |||||||      MMMMMMMM               MMMMMMMM          OOOOOOOOO     
- |:::::|                                                            |:::::|      M:::::::M             M:::::::M        OO:::::::::OO   
- |:::::|                                                            |:::::|      M::::::::M           M::::::::M      OO:::::::::::::OO 
- |:::::|                                                            |:::::|      M:::::::::M         M:::::::::M     O:::::::OOO:::::::O
- |:::::|                                                            |:::::|      M::::::::::M       M::::::::::M     O::::::O   O::::::O
- |:::::|                                                            |:::::|      M:::::::::::M     M:::::::::::M     O:::::O     O:::::O
- |||||||                                                            |||||||      M:::::::M::::M   M::::M:::::::M     O:::::O     O:::::O
-          ---------------                          ---------------               M::::::M M::::M M::::M M::::::M     O:::::O     O:::::O
-          -:::::::::::::-                          -:::::::::::::-               M::::::M  M::::M::::M  M::::::M     O:::::O     O:::::O
- |||||||  ---------------                          ---------------  |||||||      M::::::M   M:::::::M   M::::::M     O:::::O     O:::::O
- |:::::|                                                            |:::::|      M::::::M    M:::::M    M::::::M     O:::::O     O:::::O
- |:::::|                                                            |:::::|      M::::::M     MMMMM     M::::::M     O::::::O   O::::::O
- |:::::|                                                            |:::::|      M::::::M               M::::::M     O:::::::OOO:::::::O
- |:::::|                                                            |:::::|      M::::::M               M::::::M      OO:::::::::::::OO 
- |:::::|                                                            |:::::|      M::::::M               M::::::M        OO:::::::::OO   
- |||||||                                                            |||||||      MMMMMMMM               MMMMMMMM          OOOOOOOOO     
-                          ________________________                                                                                      
-                          _::::::::::::::::::::::_                                                                                      
-                          ________________________                                                                                      
-                                                                                                                                        
-                                                                                                                                        
-                                                                                                                                        
-                                                                                                                                                                                                                                                                                                                
+                         
+// ASCII art here
 `;
 
 try {
   // Log messages with colors
   console.log('Generating grammar...'.magenta);
+
   console.log(
     execSync(`nearleyc ${grammarFile} -o ${generatedGrammar}`).toString()
   );
 
+  console.log('Grammar generated successfully.'.green);
+
   console.log('Parsing...'.magenta);
+
   console.log(execSync(`node ${parserFile}`).toString());
 
-  console.log('transpiling...'.magenta);
+  console.log('Parsing completed successfully.'.green);
+
+  console.log('Transpiling...'.magenta);
+
   console.log(execSync(`node ${transpilerFile} ${astFile}`).toString());
+
+  console.log('Transpilation completed successfully.'.green);
 
   console.log('Running transpiled code...'.magenta);
 
-  console.log(asciiArt.rainbow);
-
   console.log(execSync(`node ${transpiledJs}`).toString());
+  
+  console.log('Transpiled code executed successfully.'.green);
 } catch (error) {
-  console.error('An error occurred:', (error.message).red);
+  if (
+    error.stdout.includes('transpile.js') ||
+    error.stderr.includes('transpile.js')
+  ) {
+    console.error('An error occurred in transpile.js:'.red, error.message.red);
+    process.exit(1); // Exit with non-zero status code to indicate failure
+  } else {
+    console.error('An error occurred:'.red, error.message.red);
+  }
 }

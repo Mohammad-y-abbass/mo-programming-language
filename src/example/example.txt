@@ -14,3 +14,7 @@ w<arr>
 w<arr>
 length:=l<arr>
 w<length>
+a:=10
+_a > 5 => w<a>
+a--
+:end

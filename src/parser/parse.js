@@ -21,8 +21,7 @@ try {
     });
 
     parser.feed(data);
-    console.log(parser.trace);
-    console.log(parser.results);
+
     if (parser.results.length > 0) {
       console.log('Parsing successful!'.green.bold);
 

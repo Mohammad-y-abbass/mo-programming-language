@@ -171,6 +171,14 @@ function generate_js_for_var_length(var_length_node) {
   return `${var_length_node.var_name.value}.length`;
 }
 
+function generate_js_for_increment(increment_node) {
+  return `${increment_node.incremented_value.value}++`;
+}
+
+function generate_js_for_decrement(decrement_node) {
+  return `${decrement_node.decremented_value.value}--`;
+}
+
 function generate_js_for_node(node) {
   if (node.type === 'var_assign') {
     return generate_js_for_var_assign(node);
@@ -202,9 +210,13 @@ function generate_js_for_node(node) {
     return generate_js_for_removing_element_from_start_of_array(node);
   } else if (node.type === 'var_length') {
     return generate_js_for_var_length(node);
+  } else if (node.type === 'increment') {
+    return generate_js_for_increment(node);
+  } else if (node.type === 'decrement') {
+    return generate_js_for_decrement(node);
   } else {
     throw new Error(`Unknown node type: ${node.type}`.red);
   }
 }
 
-main().catch((err) => console.error(err.stack));
+main().catch((err) => console.error('Error:'.red, err.message.red));

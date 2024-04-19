@@ -14,6 +14,11 @@ arr.shift()
 console.log(arr);
 var length = arr.length 
 console.log(length);
+var a = 10;
+while (a > 5) {
+    console.log(a);
+a--
+}
 function add(x, y) {
   return x + y;
 }

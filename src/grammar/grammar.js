@@ -42,6 +42,8 @@ var grammar = {
     {"name": "statement", "symbols": ["remove_element_from_start_of_array"], "postprocess": id},
     {"name": "statement", "symbols": ["array_def"], "postprocess": id},
     {"name": "statement", "symbols": ["var_length"], "postprocess": id},
+    {"name": "statement", "symbols": ["increment_by_one"], "postprocess": id},
+    {"name": "statement", "symbols": ["decrement_by_one"], "postprocess": id},
     {"name": "assignment", "symbols": [(myLexer.has("identifier") ? {type: "identifier"} : identifier), "_", (myLexer.has("assignment_symbol") ? {type: "assignment_symbol"} : assignment_symbol), "_", "expression"], "postprocess": 
         (node) => {
             return {
@@ -236,6 +238,26 @@ var grammar = {
             return {
                 type: "var_length",
                 var_name: node[4]
+            }
+        }
+                    },
+    {"name": "increment_by_one$ebnf$1", "symbols": []},
+    {"name": "increment_by_one$ebnf$1", "symbols": ["increment_by_one$ebnf$1", (myLexer.has("NL") ? {type: "NL"} : NL)], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
+    {"name": "increment_by_one", "symbols": ["expression", (myLexer.has("inc") ? {type: "inc"} : inc), "increment_by_one$ebnf$1"], "postprocess": 
+        (node) => {
+            return {
+                type: "increment",
+                incremented_value: node[0]
+            }
+        }
+                    },
+    {"name": "decrement_by_one$ebnf$1", "symbols": []},
+    {"name": "decrement_by_one$ebnf$1", "symbols": ["decrement_by_one$ebnf$1", (myLexer.has("NL") ? {type: "NL"} : NL)], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
+    {"name": "decrement_by_one", "symbols": ["expression", (myLexer.has("dec") ? {type: "dec"} : dec), "decrement_by_one$ebnf$1"], "postprocess": 
+        (node) => {
+            return {
+                type: "decrement",
+                decremented_value: node[0]
             }
         }
                     }

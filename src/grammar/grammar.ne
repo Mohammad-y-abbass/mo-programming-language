@@ -22,11 +22,25 @@ _ -> %WS:* {% id %}
 
 __ -> %WS:+ {% id %}
 
-statement -> assignment %NL:* {% id %}
+statement -> _ assignment %NL:* 
+            {%
+                (node) => {
+                    return node[1]
+                        
+                    
+                }
+            %}
            | conditional {% id %}
            | loop {% id %}
            | fn {% id %}
-           | print_statement {% id %}
+           | _ print_statement  
+            {%
+                (node) => {
+                    return node[1]
+                        
+                    
+                }
+            %}
            | fn_call {% id %}
            | for_loop {% id %}
            | access_array_element {% id %}

@@ -1,39 +1,8 @@
-function factorial (n) {
-    var a = 1;
-if (n == 1) {
-    var a = 1;
-}
-if (n > 1) {
-    for (let i = 2; i <= n; i++) {
-    var a = a * i 
-}
-}
+function test (x) {
+    var a = x;
 console.log(a);
 }
-factorial(5)
-var x = true;
-console.log(x);
-var x = 1 + 1 
-function add(x, y) {
-  return x + y;
-}
-
-function multiply(x, y) {
-  return x * y;
-}
-
-function subtract(x, y) {
-  return x - y;
-}
-
-function divide(x, y) {
-  return x / y;
-}
-
-function modulus(x, y) {
-  return x % y;
-}
-
+test("This is a test")
 function sqrt(x) {
   return Math.sqrt(x);
 }

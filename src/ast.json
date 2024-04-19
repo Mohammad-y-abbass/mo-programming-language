@@ -5,8 +5,8 @@
         "type": "fn",
         "fn_name": {
           "type": "identifier",
-          "value": "factorial",
-          "text": "factorial",
+          "value": "test",
+          "text": "test",
           "offset": 2,
           "lineBreaks": 0,
           "line": 1,
@@ -15,12 +15,12 @@
         "params": [
           {
             "type": "identifier",
-            "value": "n",
-            "text": "n",
-            "offset": 12,
+            "value": "x",
+            "text": "x",
+            "offset": 7,
             "lineBreaks": 0,
             "line": 1,
-            "col": 13
+            "col": 8
           }
         ],
         "body": {
@@ -31,191 +31,19 @@
                 "type": "identifier",
                 "value": "a",
                 "text": "a",
-                "offset": 19,
+                "offset": 18,
                 "lineBreaks": 0,
                 "line": 2,
-                "col": 1
+                "col": 5
               },
               "var_value": {
-                "type": "number",
-                "value": "1",
-                "text": "1",
-                "offset": 22,
+                "type": "identifier",
+                "value": "x",
+                "text": "x",
+                "offset": 21,
                 "lineBreaks": 0,
                 "line": 2,
-                "col": 4
-              }
-            },
-            {
-              "type": "condition_statement",
-              "condition": {
-                "exp1": {
-                  "type": "identifier",
-                  "value": "n",
-                  "text": "n",
-                  "offset": 26,
-                  "lineBreaks": 0,
-                  "line": 3,
-                  "col": 2
-                },
-                "operator": {
-                  "type": "equal",
-                  "value": "==",
-                  "text": "==",
-                  "offset": 27,
-                  "lineBreaks": 0,
-                  "line": 3,
-                  "col": 3
-                },
-                "exp2": {
-                  "type": "number",
-                  "value": "1",
-                  "text": "1",
-                  "offset": 29,
-                  "lineBreaks": 0,
-                  "line": 3,
-                  "col": 5
-                }
-              },
-              "body": {
-                "statements": [
-                  {
-                    "type": "var_assign",
-                    "var_name": {
-                      "type": "identifier",
-                      "value": "a",
-                      "text": "a",
-                      "offset": 35,
-                      "lineBreaks": 0,
-                      "line": 4,
-                      "col": 1
-                    },
-                    "var_value": {
-                      "type": "number",
-                      "value": "1",
-                      "text": "1",
-                      "offset": 38,
-                      "lineBreaks": 0,
-                      "line": 4,
-                      "col": 4
-                    }
-                  }
-                ]
-              }
-            },
-            {
-              "type": "condition_statement",
-              "condition": {
-                "exp1": {
-                  "type": "identifier",
-                  "value": "n",
-                  "text": "n",
-                  "offset": 48,
-                  "lineBreaks": 0,
-                  "line": 6,
-                  "col": 2
-                },
-                "operator": {
-                  "type": "greater",
-                  "value": ">",
-                  "text": ">",
-                  "offset": 49,
-                  "lineBreaks": 0,
-                  "line": 6,
-                  "col": 3
-                },
-                "exp2": {
-                  "type": "number",
-                  "value": "1",
-                  "text": "1",
-                  "offset": 50,
-                  "lineBreaks": 0,
-                  "line": 6,
-                  "col": 4
-                }
-              },
-              "body": {
-                "statements": [
-                  {
-                    "type": "for_loop",
-                    "from": {
-                      "type": "var_assign",
-                      "var_name": {
-                        "type": "identifier",
-                        "value": "i",
-                        "text": "i",
-                        "offset": 59,
-                        "lineBreaks": 0,
-                        "line": 7,
-                        "col": 4
-                      },
-                      "var_value": {
-                        "type": "number",
-                        "value": "2",
-                        "text": "2",
-                        "offset": 62,
-                        "lineBreaks": 0,
-                        "line": 7,
-                        "col": 7
-                      }
-                    },
-                    "to": {
-                      "type": "identifier",
-                      "value": "n",
-                      "text": "n",
-                      "offset": 67,
-                      "lineBreaks": 0,
-                      "line": 7,
-                      "col": 12
-                    },
-                    "body": {
-                      "statements": [
-                        {
-                          "type": "var_assign",
-                          "var_name": {
-                            "type": "identifier",
-                            "value": "a",
-                            "text": "a",
-                            "offset": 73,
-                            "lineBreaks": 0,
-                            "line": 8,
-                            "col": 1
-                          },
-                          "var_value": {
-                            "type": "arithmetic_operation",
-                            "exp1": {
-                              "type": "identifier",
-                              "value": "a",
-                              "text": "a",
-                              "offset": 76,
-                              "lineBreaks": 0,
-                              "line": 8,
-                              "col": 4
-                            },
-                            "operator": {
-                              "type": "times",
-                              "value": "*",
-                              "text": "*",
-                              "offset": 77,
-                              "lineBreaks": 0,
-                              "line": 8,
-                              "col": 5
-                            },
-                            "exp2": {
-                              "type": "identifier",
-                              "value": "i",
-                              "text": "i",
-                              "offset": 78,
-                              "lineBreaks": 0,
-                              "line": 8,
-                              "col": 6
-                            }
-                          }
-                        }
-                      ]
-                    }
-                  }
-                ]
+                "col": 8
               }
             },
             {
@@ -224,10 +52,10 @@
                 "type": "identifier",
                 "value": "a",
                 "text": "a",
-                "offset": 95,
+                "offset": 30,
                 "lineBreaks": 0,
-                "line": 11,
-                "col": 3
+                "line": 3,
+                "col": 7
               }
             }
           ]
@@ -237,99 +65,24 @@
         "type": "fn_call",
         "fn_name": {
           "type": "identifier",
-          "value": "factorial",
-          "text": "factorial",
-          "offset": 107,
+          "value": "test",
+          "text": "test",
+          "offset": 42,
           "lineBreaks": 0,
-          "line": 13,
+          "line": 5,
           "col": 3
         },
         "params": [
           {
-            "type": "number",
-            "value": "5",
-            "text": "5",
-            "offset": 117,
+            "type": "string",
+            "value": "\"This is a test\"",
+            "text": "\"This is a test\"",
+            "offset": 47,
             "lineBreaks": 0,
-            "line": 13,
-            "col": 13
+            "line": 5,
+            "col": 8
           }
         ]
-      },
-      {
-        "type": "var_assign",
-        "var_name": {
-          "type": "identifier",
-          "value": "x",
-          "text": "x",
-          "offset": 121,
-          "lineBreaks": 0,
-          "line": 14,
-          "col": 1
-        },
-        "var_value": {
-          "type": "identifier",
-          "value": "true",
-          "text": "true",
-          "offset": 124,
-          "lineBreaks": 0,
-          "line": 14,
-          "col": 4
-        }
-      },
-      {
-        "type": "print_statement",
-        "printed_value": {
-          "type": "identifier",
-          "value": "x",
-          "text": "x",
-          "offset": 132,
-          "lineBreaks": 0,
-          "line": 15,
-          "col": 3
-        }
-      },
-      {
-        "type": "var_assign",
-        "var_name": {
-          "type": "identifier",
-          "value": "x",
-          "text": "x",
-          "offset": 136,
-          "lineBreaks": 0,
-          "line": 16,
-          "col": 1
-        },
-        "var_value": {
-          "type": "arithmetic_operation",
-          "exp1": {
-            "type": "number",
-            "value": "1",
-            "text": "1",
-            "offset": 139,
-            "lineBreaks": 0,
-            "line": 16,
-            "col": 4
-          },
-          "operator": {
-            "type": "plus",
-            "value": "+",
-            "text": "+",
-            "offset": 140,
-            "lineBreaks": 0,
-            "line": 16,
-            "col": 5
-          },
-          "exp2": {
-            "type": "number",
-            "value": "1",
-            "text": "1",
-            "offset": 141,
-            "lineBreaks": 0,
-            "line": 16,
-            "col": 6
-          }
-        }
       }
     ]
   }

@@ -1,16 +1,5 @@
-f factorial<n> =>
-a:=1
-?n==1 =>
-a:=1
+f test<x> =>
+    a:=x
+    w<a>
 :end
-?n>1 =>
-_: i:=2 to n =>
-a:=a*i
-:end
-:end
-w<a>
-:end
-c factorial<5>
-x:=true
-w<x>
-x:=1+1
+c test<"This is a test">

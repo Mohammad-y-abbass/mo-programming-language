@@ -5,7 +5,7 @@ if (n == 1) {
 }
 if (n > 1) {
     for (let i = 2; i <= n; i++) {
-    var a = multiply(a,i) 
+    var a = a * i 
 }
 }
 console.log(a);
@@ -13,6 +13,7 @@ console.log(a);
 factorial(5)
 var x = true;
 console.log(x);
+var x = 1 + 1 
 function add(x, y) {
   return x + y;
 }

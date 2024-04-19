@@ -63,6 +63,7 @@ var grammar = {
     {"name": "expression", "symbols": ["var_length"], "postprocess": id},
     {"name": "expression", "symbols": ["current_index"], "postprocess": id},
     {"name": "expression", "symbols": ["boolean"], "postprocess": id},
+    {"name": "expression", "symbols": ["arithmetic_operation"], "postprocess": id},
     {"name": "boolean", "symbols": [{"literal":"true"}], "postprocess": id},
     {"name": "boolean", "symbols": [{"literal":"false"}], "postprocess": id},
     {"name": "logical_operators", "symbols": [(myLexer.has("greater_or_equal") ? {type: "greater_or_equal"} : greater_or_equal)], "postprocess": id},
@@ -71,6 +72,23 @@ var grammar = {
     {"name": "logical_operators", "symbols": [(myLexer.has("less") ? {type: "less"} : less)], "postprocess": id},
     {"name": "logical_operators", "symbols": [(myLexer.has("equal") ? {type: "equal"} : equal)], "postprocess": id},
     {"name": "logical_operators", "symbols": [(myLexer.has("not_equal") ? {type: "not_equal"} : not_equal)], "postprocess": id},
+    {"name": "logical_operators", "symbols": [(myLexer.has("and") ? {type: "and"} : and)], "postprocess": id},
+    {"name": "logical_operators", "symbols": [(myLexer.has("or") ? {type: "or"} : or)], "postprocess": id},
+    {"name": "arithmetic_operators", "symbols": [(myLexer.has("plus") ? {type: "plus"} : plus)], "postprocess": id},
+    {"name": "arithmetic_operators", "symbols": [(myLexer.has("minus") ? {type: "minus"} : minus)], "postprocess": id},
+    {"name": "arithmetic_operators", "symbols": [(myLexer.has("times") ? {type: "times"} : times)], "postprocess": id},
+    {"name": "arithmetic_operators", "symbols": [(myLexer.has("divide") ? {type: "divide"} : divide)], "postprocess": id},
+    {"name": "arithmetic_operators", "symbols": [(myLexer.has("modulo") ? {type: "modulo"} : modulo)], "postprocess": id},
+    {"name": "arithmetic_operation", "symbols": ["expression", "_", "arithmetic_operators", "_", "expression"], "postprocess": 
+        (node) => {
+            return {
+                type: "arithmetic_operation",
+                exp1: node[0],
+                operator: node[2],
+                exp2: node[4]
+            }
+        }
+                        },
     {"name": "condition", "symbols": ["expression", "_", "logical_operators", "_", "expression"], "postprocess": 
         (node) => {
             return {

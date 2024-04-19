@@ -181,45 +181,36 @@
                             "line": 8,
                             "col": 1
                           },
-                          "var_value": [
-                            {
-                              "type": "fn_call",
-                              "fn_name": {
-                                "type": "identifier",
-                                "value": "multiply",
-                                "text": "multiply",
-                                "offset": 78,
-                                "lineBreaks": 0,
-                                "line": 8,
-                                "col": 6
-                              },
-                              "params": [
-                                {
-                                  "type": "params",
-                                  "value": [
-                                    {
-                                      "type": "identifier",
-                                      "value": "a",
-                                      "text": "a",
-                                      "offset": 87,
-                                      "lineBreaks": 0,
-                                      "line": 8,
-                                      "col": 15
-                                    },
-                                    {
-                                      "type": "identifier",
-                                      "value": "i",
-                                      "text": "i",
-                                      "offset": 89,
-                                      "lineBreaks": 0,
-                                      "line": 8,
-                                      "col": 17
-                                    }
-                                  ]
-                                }
-                              ]
+                          "var_value": {
+                            "type": "arithmetic_operation",
+                            "exp1": {
+                              "type": "identifier",
+                              "value": "a",
+                              "text": "a",
+                              "offset": 76,
+                              "lineBreaks": 0,
+                              "line": 8,
+                              "col": 4
+                            },
+                            "operator": {
+                              "type": "times",
+                              "value": "*",
+                              "text": "*",
+                              "offset": 77,
+                              "lineBreaks": 0,
+                              "line": 8,
+                              "col": 5
+                            },
+                            "exp2": {
+                              "type": "identifier",
+                              "value": "i",
+                              "text": "i",
+                              "offset": 78,
+                              "lineBreaks": 0,
+                              "line": 8,
+                              "col": 6
                             }
-                          ]
+                          }
                         }
                       ]
                     }
@@ -233,7 +224,7 @@
                 "type": "identifier",
                 "value": "a",
                 "text": "a",
-                "offset": 107,
+                "offset": 95,
                 "lineBreaks": 0,
                 "line": 11,
                 "col": 3
@@ -248,7 +239,7 @@
           "type": "identifier",
           "value": "factorial",
           "text": "factorial",
-          "offset": 119,
+          "offset": 107,
           "lineBreaks": 0,
           "line": 13,
           "col": 3
@@ -258,7 +249,7 @@
             "type": "number",
             "value": "5",
             "text": "5",
-            "offset": 129,
+            "offset": 117,
             "lineBreaks": 0,
             "line": 13,
             "col": 13
@@ -271,7 +262,7 @@
           "type": "identifier",
           "value": "x",
           "text": "x",
-          "offset": 133,
+          "offset": 121,
           "lineBreaks": 0,
           "line": 14,
           "col": 1
@@ -280,7 +271,7 @@
           "type": "identifier",
           "value": "true",
           "text": "true",
-          "offset": 136,
+          "offset": 124,
           "lineBreaks": 0,
           "line": 14,
           "col": 4
@@ -292,10 +283,52 @@
           "type": "identifier",
           "value": "x",
           "text": "x",
-          "offset": 144,
+          "offset": 132,
           "lineBreaks": 0,
           "line": 15,
           "col": 3
+        }
+      },
+      {
+        "type": "var_assign",
+        "var_name": {
+          "type": "identifier",
+          "value": "x",
+          "text": "x",
+          "offset": 136,
+          "lineBreaks": 0,
+          "line": 16,
+          "col": 1
+        },
+        "var_value": {
+          "type": "arithmetic_operation",
+          "exp1": {
+            "type": "number",
+            "value": "1",
+            "text": "1",
+            "offset": 139,
+            "lineBreaks": 0,
+            "line": 16,
+            "col": 4
+          },
+          "operator": {
+            "type": "plus",
+            "value": "+",
+            "text": "+",
+            "offset": 140,
+            "lineBreaks": 0,
+            "line": 16,
+            "col": 5
+          },
+          "exp2": {
+            "type": "number",
+            "value": "1",
+            "text": "1",
+            "offset": 141,
+            "lineBreaks": 0,
+            "line": 16,
+            "col": 6
+          }
         }
       }
     ]

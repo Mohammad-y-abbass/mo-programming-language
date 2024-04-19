@@ -62,6 +62,7 @@ expression -> %number {% id %}
             | var_length {% id %}
             | current_index {% id %}
             | boolean {% id %}
+            | arithmetic_operation {% id %}
 
 boolean -> "true" {% id %}
          | "false" {% id %}
@@ -75,6 +76,23 @@ logical_operators -> %greater_or_equal {% id %}
                    | %and {% id %}
                    | %or {% id %}
 
+arithmetic_operators -> %plus {% id %}
+                      | %minus {% id %}
+                      | %times {% id %}
+                      | %divide {% id %}
+                      | %modulo {% id %}
+
+arithmetic_operation -> expression _ arithmetic_operators _ expression 
+                {%
+                    (node) => {
+                        return {
+                            type: "arithmetic_operation",
+                            exp1: node[0],
+                            operator: node[2],
+                            exp2: node[4]
+                        }
+                    }
+                %}
 
 condition -> expression _ logical_operators _ expression 
                 {%

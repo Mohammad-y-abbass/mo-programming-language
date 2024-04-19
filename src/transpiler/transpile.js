@@ -65,6 +65,10 @@ function generate_js_for_var_assign(var_assign_node) {
     return `var ${
       var_assign_node.var_name.value
     } = ${generate_js_for_var_length(var_assign_node.var_value)} `;
+  } else if (var_assign_node.var_value.type === 'arithmetic_operation') {
+    return `var ${
+      var_assign_node.var_name.value
+    } = ${generate_js_for_arithmetic_operation(var_assign_node.var_value)} `;
   }
   return `var ${var_assign_node.var_name.value} = ${var_assign_node.var_value.value};`;
 }
@@ -83,6 +87,10 @@ function generate_js_for_condition_statement(condition_node) {
   } ${condition_node.condition.exp2.value}) {
     ${generate_js_for_body(condition_node.body)}
 }`;
+}
+
+function generate_js_for_arithmetic_operation(arithmetic_node) {
+  return `${arithmetic_node.exp1.value} ${arithmetic_node.operator.value} ${arithmetic_node.exp2.value}`;
 }
 
 function generate_js_for_print_statement(print_node) {
@@ -184,7 +192,9 @@ function generate_js_displaying_array_elements(array_display_node) {
 }
 
 function generate_js_for_loop(loop_node) {
-  return `for (let i = ${loop_node.from.var_value.value}; i <= ${loop_node.to.value}; i++) {
+  return `for (let i = ${loop_node.from.var_value.value}; i <= ${
+    loop_node.to.value
+  }; i++) {
     ${generate_js_for_body(loop_node.body)}
 }`;
 }

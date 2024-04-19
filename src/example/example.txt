@@ -5,7 +5,7 @@ a:=1
 :end
 ?n>1 =>
 _: i:=2 to n =>
-a:=c multiply<a i>
+a:=a*i
 :end
 :end
 w<a>
@@ -13,3 +13,4 @@ w<a>
 c factorial<5>
 x:=true
 w<x>
+x:=1+1

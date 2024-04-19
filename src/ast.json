@@ -343,9 +343,9 @@
             "col": 4
           },
           "exp2": {
-            "type": "number",
-            "value": "5",
-            "text": "5",
+            "type": "identifier",
+            "value": "length",
+            "text": "length",
             "offset": 178,
             "lineBreaks": 0,
             "line": 18,
@@ -360,10 +360,10 @@
                 "type": "identifier",
                 "value": "a",
                 "text": "a",
-                "offset": 185,
+                "offset": 190,
                 "lineBreaks": 0,
                 "line": 18,
-                "col": 13
+                "col": 18
               }
             },
             {
@@ -372,10 +372,59 @@
                 "type": "identifier",
                 "value": "a",
                 "text": "a",
-                "offset": 189,
+                "offset": 194,
                 "lineBreaks": 0,
                 "line": 19,
                 "col": 1
+              }
+            }
+          ]
+        }
+      },
+      {
+        "type": "display_array_elements",
+        "array_name": {
+          "type": "identifier",
+          "value": "arr",
+          "text": "arr",
+          "offset": 206,
+          "lineBreaks": 0,
+          "line": 21,
+          "col": 2
+        }
+      },
+      {
+        "type": "for_loop",
+        "from": {
+          "type": "number",
+          "value": "1",
+          "text": "1",
+          "offset": 213,
+          "lineBreaks": 0,
+          "line": 22,
+          "col": 3
+        },
+        "to": {
+          "type": "number",
+          "value": "5",
+          "text": "5",
+          "offset": 218,
+          "lineBreaks": 0,
+          "line": 22,
+          "col": 8
+        },
+        "body": {
+          "statements": [
+            {
+              "type": "print_statement",
+              "printed_value": {
+                "type": "string",
+                "value": "\"hello\"",
+                "text": "\"hello\"",
+                "offset": 226,
+                "lineBreaks": 0,
+                "line": 23,
+                "col": 3
               }
             }
           ]

@@ -15,6 +15,10 @@ w<arr>
 length:=l<arr>
 w<length>
 a:=10
-_a > 5 => w<a>
+_a > length => w<a>
 a--
+:end
+_arr
+_:1 to 5 =>
+w<"hello">
 :end

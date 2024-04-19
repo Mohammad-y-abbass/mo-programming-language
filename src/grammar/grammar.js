@@ -33,6 +33,7 @@ var grammar = {
     {"name": "statement", "symbols": ["fn"], "postprocess": id},
     {"name": "statement", "symbols": ["print_statement"], "postprocess": id},
     {"name": "statement", "symbols": ["fn_call"], "postprocess": id},
+    {"name": "statement", "symbols": ["for_loop"], "postprocess": id},
     {"name": "statement", "symbols": ["access_array_element"], "postprocess": id},
     {"name": "statement", "symbols": ["update_array_element"], "postprocess": id},
     {"name": "statement", "symbols": ["add_element_to_end_of_array"], "postprocess": id},
@@ -44,6 +45,7 @@ var grammar = {
     {"name": "statement", "symbols": ["var_length"], "postprocess": id},
     {"name": "statement", "symbols": ["increment_by_one"], "postprocess": id},
     {"name": "statement", "symbols": ["decrement_by_one"], "postprocess": id},
+    {"name": "statement", "symbols": ["display_array_elements"], "postprocess": id},
     {"name": "assignment", "symbols": [(myLexer.has("identifier") ? {type: "identifier"} : identifier), "_", (myLexer.has("assignment_symbol") ? {type: "assignment_symbol"} : assignment_symbol), "_", "expression"], "postprocess": 
         (node) => {
             return {
@@ -258,6 +260,28 @@ var grammar = {
             return {
                 type: "decrement",
                 decremented_value: node[0]
+            }
+        }
+                    },
+    {"name": "display_array_elements$ebnf$1", "symbols": []},
+    {"name": "display_array_elements$ebnf$1", "symbols": ["display_array_elements$ebnf$1", (myLexer.has("NL") ? {type: "NL"} : NL)], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
+    {"name": "display_array_elements", "symbols": [{"literal":"_"}, (myLexer.has("identifier") ? {type: "identifier"} : identifier), "display_array_elements$ebnf$1"], "postprocess": 
+        (node) => {
+            return {
+                type: "display_array_elements",
+                array_name: node[1]
+            }
+        }
+                    },
+    {"name": "for_loop$ebnf$1", "symbols": []},
+    {"name": "for_loop$ebnf$1", "symbols": ["for_loop$ebnf$1", (myLexer.has("NL") ? {type: "NL"} : NL)], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
+    {"name": "for_loop", "symbols": [(myLexer.has("forLoop") ? {type: "forLoop"} : forLoop), "expression", "_", {"literal":"to"}, "_", "expression", "_", (myLexer.has("arrow") ? {type: "arrow"} : arrow), "for_loop$ebnf$1", "statements", (myLexer.has("NL") ? {type: "NL"} : NL), {"literal":":end"}], "postprocess": 
+        (node) => {
+            return {
+                type: "for_loop",
+                from: node[1],
+                to: node[5],
+                body: node[9]
             }
         }
                     }

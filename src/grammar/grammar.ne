@@ -28,6 +28,7 @@ statement -> assignment %NL:* {% id %}
            | fn {% id %}
            | print_statement {% id %}
            | fn_call {% id %}
+           | for_loop {% id %}
            | access_array_element {% id %}
            | update_array_element {% id %}
            | add_element_to_end_of_array {% id %}
@@ -39,6 +40,7 @@ statement -> assignment %NL:* {% id %}
            | var_length {% id %}
            | increment_by_one {% id %}
            | decrement_by_one {% id %}
+           | display_array_elements {% id %}
 
 
 assignment -> %identifier _ %assignment_symbol _ expression
@@ -264,6 +266,28 @@ decrement_by_one -> expression %dec %NL:*
                     return {
                         type: "decrement",
                         decremented_value: node[0]
+                    }
+                }
+            %}
+
+display_array_elements -> "_" %identifier %NL:* 
+            {%
+                (node) => {
+                    return {
+                        type: "display_array_elements",
+                        array_name: node[1]
+                    }
+                }
+            %}
+
+for_loop -> %forLoop expression _ "to" _ expression _ %arrow %NL:* statements %NL ":end"
+            {%
+                (node) => {
+                    return {
+                        type: "for_loop",
+                        from: node[1],
+                        to: node[5],
+                        body: node[9]
                     }
                 }
             %}

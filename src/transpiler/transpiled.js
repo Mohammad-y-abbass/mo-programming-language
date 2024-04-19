@@ -15,16 +15,16 @@ console.log(arr);
 var length = arr.length 
 console.log(length);
 var a = 10;
-while (a > 5) {
+while (a > length) {
     console.log(a);
 a--
 }
+displayArrElements(arr)
+for (let i = 1; i <= 5; i++) {
+    console.log("hello");
+}
 function add(x, y) {
   return x + y;
-}
-
-function concat(s1, s2) {
-  return s1 + s2;
 }
 
 function multiply(x, y) {
@@ -57,4 +57,10 @@ function floor(x) {
 
 function ceil(x) {
   return Math.ceil(x);
+}
+
+function displayArrElements(arr) {
+  for (let i = 0; i < arr.length; i++) {
+    console.log(arr[i]);
+  }
 }

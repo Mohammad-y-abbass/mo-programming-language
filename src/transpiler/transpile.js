@@ -179,6 +179,16 @@ function generate_js_for_decrement(decrement_node) {
   return `${decrement_node.decremented_value.value}--`;
 }
 
+function generate_js_displaying_array_elements(array_display_node) {
+  return `displayArrElements(${array_display_node.array_name.value})`;
+}
+
+function generate_js_for_loop(loop_node) {
+  return `for (let i = ${loop_node.from.value}; i <= ${loop_node.to.value}; i++) {
+    ${generate_js_for_body(loop_node.body)}
+}`;
+}
+
 function generate_js_for_node(node) {
   if (node.type === 'var_assign') {
     return generate_js_for_var_assign(node);
@@ -214,6 +224,10 @@ function generate_js_for_node(node) {
     return generate_js_for_increment(node);
   } else if (node.type === 'decrement') {
     return generate_js_for_decrement(node);
+  } else if (node.type === 'display_array_elements') {
+    return generate_js_displaying_array_elements(node);
+  } else if (node.type === 'for_loop') {
+    return generate_js_for_loop(node);
   } else {
     throw new Error(`Unknown node type: ${node.type}`.red);
   }

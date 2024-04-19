@@ -40,7 +40,7 @@ try {
   console.log('Running transpiled code...'.magenta);
 
   console.log(execSync(`node ${transpiledJs}`).toString());
-  
+
   console.log('Transpiled code executed successfully.'.green);
 } catch (error) {
   if (

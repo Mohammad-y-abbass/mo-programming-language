@@ -2,6 +2,7 @@ const moo = require('moo');
 
 let lexer = moo.compile({
   NL: { match: /\r?\n/, lineBreaks: true },
+  forLoop: '_:',
   loop: /_/,
   inc: /\+\+/,
   dec: /--/,

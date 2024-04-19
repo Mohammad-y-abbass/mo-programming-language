@@ -2,10 +2,6 @@ function add(x, y) {
   return x + y;
 }
 
-function concat(s1, s2) {
-  return s1 + s2;
-}
-
 function multiply(x, y) {
   return x * y;
 }
@@ -36,4 +32,10 @@ function floor(x) {
 
 function ceil(x) {
   return Math.ceil(x);
+}
+
+function displayArrElements(arr) {
+  for (let i = 0; i < arr.length; i++) {
+    console.log(arr[i]);
+  }
 }

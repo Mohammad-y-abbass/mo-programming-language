@@ -1,4 +1,17 @@
+var arr = [1,2,5,6]
+console.log(arr);
+var x = arr[1] 
+console.log(x);
+arr[1] = 34
+console.log(arr);
+arr.push(20)
+console.log(arr);
 arr.pop()
+console.log(arr);
+arr.unshift(54)
+console.log(arr);
+arr.shift()
+console.log(arr);
 function add(x, y) {
   return x + y;
 }

@@ -1,1 +1,14 @@
-arr => 10
+arr:=<<1 2 5 6>>
+w<arr>
+x:=<<1>>arr
+w<x>
+arr<<1>> => 34
+w<arr>
+arr <= 20
+w<arr>
+arr =>
+w<arr>
+54 => arr
+w<arr>
+<= arr
+w<arr>

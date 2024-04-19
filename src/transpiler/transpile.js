@@ -57,10 +57,6 @@ function generate_js_for_var_assign(var_assign_node) {
     return `var ${var_assign_node.var_name.value} = ${generate_js_for_fn_call(
       var_assign_node.var_value[0]
     )} `;
-  } else if (var_assign_node.var_value.type === 'array_def') {
-    return `var ${var_assign_node.var_name.value} = ${generate_js_for_array_def(
-      var_assign_node.var_value
-    )} `;
   } else if (var_assign_node.var_value.type === 'access_array_element') {
     return `var ${
       var_assign_node.var_name.value
@@ -129,10 +125,6 @@ function generate_js_for_array_elements(array_elements) {
   return array_elements.map((element) => element.value).join(',');
 }
 
-function generate_js_for_array_def(array_def_node) {
-  return `[${generate_js_for_array_elements(array_def_node.elements)}]`;
-}
-
 function generate_js_for_array_element_access(array_element_access_node) {
   return `${array_element_access_node.array_name.value}[${array_element_access_node.index.value}]`;
 }
@@ -151,6 +143,24 @@ function generate_js_for_removing_element_from_end_of_array(
   array_element_remove_node
 ) {
   return `${array_element_remove_node.array_name.value}.pop()`;
+}
+
+function generate_js_for_adding_element_to_start_of_array(
+  array_element_add_node
+) {
+  return `${array_element_add_node.array_name.value}.unshift(${array_element_add_node.added_value.value})`;
+}
+
+function generate_js_for_removing_element_from_start_of_array(
+  array_element_add_node
+) {
+  return `${array_element_add_node.array_name.value}.shift()`;
+}
+
+function generate_js_for_array_def(array_def_node) {
+  return `var ${array_def_node.var_name.value} = [${generate_js_for_array_elements(
+    array_def_node.elements
+  )}]`;
 }
 
 function generate_js_for_node(node) {
@@ -178,6 +188,10 @@ function generate_js_for_node(node) {
     return generate_js_for_adding_element_to_end_of_array(node);
   } else if (node.type === 'remove_element_from_end_of_array') {
     return generate_js_for_removing_element_from_end_of_array(node);
+  } else if (node.type === 'add_element_to_start_of_array') {
+    return generate_js_for_adding_element_to_start_of_array(node);
+  } else if (node.type === 'remove_element_from_start_of_array') {
+    return generate_js_for_removing_element_from_start_of_array(node);
   } else {
     throw new Error(`Unknown node type: ${node.type}`.red);
   }

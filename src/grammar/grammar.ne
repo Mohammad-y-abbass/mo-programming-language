@@ -28,11 +28,15 @@ statement -> assignment %NL:* {% id %}
            | fn {% id %}
            | print_statement {% id %}
            | fn_call {% id %}
-           | array_def {% id %}
            | access_array_element {% id %}
            | update_array_element {% id %}
            | add_element_to_end_of_array {% id %}
            | remove_element_from_end_of_array {% id %}
+           | add_element_to_end_of_array {% id %}
+           | add_element_to_start_of_array {% id %}
+           | remove_element_from_start_of_array {% id %}    
+           | array_def {% id %}
+
 
 assignment -> %identifier _ %assignment_symbol _ expression
             {%
@@ -50,7 +54,6 @@ expression -> %number {% id %}
             | %identifier {% id %}
             | %string {% id %}
             | fn_call
-            | array_def {% id %}
 
 logical_operators -> %greater_or_equal {% id %}
                    | %less_or_equal {% id %}
@@ -153,12 +156,13 @@ elements -> element
                }
             %}
  
-array_def -> %openTag _ elements _ %closeTag %NL:*
+array_def -> %identifier _ %assignment_symbol _ %openTag _ elements _ %closeTag %NL:*
             {%
                 (node) => {
                     return {
                         type: "array_def",
-                        elements: node[2]
+                        var_name: node[0],
+                        elements: node[6]
                     }
                 }
             %}
@@ -176,7 +180,7 @@ access_array_element -> %openTag _ index _ %closeTag _ %identifier %NL:*
                 }
             %}
 
-update_array_element -> %identifier _ %openTag _ index _ %closeTag _ %less_or_equal _ expression %NL:*
+update_array_element -> %identifier _ %openTag _ index _ %closeTag _ "=>" _ expression %NL:*
             {% 
                 (node) => {
                     return {
@@ -199,13 +203,33 @@ add_element_to_end_of_array -> %identifier _ "<=" _ expression %NL:*
                 }
             %}
 
-remove_element_from_end_of_array -> %identifier _ "=>" _ expression %NL:*
+remove_element_from_end_of_array -> %identifier _ "=>" %NL:*
             {%
                 (node) => {
                     return {
                         type: "remove_element_from_end_of_array",
                         array_name: node[0],
-                        removed_value: node[4]
+                    }
+                }
+            %}
+
+add_element_to_start_of_array -> expression _ "=>" _ %identifier %NL:*
+            {%
+                (node) => {
+                    return {
+                        type: "add_element_to_start_of_array",
+                        array_name: node[4],
+                        added_value: node[0]
+                    }
+                }
+            %}
+
+remove_element_from_start_of_array -> "<=" _ %identifier %NL:*
+               {%
+                (node) => {
+                    return {
+                        type: "remove_element_from_start_of_array",
+                        array_name: node[2],
                     }
                 }
             %}

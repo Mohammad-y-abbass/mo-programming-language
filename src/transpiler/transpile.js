@@ -199,6 +199,10 @@ function generate_js_for_loop(loop_node) {
 }`;
 }
 
+function generate_js_for_comment(comment_node) {
+  return `// ${comment_node.sentence.value}`;
+}
+
 function generate_js_for_node(node) {
   if (node.type === 'var_assign') {
     return generate_js_for_var_assign(node);
@@ -238,6 +242,8 @@ function generate_js_for_node(node) {
     return generate_js_displaying_array_elements(node);
   } else if (node.type === 'for_loop') {
     return generate_js_for_loop(node);
+  } else if (node.type === 'comment') {
+    return generate_js_for_comment(node);
   } else {
     throw new Error(`Unknown node type: ${node.type}`.red);
   }

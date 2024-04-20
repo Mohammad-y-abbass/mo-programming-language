@@ -2,134 +2,69 @@
   "main_program": {
     "statements": [
       {
-        "type": "fn",
-        "fn_name": {
-          "type": "identifier",
-          "value": "test",
-          "text": "test",
-          "offset": 2,
+        "type": "comment",
+        "sentence": {
+          "type": "comment",
+          "value": "## this is a comment",
+          "text": "## this is a comment",
+          "offset": 0,
           "lineBreaks": 0,
           "line": 1,
-          "col": 3
-        },
-        "params": [
-          {
-            "type": "identifier",
-            "value": "x",
-            "text": "x",
-            "offset": 7,
-            "lineBreaks": 0,
-            "line": 1,
-            "col": 8
-          }
-        ],
-        "body": {
-          "statements": [
-            {
-              "type": "var_assign",
-              "var_name": {
-                "type": "identifier",
-                "value": "a",
-                "text": "a",
-                "offset": 18,
-                "lineBreaks": 0,
-                "line": 2,
-                "col": 5
-              },
-              "var_value": {
-                "type": "identifier",
-                "value": "x",
-                "text": "x",
-                "offset": 21,
-                "lineBreaks": 0,
-                "line": 2,
-                "col": 8
-              }
-            },
-            {
-              "type": "print_statement",
-              "printed_value": {
-                "type": "identifier",
-                "value": "a",
-                "text": "a",
-                "offset": 30,
-                "lineBreaks": 0,
-                "line": 3,
-                "col": 7
-              }
-            }
-          ]
+          "col": 1
         }
       },
       {
-        "type": "fn_call",
-        "fn_name": {
+        "type": "var_assign",
+        "var_name": {
           "type": "identifier",
-          "value": "test",
-          "text": "test",
-          "offset": 44,
+          "value": "name",
+          "text": "name",
+          "offset": 22,
           "lineBreaks": 0,
-          "line": 6,
-          "col": 3
+          "line": 2,
+          "col": 1
         },
-        "params": [
-          {
-            "type": "string",
-            "value": "\"This is a test\"",
-            "text": "\"This is a test\"",
-            "offset": 49,
-            "lineBreaks": 0,
-            "line": 6,
-            "col": 8
-          }
-        ]
+        "var_value": {
+          "type": "string",
+          "value": "\"mohammad\"",
+          "text": "\"mohammad\"",
+          "offset": 28,
+          "lineBreaks": 0,
+          "line": 2,
+          "col": 7
+        }
       },
       {
-        "type": "condition_statement",
-        "condition": {
-          "exp1": {
-            "type": "number",
-            "value": "1",
-            "text": "1",
-            "offset": 72,
-            "lineBreaks": 0,
-            "line": 8,
-            "col": 3
-          },
-          "operator": {
-            "type": "equal",
-            "value": "==",
-            "text": "==",
-            "offset": 74,
-            "lineBreaks": 0,
-            "line": 8,
-            "col": 5
-          },
-          "exp2": {
-            "type": "number",
-            "value": "1",
-            "text": "1",
-            "offset": 77,
-            "lineBreaks": 0,
-            "line": 8,
-            "col": 8
-          }
+        "type": "var_assign",
+        "var_name": {
+          "type": "identifier",
+          "value": "age",
+          "text": "age",
+          "offset": 40,
+          "lineBreaks": 0,
+          "line": 3,
+          "col": 1
         },
-        "body": {
-          "statements": [
-            {
-              "type": "print_statement",
-              "printed_value": {
-                "type": "string",
-                "value": "\"1 is equal to 1\"",
-                "text": "\"1 is equal to 1\"",
-                "offset": 89,
-                "lineBreaks": 0,
-                "line": 9,
-                "col": 7
-              }
-            }
-          ]
+        "var_value": {
+          "type": "number",
+          "value": "23",
+          "text": "23",
+          "offset": 45,
+          "lineBreaks": 0,
+          "line": 3,
+          "col": 6
+        }
+      },
+      {
+        "type": "comment",
+        "sentence": {
+          "type": "comment",
+          "value": "## this is the end of the code",
+          "text": "## this is the end of the code",
+          "offset": 49,
+          "lineBreaks": 0,
+          "line": 4,
+          "col": 1
         }
       }
     ]

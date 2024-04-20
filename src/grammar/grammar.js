@@ -122,6 +122,7 @@ var grammar = {
             return node[1]   
         }
                     },
+    {"name": "statement", "symbols": ["comment"], "postprocess": id},
     {"name": "assignment", "symbols": [(myLexer.has("identifier") ? {type: "identifier"} : identifier), "_", (myLexer.has("assignment_symbol") ? {type: "assignment_symbol"} : assignment_symbol), "_", "expression"], "postprocess": 
         (node) => {
             return {
@@ -390,7 +391,17 @@ var grammar = {
                 body: node[10]
             }
         }
-                    }
+                    },
+    {"name": "comment$ebnf$1", "symbols": []},
+    {"name": "comment$ebnf$1", "symbols": ["comment$ebnf$1", (myLexer.has("NL") ? {type: "NL"} : NL)], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
+    {"name": "comment", "symbols": [(myLexer.has("comment") ? {type: "comment"} : comment), "comment$ebnf$1"], "postprocess": 
+        (node) => {
+            return {
+                type: "comment",
+                sentence: node[0]
+            }
+        }
+                }
 ]
   , ParserStart: "main"
 }

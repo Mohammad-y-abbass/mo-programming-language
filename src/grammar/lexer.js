@@ -9,7 +9,7 @@ let lexer = moo.compile({
   write: 'w',
   read: 'read',
   WS: /[ \t]+/,
-  comment: /\/\/.*?$/,
+  comment: /##.*/,
   number: /0|[1-9][0-9]*/,
   string: /"(?:\\["\\]|[^\n"\\])*"/,
   arrow: /=>/,

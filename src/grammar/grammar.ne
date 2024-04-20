@@ -136,6 +136,7 @@ statement -> _ assignment %NL:*
                     return node[1]   
                 }
             %}
+            | comment {% id %}
 
 
 assignment -> %identifier _ %assignment_symbol _ expression
@@ -411,4 +412,15 @@ for_loop -> %forLoop _ assignment _ "to" _ expression _ %arrow %NL:* statements 
                     }
                 }
             %}
+
+
+comment -> %comment %NL:*
+        {%
+            (node) => {
+                return {
+                    type: "comment",
+                    sentence: node[0]
+                }
+            }
+        %}
 

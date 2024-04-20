@@ -1,11 +1,7 @@
-function test (x) {
-    var a = x;
-console.log(a);
-}
-test("This is a test")
-if (1 == 1) {
-    console.log("1 is equal to 1");
-}
+// ## this is a comment
+var name = "mohammad";
+var age = 23;
+// ## this is the end of the code
 function sqrt(x) {
   return Math.sqrt(x);
 }

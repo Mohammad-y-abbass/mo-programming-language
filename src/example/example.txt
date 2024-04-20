@@ -1,10 +1,4 @@
-f test<x> =>
-    a:=x
-    w<a>
-:end
-
-c test<"This is a test">
-
-? 1 == 1 =>
-    w<"1 is equal to 1">
-:end
+## this is a comment
+name:="mohammad"
+age:=23
+## this is the end of the code

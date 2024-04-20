@@ -29,35 +29,99 @@ var grammar = {
     {"name": "statement$ebnf$1", "symbols": ["statement$ebnf$1", (myLexer.has("NL") ? {type: "NL"} : NL)], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
     {"name": "statement", "symbols": ["_", "assignment", "statement$ebnf$1"], "postprocess": 
         (node) => {
-            return node[1]
-                
-            
+            return node[1]   
         }
                     },
-    {"name": "statement", "symbols": ["conditional"], "postprocess": id},
-    {"name": "statement", "symbols": ["loop"], "postprocess": id},
-    {"name": "statement", "symbols": ["fn"], "postprocess": id},
+    {"name": "statement", "symbols": ["_", "conditional"], "postprocess": 
+        (node) => {
+            return node[1]   
+        }
+                    },
+    {"name": "statement", "symbols": ["_", "loop"], "postprocess": 
+        (node) => {
+            return node[1]   
+        }
+                    },
+    {"name": "statement", "symbols": ["_", "fn"], "postprocess": 
+        (node) => {
+            return node[1]   
+        }
+                    },
     {"name": "statement", "symbols": ["_", "print_statement"], "postprocess": 
         (node) => {
-            return node[1]
-                
-            
+            return node[1]  
         }
                     },
-    {"name": "statement", "symbols": ["fn_call"], "postprocess": id},
-    {"name": "statement", "symbols": ["for_loop"], "postprocess": id},
-    {"name": "statement", "symbols": ["access_array_element"], "postprocess": id},
-    {"name": "statement", "symbols": ["update_array_element"], "postprocess": id},
-    {"name": "statement", "symbols": ["add_element_to_end_of_array"], "postprocess": id},
-    {"name": "statement", "symbols": ["remove_element_from_end_of_array"], "postprocess": id},
-    {"name": "statement", "symbols": ["add_element_to_end_of_array"], "postprocess": id},
-    {"name": "statement", "symbols": ["add_element_to_start_of_array"], "postprocess": id},
-    {"name": "statement", "symbols": ["remove_element_from_start_of_array"], "postprocess": id},
-    {"name": "statement", "symbols": ["array_def"], "postprocess": id},
-    {"name": "statement", "symbols": ["var_length"], "postprocess": id},
-    {"name": "statement", "symbols": ["increment_by_one"], "postprocess": id},
-    {"name": "statement", "symbols": ["decrement_by_one"], "postprocess": id},
-    {"name": "statement", "symbols": ["display_array_elements"], "postprocess": id},
+    {"name": "statement", "symbols": ["_", "fn_call"], "postprocess": 
+        (node) => {
+            return node[1]   
+        }
+                    },
+    {"name": "statement", "symbols": ["_", "for_loop"], "postprocess": 
+        (node) => {
+            return node[1]   
+        }
+                    },
+    {"name": "statement", "symbols": ["_", "access_array_element"], "postprocess": 
+        (node) => {
+            return node[1]   
+        }
+                    },
+    {"name": "statement", "symbols": ["_", "update_array_element"], "postprocess": 
+        (node) => {
+            return node[1]   
+        }
+                    },
+    {"name": "statement", "symbols": ["_", "add_element_to_end_of_array"], "postprocess": 
+        (node) => {
+            return node[1]   
+        }
+                    },
+    {"name": "statement", "symbols": ["_", "remove_element_from_end_of_array"], "postprocess": 
+        (node) => {
+            return node[1]   
+        }
+                    },
+    {"name": "statement", "symbols": ["_", "add_element_to_end_of_array"], "postprocess": 
+        (node) => {
+            return node[1]   
+        }
+                    },
+    {"name": "statement", "symbols": ["_", "add_element_to_start_of_array"], "postprocess": 
+        (node) => {
+            return node[1]   
+        }
+                    },
+    {"name": "statement", "symbols": ["_", "remove_element_from_start_of_array"], "postprocess": 
+        (node) => {
+            return node[1]   
+        }
+                    },
+    {"name": "statement", "symbols": ["_", "array_def"], "postprocess": 
+        (node) => {
+            return node[1]   
+        }
+                    },
+    {"name": "statement", "symbols": ["_", "var_length"], "postprocess": 
+        (node) => {
+            return node[1]   
+        }
+                    },
+    {"name": "statement", "symbols": ["_", "increment_by_one"], "postprocess": 
+        (node) => {
+            return node[1]   
+        }
+                    },
+    {"name": "statement", "symbols": ["_", "decrement_by_one"], "postprocess": 
+        (node) => {
+            return node[1]   
+        }
+                    },
+    {"name": "statement", "symbols": ["_", "display_array_elements"], "postprocess": 
+        (node) => {
+            return node[1]   
+        }
+                    },
     {"name": "assignment", "symbols": [(myLexer.has("identifier") ? {type: "identifier"} : identifier), "_", (myLexer.has("assignment_symbol") ? {type: "assignment_symbol"} : assignment_symbol), "_", "expression"], "postprocess": 
         (node) => {
             return {

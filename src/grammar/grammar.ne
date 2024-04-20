@@ -25,36 +25,117 @@ __ -> %WS:+ {% id %}
 statement -> _ assignment %NL:* 
             {%
                 (node) => {
-                    return node[1]
-                        
-                    
+                    return node[1]   
                 }
             %}
-           | conditional {% id %}
-           | loop {% id %}
-           | fn {% id %}
+           | _ conditional  
+            {%
+                (node) => {
+                    return node[1]   
+                }
+            %}
+           | _ loop   
+            {%
+                (node) => {
+                    return node[1]   
+                }
+            %}
+           | _ fn   
+            {%
+                (node) => {
+                    return node[1]   
+                }
+            %}
            | _ print_statement  
             {%
                 (node) => {
-                    return node[1]
-                        
-                    
+                    return node[1]  
                 }
             %}
-           | fn_call {% id %}
-           | for_loop {% id %}
-           | access_array_element {% id %}
-           | update_array_element {% id %}
-           | add_element_to_end_of_array {% id %}
-           | remove_element_from_end_of_array {% id %}
-           | add_element_to_end_of_array {% id %}
-           | add_element_to_start_of_array {% id %}
-           | remove_element_from_start_of_array {% id %}    
-           | array_def {% id %}
-           | var_length {% id %}
-           | increment_by_one {% id %}
-           | decrement_by_one {% id %}
-           | display_array_elements {% id %}
+           | _ fn_call   
+            {%
+                (node) => {
+                    return node[1]   
+                }
+            %}
+           | _ for_loop  
+            {%
+                (node) => {
+                    return node[1]   
+                }
+            %}
+           | _ access_array_element  
+            {%
+                (node) => {
+                    return node[1]   
+                }
+            %}
+           | _ update_array_element  
+            {%
+                (node) => {
+                    return node[1]   
+                }
+            %}
+           | _ add_element_to_end_of_array 
+            {%
+                (node) => {
+                    return node[1]   
+                }
+            %}
+           | _ remove_element_from_end_of_array  
+            {%
+                (node) => {
+                    return node[1]   
+                }
+            %}
+           | _ add_element_to_end_of_array  
+            {%
+                (node) => {
+                    return node[1]   
+                }
+            %}
+           | _ add_element_to_start_of_array  
+            {%
+                (node) => {
+                    return node[1]   
+                }
+            %}
+           | _ remove_element_from_start_of_array  
+            {%
+                (node) => {
+                    return node[1]   
+                }
+            %}   
+           | _ array_def  
+            {%
+                (node) => {
+                    return node[1]   
+                }
+            %}
+           | _ var_length  
+            {%
+                (node) => {
+                    return node[1]   
+                }
+            %}
+           | _ increment_by_one  
+            {%
+                (node) => {
+                    return node[1]   
+                }
+            %}
+           | _ decrement_by_one  
+            {%
+                (node) => {
+                    return node[1]   
+                }
+            %}
+           | _ display_array_elements  
+            {%
+                (node) => {
+                    return node[1]   
+                }
+            %}
 
 
 assignment -> %identifier _ %assignment_symbol _ expression

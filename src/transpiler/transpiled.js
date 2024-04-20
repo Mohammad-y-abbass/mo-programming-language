@@ -3,6 +3,9 @@ function test (x) {
 console.log(a);
 }
 test("This is a test")
+if (1 == 1) {
+    console.log("1 is equal to 1");
+}
 function sqrt(x) {
   return Math.sqrt(x);
 }

@@ -1,12 +1,15 @@
-## Start of the code
-w<"hello, world!">
-add:= 2+2
-subtract:= 2-2
-multiply:= 2*2
-divide:= 2/2
-modulo:= 2%2
-w<add>
-w<subtract>
-w<multiply>
-w<divide>
-w<modulo>
+## This function calculates the factorial of a number
+f factorial<n> =>
+    x:=1
+    ? n<=1 =>
+         x:=1
+     :endc
+    _: i:=1 to n =>
+         x:= x * i
+    :endl
+    r x
+:endf
+
+fac:= c factorial<10>
+
+w<fac>

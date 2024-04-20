@@ -215,7 +215,7 @@ params -> param {% id %}
                 }
             %}
 
-conditional -> %conditional _ condition _ %arrow %NL:* statements %end %NL:*
+conditional -> %conditional _ condition _ %arrow %NL:* statements _ %conditionalEnd %NL:*
                  {%
                 (node) => {
                     return {
@@ -226,7 +226,7 @@ conditional -> %conditional _ condition _ %arrow %NL:* statements %end %NL:*
                 }
                 %}
 
-loop -> %loop  _ condition _ %arrow %NL:* statements %end %NL:*
+loop -> %loop  _ condition _ %arrow %NL:* statements _ %loopEnd %NL:*
             {%
                 (node) => {
                     return {
@@ -237,7 +237,7 @@ loop -> %loop  _ condition _ %arrow %NL:* statements %end %NL:*
                 }
             %}
 
-fn -> "f" __ %identifier _ "<" _ params:* _ ">" _ %arrow %NL:* statements %NL:* _ "r" __ expression %NL:* %end  %NL:*
+fn -> "f" __ %identifier _ "<" _ params:* _ ">" _ %arrow %NL:* statements %NL:* _ "r":? _ expression:* %NL:* _ %fnEnd  %NL:*
             {%
                     (node) => {
                         return {
@@ -401,7 +401,7 @@ display_array_elements -> "_" %identifier %NL:*
                 }
             %}
 
-for_loop -> %forLoop _ assignment _ "to" _ expression _ %arrow %NL:* statements %NL ":end" %NL:*
+for_loop -> %forLoop _ assignment _ "to" _ expression _ %arrow %NL:* statements _ %NL:* ":endl" %NL:*
             {%
                 (node) => {
                     return {

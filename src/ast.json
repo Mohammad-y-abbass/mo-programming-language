@@ -5,8 +5,8 @@
         "type": "comment",
         "sentence": {
           "type": "comment",
-          "value": "## Start of the code",
-          "text": "## Start of the code",
+          "value": "## This function calculates the factorial of a number",
+          "text": "## This function calculates the factorial of a number",
           "offset": 0,
           "lineBreaks": 0,
           "line": 1,
@@ -14,284 +14,246 @@
         }
       },
       {
-        "type": "print_statement",
-        "printed_value": {
-          "type": "string",
-          "value": "\"hello, world!\"",
-          "text": "\"hello, world!\"",
-          "offset": 24,
+        "type": "fn",
+        "fn_name": {
+          "type": "identifier",
+          "value": "factorial",
+          "text": "factorial",
+          "offset": 57,
           "lineBreaks": 0,
           "line": 2,
           "col": 3
-        }
-      },
-      {
-        "type": "var_assign",
-        "var_name": {
-          "type": "identifier",
-          "value": "add",
-          "text": "add",
-          "offset": 42,
-          "lineBreaks": 0,
-          "line": 3,
-          "col": 1
         },
-        "var_value": {
-          "type": "arithmetic_operation",
-          "exp1": {
-            "type": "number",
-            "value": "2",
-            "text": "2",
-            "offset": 48,
+        "params": [
+          {
+            "type": "identifier",
+            "value": "n",
+            "text": "n",
+            "offset": 67,
             "lineBreaks": 0,
-            "line": 3,
+            "line": 2,
+            "col": 13
+          }
+        ],
+        "body": {
+          "statements": [
+            {
+              "type": "var_assign",
+              "var_name": {
+                "type": "identifier",
+                "value": "x",
+                "text": "x",
+                "offset": 78,
+                "lineBreaks": 0,
+                "line": 3,
+                "col": 5
+              },
+              "var_value": {
+                "type": "number",
+                "value": "1",
+                "text": "1",
+                "offset": 81,
+                "lineBreaks": 0,
+                "line": 3,
+                "col": 8
+              }
+            },
+            {
+              "type": "condition_statement",
+              "condition": {
+                "exp1": {
+                  "type": "identifier",
+                  "value": "n",
+                  "text": "n",
+                  "offset": 90,
+                  "lineBreaks": 0,
+                  "line": 4,
+                  "col": 7
+                },
+                "operator": {
+                  "type": "less_or_equal",
+                  "value": "<=",
+                  "text": "<=",
+                  "offset": 91,
+                  "lineBreaks": 0,
+                  "line": 4,
+                  "col": 8
+                },
+                "exp2": {
+                  "type": "number",
+                  "value": "1",
+                  "text": "1",
+                  "offset": 93,
+                  "lineBreaks": 0,
+                  "line": 4,
+                  "col": 10
+                }
+              },
+              "body": {
+                "statements": [
+                  {
+                    "type": "var_assign",
+                    "var_name": {
+                      "type": "identifier",
+                      "value": "x",
+                      "text": "x",
+                      "offset": 108,
+                      "lineBreaks": 0,
+                      "line": 5,
+                      "col": 10
+                    },
+                    "var_value": {
+                      "type": "number",
+                      "value": "1",
+                      "text": "1",
+                      "offset": 111,
+                      "lineBreaks": 0,
+                      "line": 5,
+                      "col": 13
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "type": "for_loop",
+              "from": {
+                "type": "var_assign",
+                "var_name": {
+                  "type": "identifier",
+                  "value": "i",
+                  "text": "i",
+                  "offset": 133,
+                  "lineBreaks": 0,
+                  "line": 7,
+                  "col": 8
+                },
+                "var_value": {
+                  "type": "number",
+                  "value": "1",
+                  "text": "1",
+                  "offset": 136,
+                  "lineBreaks": 0,
+                  "line": 7,
+                  "col": 11
+                }
+              },
+              "to": {
+                "type": "identifier",
+                "value": "n",
+                "text": "n",
+                "offset": 141,
+                "lineBreaks": 0,
+                "line": 7,
+                "col": 16
+              },
+              "body": {
+                "statements": [
+                  {
+                    "type": "var_assign",
+                    "var_name": {
+                      "type": "identifier",
+                      "value": "x",
+                      "text": "x",
+                      "offset": 156,
+                      "lineBreaks": 0,
+                      "line": 8,
+                      "col": 10
+                    },
+                    "var_value": {
+                      "type": "arithmetic_operation",
+                      "exp1": {
+                        "type": "identifier",
+                        "value": "x",
+                        "text": "x",
+                        "offset": 160,
+                        "lineBreaks": 0,
+                        "line": 8,
+                        "col": 14
+                      },
+                      "operator": {
+                        "type": "times",
+                        "value": "*",
+                        "text": "*",
+                        "offset": 162,
+                        "lineBreaks": 0,
+                        "line": 8,
+                        "col": 16
+                      },
+                      "exp2": {
+                        "type": "identifier",
+                        "value": "i",
+                        "text": "i",
+                        "offset": 164,
+                        "lineBreaks": 0,
+                        "line": 8,
+                        "col": 18
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "returned_value": [
+          {
+            "type": "identifier",
+            "value": "x",
+            "text": "x",
+            "offset": 184,
+            "lineBreaks": 0,
+            "line": 10,
             "col": 7
-          },
-          "operator": {
-            "type": "plus",
-            "value": "+",
-            "text": "+",
-            "offset": 49,
-            "lineBreaks": 0,
-            "line": 3,
-            "col": 8
-          },
-          "exp2": {
-            "type": "number",
-            "value": "2",
-            "text": "2",
-            "offset": 50,
-            "lineBreaks": 0,
-            "line": 3,
-            "col": 9
           }
-        }
+        ]
       },
       {
         "type": "var_assign",
         "var_name": {
           "type": "identifier",
-          "value": "subtract",
-          "text": "subtract",
-          "offset": 53,
+          "value": "fac",
+          "text": "fac",
+          "offset": 196,
           "lineBreaks": 0,
-          "line": 4,
+          "line": 13,
           "col": 1
         },
-        "var_value": {
-          "type": "arithmetic_operation",
-          "exp1": {
-            "type": "number",
-            "value": "2",
-            "text": "2",
-            "offset": 64,
-            "lineBreaks": 0,
-            "line": 4,
-            "col": 12
-          },
-          "operator": {
-            "type": "minus",
-            "value": "-",
-            "text": "-",
-            "offset": 65,
-            "lineBreaks": 0,
-            "line": 4,
-            "col": 13
-          },
-          "exp2": {
-            "type": "number",
-            "value": "2",
-            "text": "2",
-            "offset": 66,
-            "lineBreaks": 0,
-            "line": 4,
-            "col": 14
+        "var_value": [
+          {
+            "type": "fn_call",
+            "fn_name": {
+              "type": "identifier",
+              "value": "factorial",
+              "text": "factorial",
+              "offset": 204,
+              "lineBreaks": 0,
+              "line": 13,
+              "col": 9
+            },
+            "params": [
+              {
+                "type": "number",
+                "value": "10",
+                "text": "10",
+                "offset": 214,
+                "lineBreaks": 0,
+                "line": 13,
+                "col": 19
+              }
+            ]
           }
-        }
-      },
-      {
-        "type": "var_assign",
-        "var_name": {
-          "type": "identifier",
-          "value": "multiply",
-          "text": "multiply",
-          "offset": 69,
-          "lineBreaks": 0,
-          "line": 5,
-          "col": 1
-        },
-        "var_value": {
-          "type": "arithmetic_operation",
-          "exp1": {
-            "type": "number",
-            "value": "2",
-            "text": "2",
-            "offset": 80,
-            "lineBreaks": 0,
-            "line": 5,
-            "col": 12
-          },
-          "operator": {
-            "type": "times",
-            "value": "*",
-            "text": "*",
-            "offset": 81,
-            "lineBreaks": 0,
-            "line": 5,
-            "col": 13
-          },
-          "exp2": {
-            "type": "number",
-            "value": "2",
-            "text": "2",
-            "offset": 82,
-            "lineBreaks": 0,
-            "line": 5,
-            "col": 14
-          }
-        }
-      },
-      {
-        "type": "var_assign",
-        "var_name": {
-          "type": "identifier",
-          "value": "divide",
-          "text": "divide",
-          "offset": 85,
-          "lineBreaks": 0,
-          "line": 6,
-          "col": 1
-        },
-        "var_value": {
-          "type": "arithmetic_operation",
-          "exp1": {
-            "type": "number",
-            "value": "2",
-            "text": "2",
-            "offset": 94,
-            "lineBreaks": 0,
-            "line": 6,
-            "col": 10
-          },
-          "operator": {
-            "type": "divide",
-            "value": "/",
-            "text": "/",
-            "offset": 95,
-            "lineBreaks": 0,
-            "line": 6,
-            "col": 11
-          },
-          "exp2": {
-            "type": "number",
-            "value": "2",
-            "text": "2",
-            "offset": 96,
-            "lineBreaks": 0,
-            "line": 6,
-            "col": 12
-          }
-        }
-      },
-      {
-        "type": "var_assign",
-        "var_name": {
-          "type": "identifier",
-          "value": "modulo",
-          "text": "modulo",
-          "offset": 99,
-          "lineBreaks": 0,
-          "line": 7,
-          "col": 1
-        },
-        "var_value": {
-          "type": "arithmetic_operation",
-          "exp1": {
-            "type": "number",
-            "value": "2",
-            "text": "2",
-            "offset": 108,
-            "lineBreaks": 0,
-            "line": 7,
-            "col": 10
-          },
-          "operator": {
-            "type": "modulo",
-            "value": "%",
-            "text": "%",
-            "offset": 109,
-            "lineBreaks": 0,
-            "line": 7,
-            "col": 11
-          },
-          "exp2": {
-            "type": "number",
-            "value": "2",
-            "text": "2",
-            "offset": 110,
-            "lineBreaks": 0,
-            "line": 7,
-            "col": 12
-          }
-        }
+        ]
       },
       {
         "type": "print_statement",
         "printed_value": {
           "type": "identifier",
-          "value": "add",
-          "text": "add",
-          "offset": 115,
+          "value": "fac",
+          "text": "fac",
+          "offset": 223,
           "lineBreaks": 0,
-          "line": 8,
-          "col": 3
-        }
-      },
-      {
-        "type": "print_statement",
-        "printed_value": {
-          "type": "identifier",
-          "value": "subtract",
-          "text": "subtract",
-          "offset": 123,
-          "lineBreaks": 0,
-          "line": 9,
-          "col": 3
-        }
-      },
-      {
-        "type": "print_statement",
-        "printed_value": {
-          "type": "identifier",
-          "value": "multiply",
-          "text": "multiply",
-          "offset": 136,
-          "lineBreaks": 0,
-          "line": 10,
-          "col": 3
-        }
-      },
-      {
-        "type": "print_statement",
-        "printed_value": {
-          "type": "identifier",
-          "value": "divide",
-          "text": "divide",
-          "offset": 149,
-          "lineBreaks": 0,
-          "line": 11,
-          "col": 3
-        }
-      },
-      {
-        "type": "print_statement",
-        "printed_value": {
-          "type": "identifier",
-          "value": "modulo",
-          "text": "modulo",
-          "offset": 160,
-          "lineBreaks": 0,
-          "line": 12,
+          "line": 15,
           "col": 3
         }
       }

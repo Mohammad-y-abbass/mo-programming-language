@@ -13,8 +13,6 @@ let lexer = moo.compile({
   number: /0|[1-9][0-9]*/,
   string: /"(?:\\["\\]|[^\n"\\])*"/,
   arrow: /=>/,
-  openTag: /<</,
-  closeTag: />>/,
   identifier: /[a-zA-Z_]\w*/,
   assignment_symbol: /:=/,
   conditional: '?',
@@ -34,7 +32,11 @@ let lexer = moo.compile({
   fn: /f/,
   leftParan: '(',
   rightParan: ')',
-  end: ':end',
+  fnEnd: /:endf/,
+  loopEnd: /:endl/,
+  conditionalEnd: /:endc/,
+  openTag: /<</,
+  closeTag: />>/,
 });
 
 module.exports = lexer;

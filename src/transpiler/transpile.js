@@ -114,8 +114,8 @@ function generate_js_for_function_statement(func_node) {
 }
 
 function generate_js_for_return_statement(return_node) {
-  if (return_node.returned_value.value) {
-    return `return ${return_node.returned_value.value};`;
+  if (return_node.returned_value[0].value) {
+    return `return ${return_node.returned_value[0].value};`;
   } else {
     return '';
   }

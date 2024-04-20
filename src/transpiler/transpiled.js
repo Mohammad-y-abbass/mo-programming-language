@@ -1,15 +1,16 @@
-// ## Start of the code
-console.log("hello, world!");
-var add = 2 + 2 
-var subtract = 2 - 2 
-var multiply = 2 * 2 
-var divide = 2 / 2 
-var modulo = 2 % 2 
-console.log(add);
-console.log(subtract);
-console.log(multiply);
-console.log(divide);
-console.log(modulo);
+// ## This function calculates the factorial of a number
+function factorial (n) {
+    var x = 1;
+if (n <= 1) {
+    var x = 1;
+}
+for (let i = 1; i <= n; i++) {
+    var x = x * i 
+}
+    return x;
+}
+var fac = factorial(10) 
+console.log(fac);
 function sqrt(x) {
   return Math.sqrt(x);
 }

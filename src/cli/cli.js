@@ -12,36 +12,81 @@ const transpiledJs = 'src/transpiler/transpiled.js';
 const astFile = 'src/ast.json';
 const asciiArt = `                         
                          
-// ASCII art here
+ ██████   ██████    ███████       ███                                 ███  
+░░██████ ██████   ███░░░░░███    ░███                                ░███  
+ ░███░█████░███  ███     ░░███   ░███                                ░███  
+ ░███░░███ ░███ ░███      ░███   ░███ ██████████           ██████████░███  
+ ░███ ░░░  ░███ ░███      ░███   ░███░░░░░░░░░░           ░░░░░░░░░░ ░███  
+ ░███      ░███ ░░███     ███    ░███                                ░███  
+ █████     █████ ░░░███████░     ░███            █████████           ░███  
+░░░░░     ░░░░░    ░░░░░░░       ░░░            ░░░░░░░░░            ░░░   
+                                                                           
+                                                                           
+                                                                           
+                                  ███             ███             ███      
+                                ███░             ░███            ░░███     
+                              ███░               ░███             ░░███    
+                            ███░                 ░███              ░░███   
+                          ███░                   ░███               ░░███  
+                        ███░                     ░███                ░░███ 
+                      ███░                       ░███                 ░░███
+                     ░░░                         ░░░                   ░░░ 
+                                                                           
+                                                                           
+                                                                           
+                                                 ███                       
+                                                ░███                       
+                                                ░███                       
+                                                ░███                       
+                                                ░███                       
+                                                ░███                       
+                                                ░███                       
+                                                ░░░                        
+                                                                           
+                                                                           
+                                                                           
+                                              ███          ███             
+                                            ███░          ░░███            
+                                          ███░             ░░███           
+                                        ███░                ░░███          
+                                      ███░                   ░░███         
+                                    ███░                      ░░███        
+                                  ███░                         ░░███       
+                                 ░░░                            ░░░        
+                                                                           
+                                                                           
+                                                                           
 `;
 
 try {
   // Log messages with colors
-  console.log('Generating grammar...'.magenta);
+  //console.log('Generating grammar...'.magenta);
 
-  console.log(
-    execSync(`nearleyc ${grammarFile} -o ${generatedGrammar}`).toString()
-  );
+  //console.log(
+  //   execSync(`nearleyc ${grammarFile} -o ${generatedGrammar}`).toString()
+  // );
 
-  console.log('Grammar generated successfully.'.green);
+  // console.log('Grammar generated successfully.'.green);
 
-  console.log('Parsing...'.magenta);
+  console.log('Parsing the grammar into ast structure...'.magenta);
 
   console.log(execSync(`node ${parserFile}`).toString());
 
   console.log('Parsing completed successfully.'.green);
 
-  console.log('Transpiling...'.magenta);
+  console.log('Transpiling mo into javascript...'.magenta);
 
   console.log(execSync(`node ${transpilerFile} ${astFile}`).toString());
 
-  console.log('Transpilation completed successfully.'.green);
+  console.log('Code transpiled successfully.'.green);
 
   console.log('Running transpiled code...'.magenta);
 
-  console.log(execSync(`node ${transpiledJs}`).toString());
+  console.log('Build successful: Code executed successfully!'.green.bold);
 
-  console.log('Transpiled code executed successfully.'.green);
+  console.log(asciiArt);
+
+  console.log(execSync(`node ${transpiledJs}`).toString());
 } catch (error) {
   if (
     error.stdout.includes('transpile.js') ||

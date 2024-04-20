@@ -1,4 +1,12 @@
-## this is a comment
-name:="mohammad"
-age:=23
-## this is the end of the code
+## Start of the code
+w<"hello, world!">
+add:= 2+2
+subtract:= 2-2
+multiply:= 2*2
+divide:= 2/2
+modulo:= 2%2
+w<add>
+w<subtract>
+w<multiply>
+w<divide>
+w<modulo>

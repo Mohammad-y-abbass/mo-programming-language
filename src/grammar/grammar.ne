@@ -156,7 +156,6 @@ expression -> %number {% id %}
             | %string {% id %}
             | fn_call
             | var_length {% id %}
-            | current_index {% id %}
             | boolean {% id %}
             | arithmetic_operation {% id %}
 
@@ -238,14 +237,15 @@ loop -> %loop  _ condition _ %arrow %NL:* statements %end %NL:*
                 }
             %}
 
-fn -> "f" __ %identifier _ "<" _ params:* _ ">" _ %arrow %NL:* statements %end  %NL:*
+fn -> "f" __ %identifier _ "<" _ params:* _ ">" _ %arrow %NL:* statements %NL:* _ "r" __ expression %NL:* %end  %NL:*
             {%
                     (node) => {
                         return {
                         type: "fn",
                         fn_name: node[2],
                         params: node[6],
-                        body: node[12]
+                        body: node[12],
+                        returned_value: node[17]
                     }
                 }
             %}

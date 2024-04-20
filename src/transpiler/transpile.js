@@ -103,11 +103,21 @@ function generate_js_for_function_statement(func_node) {
       func_node.params
     )}) {
     ${generate_js_for_body(func_node.body)}
+    ${generate_js_for_return_statement(func_node)}
 }`;
   } else {
     return `function ${func_node.fn_name.value} (${func_node.params.value}) {
      ${generate_js_for_node(func_node.body)};
+     ${generate_js_for_return_statement(func_node)}
 }`;
+  }
+}
+
+function generate_js_for_return_statement(return_node) {
+  if (return_node.returned_value.value) {
+    return `return ${return_node.returned_value.value};`;
+  } else {
+    return '';
   }
 }
 

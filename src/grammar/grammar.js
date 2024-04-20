@@ -138,7 +138,6 @@ var grammar = {
     {"name": "expression", "symbols": [(myLexer.has("string") ? {type: "string"} : string)], "postprocess": id},
     {"name": "expression", "symbols": ["fn_call"]},
     {"name": "expression", "symbols": ["var_length"], "postprocess": id},
-    {"name": "expression", "symbols": ["current_index"], "postprocess": id},
     {"name": "expression", "symbols": ["boolean"], "postprocess": id},
     {"name": "expression", "symbols": ["arithmetic_operation"], "postprocess": id},
     {"name": "boolean", "symbols": [{"literal":"true"}], "postprocess": id},
@@ -219,13 +218,18 @@ var grammar = {
     {"name": "fn$ebnf$2", "symbols": ["fn$ebnf$2", (myLexer.has("NL") ? {type: "NL"} : NL)], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
     {"name": "fn$ebnf$3", "symbols": []},
     {"name": "fn$ebnf$3", "symbols": ["fn$ebnf$3", (myLexer.has("NL") ? {type: "NL"} : NL)], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
-    {"name": "fn", "symbols": [{"literal":"f"}, "__", (myLexer.has("identifier") ? {type: "identifier"} : identifier), "_", {"literal":"<"}, "_", "fn$ebnf$1", "_", {"literal":">"}, "_", (myLexer.has("arrow") ? {type: "arrow"} : arrow), "fn$ebnf$2", "statements", (myLexer.has("end") ? {type: "end"} : end), "fn$ebnf$3"], "postprocess": 
+    {"name": "fn$ebnf$4", "symbols": []},
+    {"name": "fn$ebnf$4", "symbols": ["fn$ebnf$4", (myLexer.has("NL") ? {type: "NL"} : NL)], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
+    {"name": "fn$ebnf$5", "symbols": []},
+    {"name": "fn$ebnf$5", "symbols": ["fn$ebnf$5", (myLexer.has("NL") ? {type: "NL"} : NL)], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
+    {"name": "fn", "symbols": [{"literal":"f"}, "__", (myLexer.has("identifier") ? {type: "identifier"} : identifier), "_", {"literal":"<"}, "_", "fn$ebnf$1", "_", {"literal":">"}, "_", (myLexer.has("arrow") ? {type: "arrow"} : arrow), "fn$ebnf$2", "statements", "fn$ebnf$3", "_", {"literal":"r"}, "__", "expression", "fn$ebnf$4", (myLexer.has("end") ? {type: "end"} : end), "fn$ebnf$5"], "postprocess": 
             (node) => {
                 return {
                 type: "fn",
                 fn_name: node[2],
                 params: node[6],
-                body: node[12]
+                body: node[12],
+                returned_value: node[17]
             }
         }
                     },

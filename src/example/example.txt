@@ -1,4 +1,5 @@
 ## This function calculates the factorial of a number
+
 f factorial<n> =>
     x:=1
     ? n<=1 =>

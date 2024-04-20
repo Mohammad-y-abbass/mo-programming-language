@@ -70,7 +70,10 @@ try {
 
   console.log('Parsing the grammar into ast structure...'.magenta);
 
-  console.log(execSync(`node ${parserFile}`).toString());
+  console.log(
+    execSync(`node ${parserFile}
+  `).toString()
+  );
 
   console.log('Parsing completed successfully.'.green);
 

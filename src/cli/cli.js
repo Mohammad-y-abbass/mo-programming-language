@@ -75,19 +75,16 @@ try {
   `).toString()
   );
 
-  console.log('Parsing completed successfully.'.green);
-
   console.log('Transpiling mo into javascript...'.magenta);
 
   console.log(execSync(`node ${transpilerFile} ${astFile}`).toString());
 
-  console.log('Code transpiled successfully.'.green);
 
   console.log('Running transpiled code...'.magenta);
 
   console.log('Build successful: Code executed successfully!'.green.bold);
 
-  console.log(asciiArt);
+  console.log(asciiArt.rainbow);
 
   console.log(execSync(`node ${transpiledJs}`).toString());
 } catch (error) {
